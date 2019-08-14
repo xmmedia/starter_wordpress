@@ -74,6 +74,8 @@ cypress/integration/examples
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+# @todo-symfony remove when setting up project
+.idea/webServers.xml
 ###< phpstorm ###
 
 ###> vscode ###
