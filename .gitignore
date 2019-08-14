@@ -1,3 +1,20 @@
+Icon?
+.DS_Store
+.svn
+*~
+*.swp
+coverage
+sftp-config.json
+.remote-sync.json
+.sass-cache
+
+/composer.phar
+webpack-stats.json
+web/service-worker.js
+
+# ignore everything in bin
+/bin/*
+
 # Application
 web/app/plugins/*
 !web/app/plugins/.gitkeep
@@ -20,3 +37,50 @@ web/.htaccess
 
 # WP-CLI
 wp-cli.local.yml
+
+# yarn/npm
+/node_modules/
+npm-debug.log
+yarn-error.log
+
+# assets build dir
+web/build/
+
+###> friendsofphp/php-cs-fixer ###
+/.php_cs
+/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
+
+###> cypress ###
+cypress/videos
+cypress/screenshots
+cypress/integration/examples
+###< cypress ###
+
+###> phpstorm ###
+# PhpStorm
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+# Generated files
+.idea/**/contentModel.xml
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+###< phpstorm ###
+
+###> vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+###< vscode ###
