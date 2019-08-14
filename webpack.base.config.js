@@ -2,6 +2,7 @@
 const path = require('path');
 const glob = require('glob-all');
 const PurgecssPlugin = require('purgecss-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function resolve (dir) {
@@ -76,6 +77,8 @@ module.exports = function (Encore) {
             '@': resolve('js/src'),
             'vue$': 'vue/dist/vue.esm.js',
         })
+
+        .addPlugin(new Dotenv())
 
         .addPlugin(new BundleAnalyzerPlugin({
             analyzerMode: 'static',
