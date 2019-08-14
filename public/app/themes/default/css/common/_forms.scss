@@ -1,0 +1,106 @@
+// style all form controls/inputs
+[type=text],
+[type=password],
+[type=date],
+[type=datetime],
+[type=datetime-local],
+[type=month],
+[type=week],
+[type=email],
+[type=number],
+[type=search],
+[type=tel],
+[type=time],
+[type=url],
+[type=color],
+textarea {
+    @apply w-full px-2 py-1 border border-gray-500 rounded-sm bg-gray-100;
+}
+textarea {
+    // fixes space below textareas, making it consistent across browsers
+    @apply align-top;
+}
+select {
+    @apply w-full p-1 border border-gray-500 rounded-sm bg-gray-100;
+    height: 2.14rem;
+}
+[type=radio], [type=checkbox] {
+    @apply mr-1;
+}
+// fixes alignment of radio to label
+[type=radio] {
+    @apply relative;
+    top: -1px;
+}
+// make sure everything shows a pointer on hover
+[type=submit], [type=image], label, select {
+    @apply cursor-pointer;
+}
+[type=file] {
+    width: 100%;
+}
+
+.form-wrap {
+    @apply w-11/12 max-w-lg mx-auto my-4 p-4 rounded-sm shadow-md;
+}
+
+.field-wrap {
+    @apply mb-4;
+    label {
+        @apply block mb-1;
+    }
+}
+.field-wrap-checkbox {
+    @apply flex flex-wrap items-center mb-4;
+    label {
+        @apply inline-block mr-4 mb-0;
+    }
+}
+
+.field-wrap-radio {
+    @apply mb-1;
+}
+
+.field-wrap-radios, .field-wrap-checkboxes {
+    @apply mb-4;
+    label {
+        @apply inline-block mr-4 mb-0;
+    }
+    legend {
+        @apply mb-1;
+    }
+    .field-wrap-checkbox {
+        @apply mb-1;
+    }
+}
+
+.field-errors {
+    @apply mb-1 pl-0 list-none;
+    li {
+        @apply mb-1 p-2 bg-gray-200 border-l-10 border-red-700;
+    }
+}
+
+.field-wrap-readonly {
+    @apply relative;
+
+    input {
+        @apply opacity-50;
+    }
+
+    &:after {
+        @apply absolute right-0 text-xs opacity-50;
+        top: 0.5em;
+        content: "read-only";
+    }
+}
+
+.field-help {
+    @apply w-full mt-px text-xs italic text-gray-600 leading-tight;
+    // the padding helps it align better with field above
+    padding-left: 0.1em;
+}
+
+.form-action {
+    @apply text-sm ml-4;
+}
