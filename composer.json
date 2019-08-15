@@ -26,7 +26,11 @@
     "roots/wordpress": "5.2.2",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
-    "vlucas/phpdotenv": "^3.4.0"
+    "vlucas/phpdotenv": "^3.4.0",
+    "wpackagist-plugin/akismet": "^4.1",
+    "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
+    "wpackagist-plugin/wordfence": "^7.3",
+    "wpackagist-plugin/wordpress-seo": "^11.8"
   },
   "require-dev": {
     "symfony/var-dumper": "^4.3"
