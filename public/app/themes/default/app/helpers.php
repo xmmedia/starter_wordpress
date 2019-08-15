@@ -7,7 +7,6 @@ class ThemeHelpers
     /** @var array */
     public static $manifestData;
 
-    // @todo cache manifest data
     public static function assetPath(string $asset): string
     {
         if (null === self::$manifestData) {
