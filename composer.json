@@ -34,6 +34,8 @@
         "vlucas/phpdotenv": "^3.4.0",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^2.3",
         "wpackagist-plugin/akismet": "^4.1",
+        "wpackagist-plugin/contact-form-7": "^5.1",
+        "wpackagist-plugin/flamingo": "^2.0",
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
         "wpackagist-plugin/wordfence": "^7.3",
         "wpackagist-plugin/wordpress-seo": "^11.8"
