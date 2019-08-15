@@ -53,5 +53,5 @@ function asset_path(string $asset): string
         );
     }
 
-    return $manifestData[$asset];
+    return $manifestData[$asset] ?: $asset;
 }
