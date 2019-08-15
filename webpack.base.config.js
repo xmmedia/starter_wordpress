@@ -17,10 +17,10 @@ module.exports = function (Encore) {
 
     Encore
     // directory where all compiled assets will be stored
-        .setOutputPath('build/')
+        .setOutputPath('public/app/themes/default/build/')
 
         // what's the public path to this directory (relative to your project's document root dir)
-        .setPublicPath('/build')
+        .setPublicPath('/app/themes/default/build')
 
         // always create hashed filenames (e.g. public.a1b2c3.css)
         .enableVersioning(true)
@@ -31,8 +31,8 @@ module.exports = function (Encore) {
         // don't output the runtime chunk as we only include 1 JS file per page
         .disableSingleRuntimeChunk()
 
-        // will output as build/admin.js and similar
-        .addEntry('index', './js/src/index.js')
+        // will output as build/index.js and similar
+        .addEntry('index', './public/app/themes/default/js/src/public.js')
 
         // allow sass/scss files to be processed
         .enableSassLoader(function(sassOptions) {}, {
@@ -99,8 +99,8 @@ module.exports = function (Encore) {
                 // Specify the locations of any files you want to scan for class names.
                 paths: glob.sync([
                     path.join(__dirname, '**/*.php'),
-                    path.join(__dirname, 'js/src/**/*.vue'),
-                    path.join(__dirname, 'js/src/**/*.js'),
+                    path.join(__dirname, 'public/app/themes/js/src/**/*.vue'),
+                    path.join(__dirname, 'public/app/themes/js/src/**/*.js'),
                     // path.join(__dirname, 'node_modules/vue-js-modal/dist/index.js'),
                 ]),
                 extractors: [
