@@ -14,11 +14,16 @@
         {
             "type": "composer",
             "url": "https://wpackagist.org"
+        },
+        {
+            "type": "composer",
+            "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v2/wpackagist-plugin/"
         }
     ],
     "require": {
         "php": "7.3.*",
         "ext-json": "*",
+        "advanced-custom-fields/advanced-custom-fields-pro": "^5.8",
         "composer/installers": "^1.4",
         "oscarotero/env": "^1.2.0",
         "roave/security-advisories": "dev-master",
