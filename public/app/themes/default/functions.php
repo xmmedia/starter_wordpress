@@ -25,8 +25,14 @@ add_action('after_setup_theme', function () {
     add_action(
         'wp_enqueue_scripts',
         function () {
-            wp_enqueue_style('default/public.css', ThemeHelpers::assetPath('public.css'));
-            wp_enqueue_script('default/public.js', ThemeHelpers::assetPath('public.js'));
+            wp_enqueue_style(
+                'default/public.css',
+                ThemeHelpers::assetPath('public.css')
+            );
+            wp_enqueue_script(
+                'default/public.js',
+                ThemeHelpers::assetPath('public.js')
+            );
         }
     );
 
