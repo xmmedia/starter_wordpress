@@ -1,6 +1,7 @@
 # XM WordPress Starter
 
-* Required: composer, node, yarn, wp-cli
+* Required: composer, node, yarn
+* Optional: wp-cli
 * Base on https://github.com/roots/bedrock
 
 1. Create a new project:
