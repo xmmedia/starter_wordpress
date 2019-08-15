@@ -93,11 +93,16 @@ Config::define('NONCE_SALT', env('NONCE_SALT'));
  * Custom Settings
  */
 Config::define('AUTOMATIC_UPDATER_DISABLED', true);
+// Config::define('WP_AUTO_UPDATE_CORE', false);
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 // Disable the plugin and theme file editor in the admin
 Config::define('DISALLOW_FILE_EDIT', true);
 // Disable plugin and theme updates and installation from the admin
 Config::define('DISALLOW_FILE_MODS', true);
+// Force SSL for admin pages
+Config::define('FORCE_SSL_ADMIN', true);
+// Set trash empty to 365 days
+Config::define('EMPTY_TRASH_DAYS', 365);
 
 /**
  * Debugging Settings
