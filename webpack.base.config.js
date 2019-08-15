@@ -100,9 +100,9 @@ module.exports = function (Encore) {
             .addPlugin(new PurgecssPlugin({
                 // Specify the locations of any files you want to scan for class names.
                 paths: glob.sync([
-                    path.join(__dirname, '**/*.php'),
-                    path.join(__dirname, 'public/app/themes/js/src/**/*.vue'),
-                    path.join(__dirname, 'public/app/themes/js/src/**/*.js'),
+                    path.join(__dirname, 'public/app/themes/default/**/*.php'),
+                    path.join(__dirname, 'public/app/themes/default/js/src/**/*.vue'),
+                    path.join(__dirname, 'public/app/themes/default/js/src/**/*.js'),
                     // path.join(__dirname, 'node_modules/vue-js-modal/dist/index.js'),
                 ]),
                 extractors: [
