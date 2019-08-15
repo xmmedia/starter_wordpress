@@ -27,6 +27,7 @@
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "vlucas/phpdotenv": "^3.4.0",
+    "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^2.3",
     "wpackagist-plugin/akismet": "^4.1",
     "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
     "wpackagist-plugin/wordfence": "^7.3",
