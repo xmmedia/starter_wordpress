@@ -53,5 +53,7 @@ function asset_path(string $asset): string
         );
     }
 
-    return $manifestData[$asset] ?: $asset;
+    $path = $manifestData[$asset] ?: $asset;
+
+    return get_template_directory_uri().$path;
 }

@@ -20,7 +20,7 @@ module.exports = function (Encore) {
         .setOutputPath('public/app/themes/default/build/')
 
         // what's the public path to this directory (relative to your project's document root dir)
-        .setPublicPath('/app/themes/default/build')
+        .setPublicPath('/build')
 
         .setManifestKeyPrefix('')
 
