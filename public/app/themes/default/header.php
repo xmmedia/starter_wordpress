@@ -5,10 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <?php wp_head(); ?>
-
-    <?php /*<title><?php Common::e($page_title); ?></title>
-
-    <link href="<?php Common::version_file('build/public.css'); ?>" rel="stylesheet">*/ ?>
 </head>
 
 <body <?php body_class(); ?>>
