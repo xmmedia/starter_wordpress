@@ -24,7 +24,6 @@ public/app/uploads/*
 
 # WordPress
 public/wp
-public/.htaccess
 
 # Dotenv
 .env
