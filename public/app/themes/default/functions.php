@@ -11,29 +11,12 @@ add_theme_support(
 add_action(
     'wp_enqueue_scripts',
     function () {
-        // wp_enqueue_style(
-        //     'default/public.css',
-        //     asset_path('styles/main.css'),
-        //     false,
-        //     null
-        //);
-        // wp_enqueue_script(
-        //     'default/public.js',
-        //     asset_path('scripts/main.js'),
-        //     false,
-        //     null,
-        //     true
-        //);
-
-        // wp_enqueue_style('main', get_template_directory_uri() . '/public/build/main.c0d9d23c.css');
-        // wp_enqueue_script('app', get_template_directory_uri() . '/public/build/app.036b7c01.js');
+        wp_enqueue_style('default/public.css', asset_path('public.css'));
+        wp_enqueue_script('default/public.js', asset_path('public.js'));
     }
 );
 
-function asset_path(string $path): string
-{
-    return get_template_directory_uri();
-}
+add_editor_style(asset_path('public.css'));
 
 /**
  * Enable features from Soil when plugin is activated
@@ -56,3 +39,19 @@ function wps_deregister_styles() {
     wp_dequeue_style( 'wp-block-library' );
 }
 
+function asset_path(string $asset): string
+{
+    $manifestFile = get_template_directory_uri().'/build/manifest.json';
+    $manifestData = \json_decode(\file_get_contents($manifestFile), true);
+    if (0 < \json_last_error()) {
+        throw new \RuntimeException(
+            sprintf(
+                'Error parsing JSON from asset manifest file "%s" - %s',
+                $manifestFile,
+                json_last_error_msg()
+            )
+        );
+    }
+
+    return $manifestData[$asset];
+}

@@ -22,6 +22,8 @@ module.exports = function (Encore) {
         // what's the public path to this directory (relative to your project's document root dir)
         .setPublicPath('/app/themes/default/build')
 
+        .setManifestKeyPrefix('')
+
         // always create hashed filenames (e.g. public.a1b2c3.css)
         .enableVersioning(true)
 
@@ -31,8 +33,8 @@ module.exports = function (Encore) {
         // don't output the runtime chunk as we only include 1 JS file per page
         .disableSingleRuntimeChunk()
 
-        // will output as build/index.js and similar
-        .addEntry('index', './public/app/themes/default/js/src/public.js')
+        // will output as build/public.js and similar
+        .addEntry('public', './public/app/themes/default/js/src/public.js')
 
         // allow sass/scss files to be processed
         .enableSassLoader(function(sassOptions) {}, {
