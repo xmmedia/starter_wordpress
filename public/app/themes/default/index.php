@@ -1,32 +1,7 @@
-<?php
+<?php get_header(); ?>
 
-get_header();
-/*
-?>
+<main class="max-w-11/12 max:max-w-6xl mx-auto clearfix">
+    <p>Content</p>
+</main>
 
-    <section id="primary" class="content-area">
-        <main id="main" class="site-main">
-
-            <?php
-            if ( have_posts() ) {
-
-                // Load posts loop.
-                while ( have_posts() ) {
-                    the_post();
-                    get_template_part( 'template-parts/content/content' );
-                }
-
-            } else {
-
-                // If no content, include the "No posts found" template.
-                get_template_part( 'template-parts/content/content', 'none' );
-
-            }
-            ?>
-
-        </main><!-- .site-main -->
-    </section><!-- .content-area -->
-
-<?php
-*/
-get_footer();
+<?php get_footer();
