@@ -1,8 +1,0 @@
-// @todo move to tailwind.js?
-@mixin mq_retina() {
-    @media
-        (-webkit-min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi) {
-            @content
-        }
-}
