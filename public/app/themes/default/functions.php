@@ -40,10 +40,16 @@ function asset_path(string $path): string
  * https://roots.io/plugins/soil/
  */
 add_theme_support('soil-clean-up');
-add_theme_support('soil-jquery-cdn');
+add_theme_support('soil-disable-rest-api');
+add_theme_support('soil-disable-asset-versioning');
+add_theme_support('soil-disable-trackbacks');
+add_theme_support('soil-js-to-footer');
 add_theme_support('soil-nav-walker');
 add_theme_support('soil-nice-search');
 add_theme_support('soil-relative-urls');
+if (env('GA_ANALYTICS_ID')) {
+    add_theme_support('soil-google-analytics', env('GA_ANALYTICS_ID'));
+}
 
 add_action( 'wp_print_styles', 'wps_deregister_styles', 100 );
 function wps_deregister_styles() {
