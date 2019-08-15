@@ -5,7 +5,7 @@
 
 1. Create a new project:
     ```sh
-    composer create-project xm/starter_wordpress
+    composer create-project xm/starter_wordpress project-name  --stability=dev
     ```
 2. Update environment variables in the `.env` file:
   * Database: define `DATABASE_URL` for using a DSN (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
