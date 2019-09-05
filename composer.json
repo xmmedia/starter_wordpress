@@ -28,7 +28,7 @@
         "oscarotero/env": "^1.2.0",
         "roave/security-advisories": "dev-master",
         "roots/soil": "^3.8",
-        "roots/wordpress": "5.2.2",
+        "roots/wordpress": "5.2.3",
         "roots/wp-config": "1.0.0",
         "roots/wp-password-bcrypt": "1.0.0",
         "vlucas/phpdotenv": "^3.4.0",
