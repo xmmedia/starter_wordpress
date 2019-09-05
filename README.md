@@ -38,9 +38,10 @@
     6 link public to html: `rm -rf html && ln -s public html`
     7. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
     8. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
-    9. Adjust permissions on the bin dir: `chmod u+x bin/*`
+    9. Optional: Adjust permissions on the bin dir: `chmod u+x bin/*`
 11. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
-12. Delete or update `README.md`
+12. Delete or update `README.md` and `LICENSE`
+13. Add the Akismet & Postmark API keys
 13. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
 
 ## System Requirements
@@ -63,11 +64,32 @@ For packages that are found on [WPackagist](https://wpackagist.org/) and support
 Download the archive of the plugin and put in the `/public/app/mu-plugins/<plugin-name>/` dir.
 Include this in the git repo. It will need to manually updated.
 
-## Updating Packages
+## Referencing Assets
 
-- add Akismet key
-- add Postmark api key
-- add ACF key
+To reference assets (images, CSS files, etc) that are located in the theme, use the following function:
+
+`<?php echo ThemeHelpers::assetPath('/path/within/theme/dir.jpg'); ?>`
+
+This will use WordPress' internal path and URL generation to deal with the theme folder changing or moving. The slash at the beginning of the path is optional.
+
+changing theme name
+
+## Updating WordPress & Plugins/Packages
+
+To update WordPress core and all the plugins, run the following locally.
+Replace `5.2.3` with the current version. 
+
+`composer update && composer require roots/wordpress:5.2.3`
+
+The latest version of WordPress available can be found here: https://github.com/roots/wordpress/releases
+
+## Changing the Theme Name/Path
+
+To change the theme name from the default `default` to, for example, `company`:
+
+1. Rename the theme folder.
+2. In `config/application.php`, update the `Config::define('WP_DEFAULT_THEME', 'default');` line.
+3. In `webpack.base.config.js`, update all the paths referencing the theme folder, ie, `public/app/themes/default/...`
 
 ## Commands
 
