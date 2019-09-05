@@ -29,6 +29,10 @@ add_action('after_setup_theme', function () {
                 'default/public.css',
                 ThemeHelpers::assetPath('public.css')
             );
+            // wp_enqueue_style(
+            //     'google_fonts',
+            //     'https://...'
+            // );
             wp_enqueue_script(
                 'default/public.js',
                 ThemeHelpers::assetPath('public.js')
