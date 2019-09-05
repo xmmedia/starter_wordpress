@@ -4,6 +4,8 @@
 * Optional: wp-cli
 * Based on https://github.com/roots/bedrock
 
+## Initial Setup
+
 1. Create a new project:
     ```sh
     composer create-project xm/starter_wordpress project-name --stability=dev --no-install --remove-vcs
