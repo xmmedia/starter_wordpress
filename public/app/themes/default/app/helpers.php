@@ -10,7 +10,7 @@ class ThemeHelpers
     public static function assetPath(string $asset): string
     {
         if (null === self::$manifestData) {
-            $manifestFile = get_template_directory_uri().'/build/manifest.json';
+            $manifestFile = get_template_directory().'/build/manifest.json';
 
             self::$manifestData = \json_decode(
                 \file_get_contents($manifestFile),
