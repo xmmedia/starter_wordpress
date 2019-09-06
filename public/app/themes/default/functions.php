@@ -62,5 +62,12 @@ add_action('after_setup_theme', function () {
     {
         wp_dequeue_style('wp-block-library');
     }
+
+    // add SVG to allowed file uploads
+    add_action('upload_mimes', function ($file_types) {
+        $file_types['svg'] = 'image/svg+xml';
+
+        return $file_types;
+    });
 });
 

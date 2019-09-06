@@ -110,6 +110,8 @@ Config::define('DISALLOW_FILE_MODS', true);
 Config::define('FORCE_SSL_ADMIN', true);
 // Set trash empty to 365 days
 Config::define('EMPTY_TRASH_DAYS', 365);
+// Allow any file type upload for admins
+Config::define('ALLOW_UNFILTERED_UPLOADS', true);
 
 /**
  * Debugging Settings
