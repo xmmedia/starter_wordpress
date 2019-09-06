@@ -11,7 +11,7 @@
     composer create-project xm/starter_wordpress project-name --stability=dev --no-install --remove-vcs
     ```
 2. Copy `.env.example` to `.env`.
-3. Add the ACF key to the `.env` or remove from composer.json.
+3. Add the ACF key to the `.env` or remove ACF from composer.json.
 4. Update `composer.json`: `name`, `license` (likely `private`) and `description`
 5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
 6. Install PHP packages & update: `composer install && composer update`
