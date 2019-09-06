@@ -58,6 +58,13 @@ Config::define('WP_CONTENT_URL', Config::get('WP_HOME') . Config::get('CONTENT_D
 Config::define('WP_DEFAULT_THEME', 'default');
 
 /**
+ * Set WordPress.com API Key (Akismet, Jetpack)
+ */
+if (env('WPCOM_API_KEY')) {
+    Config::define('WPCOM_API_KEY', env('WPCOM_API_KEY'));
+}
+
+/**
  * DB settings
  */
 Config::define('DB_NAME', env('DB_NAME'));
