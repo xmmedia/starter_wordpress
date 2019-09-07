@@ -59,10 +59,15 @@ For packages that are found on [WPackagist](https://wpackagist.org/) and support
 3. Run `php composer.phar install` on the server.
 4. Activate and configure the plugin or theme in WordPress.
 
+Note: for plugins installed this way, only the references to plugin 
+in `composer.json` and `composer.lock` are committed to git.
+The actual plugin files are not committed to git.
+
 ## Adding Plugins/Themes *not on* WPackagist
 
 Download the archive of the plugin and put in the `/public/app/mu-plugins/<plugin-name>/` dir.
-Include this in the git repo. It will need to manually updated.
+Add a line to `.gitignore` such as `!public/app/mu-plugins/plugin/` so the plugin is detected/include by git.
+Commit the plugin to git. It will need to manually updated.
 
 ## Referencing Assets
 
