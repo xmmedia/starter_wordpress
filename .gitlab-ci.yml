@@ -83,9 +83,11 @@ deploy:
     # switch to new version
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
     # copy env file into place
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env && cd $REMOTE_BASE/current"
-    # update WP db & activate plugins
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db; bin/wp plugin activate --all"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env"
+    # update WP db
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db"
+    # activate plugins
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp plugin activate --all"
     # display WordPress version
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; bin/wp core version"
     # clear opcache
