@@ -57,7 +57,5 @@
             ]
         },
         "wordpress-install-dir": "public/wp"
-    },
-    "scripts": {
     }
 }
