@@ -9,6 +9,8 @@ cache:
   paths:
     - vendor/
     - node_modules/
+    - public/app/plugins/
+    - public/wp/
 
 variables:
   RELEASES: "$REMOTE_BASE/releases"
@@ -24,11 +26,17 @@ before_script:
   # the following line is optional (likely remove previous line)
   #- echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
+  # Taken from here: https://gist.github.com/kwk/55bb5b6a4b7457bef38d
+  # This forces dpkg not to call sync() after package extraction and speeds up install
+  - echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
+  # We don't need and apt cache in a container or recommendations
+  - echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
+  - echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf
   # Install packages
   - apt-get install gnupg2 build-essential libssl-dev -yqq
   - curl -sL https://deb.nodesource.com/setup_10.x | bash -
-  # Install git, the php image doesn't have installed
-  - apt-get install git zip unzip gcc g++ make nodejs -yqq
+  # Install libs the php image doesn't have installed
+  - apt-get install git zip unzip gcc g++ make nodejs rsync -yqq
   - alias nodejs=node
   # add package key for yarn
   - curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -41,7 +49,6 @@ deploy:
   when: manual
   allow_failure: false
   script:
-    - export APP_ENV=prod
     - php -v
     - php composer.phar --version
     - node --version
@@ -50,28 +57,32 @@ deploy:
     - TIMESTAMP=$(date +%s); RELEASE="$RELEASES/$TIMESTAMP"
     - echo "Paths:"; echo $REMOTE_BASE; echo $RELEASE; echo $SHARED
     - echo "Remote:"; echo $REMOTE_USER@$REMOTE_SERVER:$REMOTE_PORT
+    # create partial .env file
+    # @todo-wordpress remove if not using ACF
+    - printf "ACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
     # install php dependencies
-    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --no-scripts --no-plugins
+    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --no-scripts --ignore-platform-reqs
     # Install node/JS dependencies
     - yarn install --non-interactive --frozen-lockfile
     - yarn build
     # add .revision file
     - git rev-parse --verify --short HEAD > .revision
     # ensure based paths exist
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/var $SHARED/public/uploads $SHARED/public/media/cache"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/public/app/uploads"
     # sync files to release directory
-    - rsync --archive --stats --human-readable --no-perms --exclude ".git/" --exclude ".idea/" --exclude "node_modules/" -e "ssh -p $REMOTE_PORT" . $REMOTE_USER@$REMOTE_SERVER:$RELEASE
-    # copy env file into place
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env"
+    - rsync --archive --stats --human-readable --no-perms --exclude ".git/" --exclude ".idea/" --exclude "node_modules/" --exclude "cypress/" -e "ssh -p $REMOTE_PORT" . $REMOTE_USER@$REMOTE_SERVER:$RELEASE
     # link shared folders
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/var; ln -s $SHARED/var $RELEASE/var; rm -rf $RELEASE/public/uploads; ln -s $SHARED/public/uploads $RELEASE/public/uploads; rm -rf $RELEASE/public/media/cache; ln -s $SHARED/public/media/cache $RELEASE/public/media/cache"
-    # switch to new version; run composer on server; db migrations
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -f $REMOTE_BASE/current; ln -s $RELEASE $REMOTE_BASE/current; cd $REMOTE_BASE/current; export APP_ENV=prod; php composer.phar run-script post-update-cmd"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads"
+    # link in ACF
+    # @todo-wordpress remove if not using ACF
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
+    # switch to new version
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
+    # copy env file into place
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env && cd $REMOTE_BASE/current"
     # clear opcache
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo '<?php opcache_reset();' > html/opcache_reset.php; curl $HTTP_ROOT/opcache_reset.php; rm html/opcache_reset.php" || echo -e "\033[0;31mFAILURE unable to reset OPcache"
-    # supervisord: write config & restart all
-    - php bin/console app:supervisor:write-config; php bin/console app:supervisor:restart --all
-    # cloudflare: purge cache
-    #- php bin/console app:cloudflare:purge-cache
-    # remove >3 releases
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +4 | xargs /bin/rm -rf"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $REMOTE_BASE/current; echo '<?php opcache_reset();' > public/opcache_reset.php; curl $HTTP_ROOT/opcache_reset.php; rm public/opcache_reset.php" || echo -e "\033[0;31mFAILURE unable to reset OPcache"
+    # remove >2 releases
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +3 | xargs /bin/rm -rf"
+    # success message
+    - echo "Deployment completed successfully. Release at $RELEASE"
