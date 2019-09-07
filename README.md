@@ -38,11 +38,12 @@
     6 link public to html: `rm -rf html && ln -s public html`
     7. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
     8. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
-    9. Optional: Adjust permissions on the bin dir: `chmod u+x bin/*`
+    9. Adjust permissions on the bin dir: `chmod u+x bin/*`
 11. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
-12. Delete or update `README.md` and `LICENSE`
-13. Add the Akismet & Postmark API keys
-13. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
+12. To activate all installed plugins: `bin/wp plugin activate --all`
+13. Delete or update `README.md` and `LICENSE`
+14. Add the Akismet & Postmark API keys
+15. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
 
 ## System Requirements
 
