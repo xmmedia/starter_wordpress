@@ -36,7 +36,6 @@ new MutationObserver(function (mutations) {
                                         if (data) {
                                             // replace the default image with the SVG
                                             element.find('img').attr('src', data);
-                                            element.find('.filename').text('SVG Image');
                                         }
                                     }
                                 });
