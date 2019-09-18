@@ -35,6 +35,7 @@ module.exports = function (Encore) {
 
         // will output as build/public.js and similar
         .addEntry('public', './public/app/themes/default/js/src/public.js')
+        .addEntry('blocks', './public/app/themes/default/js/src/blocks.js')
 
         // allow sass/scss files to be processed
         .enableSassLoader(function(sassOptions) {}, {

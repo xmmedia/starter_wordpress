@@ -37,6 +37,7 @@
     "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
     "@cypress/webpack-preprocessor": "^4.0.2",
     "@symfony/webpack-encore": "^0.28.0",
     "@vue/cli-plugin-babel": "^3.0.5",

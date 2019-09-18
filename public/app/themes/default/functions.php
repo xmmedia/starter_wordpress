@@ -13,7 +13,7 @@ array_map(function ($file) {
     if (!locate_template($file, true, true)) {
         throw new \InvalidArgumentException(sprintf('Unable to load file %s', $file));
     }
-}, ['helpers']);
+}, ['helpers', 'blocks']);
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
