@@ -13,7 +13,7 @@ array_map(function ($file) {
     if (!locate_template($file, true, true)) {
         throw new \InvalidArgumentException(sprintf('Unable to load file %s', $file));
     }
-}, ['helpers', 'blocks']);
+}, ['helpers', 'blocks', 'svg']);
 
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
@@ -63,12 +63,5 @@ add_action('after_setup_theme', function () {
     {
         wp_dequeue_style('wp-block-library');
     }
-
-    // add SVG to allowed file uploads
-    add_action('upload_mimes', function ($file_types) {
-        $file_types['svg'] = 'image/svg+xml';
-
-        return $file_types;
-    });
 });
 
