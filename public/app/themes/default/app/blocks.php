@@ -26,7 +26,6 @@ add_action('init', function ()
     wp_register_script(
         'block-example',
         ThemeHelpers::assetPath('blocks.js'),
-        // plugins_url('block.js', __FILE__),
         ['wp-blocks', 'wp-element']
     );
 
