@@ -50,6 +50,7 @@
 
   - PHP 7.3+
   - MySQL 5.7+
+  - [Composer](https://getcomposer.org/download/)
   - [Yarn](https://yarnpkg.com/en/docs/install)
 
 ## Adding Plugins/Themes using WPackagist
@@ -58,7 +59,7 @@ For packages that are found on [WPackagist](https://wpackagist.org/) and support
 
 1. Run `composer require wpackagist-plugin/plugin-name` or `composer require wpackagist-theme/theme-name`
 2. Upload the `composer.json` & `composer.lock` files to the server (if applicable).
-3. Run `php composer.phar install` on the server.
+3. Run `php composer.phar install` on the server (if applicable).
 4. Activate and configure the plugin or theme in WordPress.
 
 Note: for plugins installed this way, only the references to plugin 
