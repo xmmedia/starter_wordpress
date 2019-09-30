@@ -11,8 +11,8 @@
     composer create-project xm/starter_wordpress project-name --stability=dev --no-install --remove-vcs
     ```
 2. Copy `.env.example` to `.env`.
-3. Add the ACF key to the `.env` or remove ACF from composer.json.
-4. Update `composer.json`: `name`, `license` (likely `private`) and `description`
+3. Add the ACF key to the `.env` or remove ACF from `composer.json` if you're not going to use ACF.
+4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
 5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
 6. Install PHP packages & update: `composer install && composer update`
 7. Run `yarn && yarn upgrade` locally.
@@ -21,6 +21,7 @@
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (https://dev.example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
+  * `WPCOM_API_KEY` - Wordpress.com API key for Akismet and Jetpack (or other WordPress paid plugins)
   * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` from: https://roots.io/salts.html
 9. Find and make changes near `@todo-wordpress` comments throughout the site.
 10. Server setup:
@@ -35,14 +36,14 @@
     3. [Install NVM](https://github.com/creationix/nvm#install-script)
     4. Run `. ./node_setup.sh` (this will setup node & install the JS packages).
     5. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
-    6 link public to html: `rm -rf html && ln -s public html`
+    6. Link public to html: `rm -rf html && ln -s public html`
     7. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
     8. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
     9. Adjust permissions on the bin dir: `chmod u+x bin/*`
 11. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
 12. To activate all installed plugins: `bin/wp plugin activate --all`
 13. Delete or update `README.md` and `LICENSE`
-14. Add the Akismet & Postmark API keys
+14. Add the Postmark API key
 15. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
 
 ## System Requirements
