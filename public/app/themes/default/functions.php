@@ -63,5 +63,8 @@ add_action('after_setup_theme', function () {
     {
         wp_dequeue_style('wp-block-library');
     }
+
+    // Allow Support for WooCommerce
+    add_theme_support('woocommerce');
 });
 
