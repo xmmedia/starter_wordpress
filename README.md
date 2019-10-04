@@ -110,3 +110,7 @@ To change the theme name from the default `default` to, for example, `company`:
   - Linting:
     - JS ([ESLint](https://eslint.org/)): `yarn lint:js` or `yarn lint:js:fix`
     - CSS: `yarn lint:css` or `yarn lint:css:fix`
+
+## After Launch
+    - Ensure "From" / "To" addresses in Contact Form(s) are correct
+    - Ensure `Discourage search engines from indexing this site` is unchecked under `Settings` -> `Reading`
