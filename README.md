@@ -72,6 +72,11 @@ Download the archive of the plugin and put in the `/public/app/mu-plugins/<plugi
 Add a line to `.gitignore` such as `!public/app/mu-plugins/plugin/` so the plugin is detected/include by git.
 Commit the plugin to git. It will need to manually updated.
 
+## Wordpress Settings
+- `Settings -> Reading` Discourage search engines from indexing this site (for Dev)
+– Create Home Page page and then 
+- `Settings -> Reading` Set home page to static page (The Home Page you just created). 
+
 ## Referencing Assets
 
 To reference assets (images, CSS files, etc) that are located in the theme, use the following function:
