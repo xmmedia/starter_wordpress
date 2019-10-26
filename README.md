@@ -45,6 +45,9 @@
 13. Delete or update `README.md` and `LICENSE`
 14. Add the Postmark API key
 15. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
+16. Consider the following WordPress settings:
+    - Setting the homepage: create the page and then select the home page under Settings > Reading 
+    - Dev: Settings > Reading "Discourage search engines from indexing this site" (for Dev)
 
 ## System Requirements
 
@@ -71,11 +74,6 @@ The actual plugin files are not committed to git.
 Download the archive of the plugin and put in the `/public/app/mu-plugins/<plugin-name>/` dir.
 Add a line to `.gitignore` such as `!public/app/mu-plugins/plugin/` so the plugin is detected/include by git.
 Commit the plugin to git. It will need to manually updated.
-
-## Wordpress Settings
-- `Settings -> Reading` Discourage search engines from indexing this site (for Dev)
-– Create Home Page page and then 
-- `Settings -> Reading` Set home page to static page (The Home Page you just created). 
 
 ## Referencing Assets
 
@@ -116,6 +114,7 @@ To change the theme name from the default `default` to, for example, `company`:
     - JS ([ESLint](https://eslint.org/)): `yarn lint:js` or `yarn lint:js:fix`
     - CSS: `yarn lint:css` or `yarn lint:css:fix`
 
-## After Launch
-    - Ensure "From" / "To" addresses in Contact Form(s) are correct
-    - Ensure `Discourage search engines from indexing this site` is unchecked under `Settings` -> `Reading`
+## Going Live / After Launch
+
+  - Ensure "From" / "To" addresses in Contact Forms are correct
+  - Ensure "Discourage search engines from indexing this site" is unchecked under Settings > Reading
