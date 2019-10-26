@@ -66,5 +66,14 @@ add_action('after_setup_theme', function () {
 
     // Allow Support for WooCommerce
     add_theme_support('woocommerce');
+
+    // remove sections from the dashboard
+    add_action(
+        'admin_init',
+        function () {
+            // WordPress News and Events
+            remove_meta_box('dashboard_primary', 'dashboard', 'side');
+        }
+    );
 });
 
