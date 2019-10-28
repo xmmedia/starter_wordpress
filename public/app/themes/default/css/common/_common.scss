@@ -1,11 +1,13 @@
 /* this file is for public and private/admin pages */
 
 a, .button-link {
-    @apply text-blue-500 underline;
     transition: color 0.25s ease;
     &:hover, &:active {
-        @apply text-blue-600;
     }
+}
+
+b, strong {
+    @apply font-bold;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,10 +25,10 @@ h2 {
 }
 h3 {
     @apply text-xl;
-    margin: 1rem 0;
+    margin: 1rem 0 0.5rem;
 }
 h4 {
-    margin: 1.33rem 0;
+    margin: 1.33rem 0 0.5rem;
 }
 h5 {
     @apply text-sm;
@@ -34,7 +36,7 @@ h5 {
 }
 h6 {
     @apply text-xs;
-    margin: 2.33rem 0;
+    margin: 1.45rem 0;
 }
 
 // make anchors that are inside headers look like the header, but underline when hovered
@@ -51,7 +53,12 @@ h1, h2, h3, h4 {
 p {
     @apply my-4;
 }
-//re-add list styles as tailwind removes them
+// reduce margin between headings and paragraphs
+h3 + p, h4 + p, p:first-of-type {
+    @apply mt-0;
+}
+
+// re-add list styles as tailwind removes them
 ul, ol {
     @apply pl-10;
 }
@@ -61,11 +68,14 @@ ul {
 ol {
     @apply list-decimal;
 }
-
 address {
     @apply not-italic;
 }
 
 td {
     @apply align-top;
+}
+
+.transition {
+    transition: all 0.25s ease;
 }
