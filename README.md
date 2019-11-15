@@ -117,4 +117,7 @@ To change the theme name from the default `default` to, for example, `company`:
 ## Going Live / After Launch
 
   - Ensure "From" / "To" addresses in Contact Forms are correct
+  - Remove Test Blog Post and Sample Page or Google will index these.
   - Ensure "Discourage search engines from indexing this site" is unchecked under Settings > Reading
+  - If not using "Posts" turn off Post indexing in Yoast > Search Appearance > Content
+  - If not using "Posts" turn off Author indexing in Yoast > Search Appearance > Archives - otherwise Google will index a page for each user/author, whether it is being used or not.
