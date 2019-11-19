@@ -75,6 +75,10 @@ Download the archive of the plugin and put in the `/public/app/mu-plugins/<plugi
 Add a line to `.gitignore` such as `!public/app/mu-plugins/plugin/` so the plugin is detected/include by git.
 Commit the plugin to git. It will need to manually updated.
 
+WordPress only looks for PHP files right inside the mu-plugins directory, and (unlike for normal plugins) not for files in subdirectories. You may need to create a proxy PHP loader file inside the mu-plugins directory (i.e. load.php). Only do this if it is not finding the plugin file on it's own, otherwise you'll get a duplication error.
+
+`<?php require WPMU_PLUGIN_DIR.'/my-plugin/my-plugin.php';`
+
 ## Referencing Assets
 
 To reference assets (images, CSS files, etc) that are located in the theme, use the following function:
