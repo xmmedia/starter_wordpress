@@ -16,6 +16,18 @@ array_map(function ($file) {
 }, ['helpers', 'blocks', 'svg']);
 
 add_action('after_setup_theme', function () {
+    // Set the from name on emails (non-Postmark)
+    add_filter('wp_mail_from_name', function ($original_email_from) {
+        return '@todo-wordpress';
+    });
+    // Set the from name on emails (Postmark)
+    add_filter('wp_mail', function ($args) {
+        $headers = explode("\n", str_replace("\r\n", "\n", $args['headers']));
+        $headers['From'] = 'todo-wordpress <site@example.com>';
+
+        return ['headers' => $headers] + $args;
+    });
+
     add_theme_support('title-tag');
     add_theme_support(
         'html5',
