@@ -24,6 +24,7 @@
   "dependencies": {
     "cuid": "^2.1.6",
     "date-fns": "^2.2.1",
+    "jquery": "^3.4.1",
     "lodash": "^4.17.11",
     "portal-vue": "^2.1.3",
     "register-service-worker": "^1.0.0",

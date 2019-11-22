@@ -81,6 +81,7 @@ module.exports = function (Encore) {
             '@': resolve('js/src'),
             'vue$': 'vue/dist/vue.esm.js',
         })
+        .autoProvidejQuery()
 
         .addPlugin(new Dotenv())
 
