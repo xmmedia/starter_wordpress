@@ -2,9 +2,9 @@
 const purgecss = require('@fullhuman/postcss-purgecss')({
     // Specify the paths to all of the template files in your project & any other modules containing CSS class names
     content: [
-        'templates/**/*.html.twig',
-        'public/js/src/**/*.vue',
-        'public/js/src/**/*.js',
+        'public/app/themes/default/**/*.php',
+        'public/app/themes/default/js/src/**/*.vue',
+        'public/app/themes/default/js/src/**/*.js',
         'node_modules/vue-js-modal/dist/index.js',
         // 'node_modules/vue-multiselect/dist/vue-multiselect.min.js',
         'node_modules/flatpickr/dist/flatpickr.js',
