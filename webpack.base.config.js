@@ -1,7 +1,5 @@
 'use strict';
 const path = require('path');
-const glob = require('glob-all');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -92,34 +90,6 @@ module.exports = function (Encore) {
     ;
 
     if (Encore.isProduction()) {
-        // Custom PurgeCSS extractor for Tailwind that allows special characters in class names
-        class TailwindExtractor {
-            static extract(content) {
-                return content.match(/[\w-/:]+(?<!:)/g) || [];
-            }
-        }
-
         Encore
-            .addPlugin(new PurgecssPlugin({
-                // Specify the locations of any files you want to scan for class names.
-                paths: glob.sync([
-                    path.join(__dirname, 'public/app/themes/default/**/*.php'),
-                    path.join(__dirname, 'public/app/themes/default/js/src/**/*.vue'),
-                    path.join(__dirname, 'public/app/themes/default/js/src/**/*.js'),
-                    // path.join(__dirname, 'node_modules/vue-js-modal/dist/index.js'),
-                ]),
-                extractors: [
-                    {
-                        extractor: TailwindExtractor,
-                        // Specify the file extensions to include when scanning for class names
-                        extensions: ['html', 'js', 'php', 'vue', 'twig'],
-                    },
-                ],
-                whitelistPatterns: [
-                    // vue transition classes: https://vuejs.org/v2/guide/transitions.html#Transition-Classes
-                    /-enter/,
-                    /-leave/,
-                ],
-            }));
     }
 };
