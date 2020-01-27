@@ -24,7 +24,7 @@
     <div id="app">
         <svg-icons src="<?php echo ThemeHelpers::assetPath('images/icons.svg'); ?>"></svg-icons>
 
-        <header class="max-w-6xl">
+        <header class="w-content">
             <!-- @todo-wordpress -->
             Company Name
             <img src="<?php echo ThemeHelpers::assetPath('/images/logo.svg'); ?>" alt="Logo">

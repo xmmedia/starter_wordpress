@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="max-w-xl mx-auto clearfix">
+<main class="w-content-copy clearfix">
     <h1>Oops! An Error Occurred</h1>
 
     <h2>The server returned a "404 Not Found".</h2>

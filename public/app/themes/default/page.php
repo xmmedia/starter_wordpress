@@ -3,7 +3,7 @@
 
 get_header(); ?>
 
-<main class="max-w-11/12 max:max-w-6xl mx-auto clearfix">
+<main class="w-content clearfix">
     <p>Content</p>
 
     <?php
