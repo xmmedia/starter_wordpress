@@ -1,7 +1,5 @@
 /* purgecss start ignore */
-
 @tailwind base;
-
 @tailwind components;
 /* purgecss end ignore */
 
@@ -12,22 +10,6 @@ html {
     @apply font-sans leading-normal text-black;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    @apply leading-tight;
-}
-
-h3 {
-    @apply mt-8 mb-2;
-}
-
-h4 {
-    @apply mt-8 mb-2;
-}
-
-p {
-    @apply my-4;
-}
-
 ul, ol {
     li {
         @apply mb-4;
@@ -35,12 +17,6 @@ ul, ol {
             @apply mb-0;
         }
     }
-}
-
-
-//reduce margin between headings and paragraphs
-p:first-of-type, h3 + p, h4 + p {
-    @apply mt-0;
 }
 
 a, .button-link {
@@ -53,39 +29,16 @@ a, .button-link {
     @apply font-light;
 }
 
-.w-content, .w-content-narrow, .w-content-copy {
-    @apply max-w-11/12 mx-auto clearfix;
-}
-.w-content {
-    @screen xl {
-        @apply max-w-6xl;
-    }
-}
-.w-content-narrow {
-    @screen md {
-        @apply max-w-lg;
-    }
-    @screen xl {
-        @apply max-w-3xl;
-    }
-}
-.w-content-copy {
-    @screen md {
-        @apply max-w-md;
-    }
-    @screen xl {
-        @apply max-w-xl;
-    }
-}
-
 // common styles
 @import "common/alerts",
     "common/content_alignment",
     "common/forms";
 
 // public only styles
-@import "public/buttons",
-    "public/header";
+@import "public/content",
+    "public/buttons",
+    "public/header",
+    "public/headings";
 
 
 // wp editor styles
