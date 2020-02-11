@@ -32,13 +32,13 @@ a, .button-link {
 // common styles
 @import "common/alerts",
     "common/content_alignment",
-    "common/forms";
+    "common/forms",
+    "common/headings";
 
 // public only styles
 @import "public/content",
     "public/buttons",
-    "public/header",
-    "public/headings";
+    "public/header";
 
 // wp editor styles
 @import
