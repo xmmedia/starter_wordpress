@@ -1,8 +1,16 @@
 /* this file is for public and private/admin pages */
 
 a, .button-link {
-    transition: color 0.25s ease;
+    @apply text-blue-500 no-underline font-light;
+    transition: color 0.25s ease-in-out;
     &:hover, &:active {
+        @apply underline text-blue-700;
+    }
+    &:disabled {
+        @apply opacity-75;
+        &:hover {
+            @apply no-underline cursor-default;
+        }
     }
 }
 
@@ -10,18 +18,15 @@ b, strong {
     @apply font-bold;
 }
 
-// re-add margin to p as it's reset in tailwind's normalize
-p {
-    @apply my-4;
-}
-// reduce margin between headings and paragraphs
-h3 + p, h4 + p, p:first-of-type {
-    @apply mt-0;
-}
-
 // re-add list styles as tailwind removes them
 ul, ol {
     @apply pl-10;
+    li {
+        @apply mb-4;
+        &:last-of-type {
+            @apply mb-0;
+        }
+    }
 }
 ul {
     @apply list-disc;
