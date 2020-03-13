@@ -17,7 +17,7 @@
         },
         {
             "type": "composer",
-            "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v2/wpackagist-plugin/"
+            "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/wpackagist-plugin/"
         }
     ],
     "require": {
