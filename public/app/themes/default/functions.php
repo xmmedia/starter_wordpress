@@ -10,7 +10,7 @@ declare(strict_types=1);
  */
 array_map(function ($file) {
     $file = "app/{$file}.php";
-    if (!locate_template($file, true, true)) {
+    if (!locate_template($file, true)) {
         throw new \InvalidArgumentException(sprintf('Unable to load file %s', $file));
     }
 }, ['helpers', 'blocks', 'svg']);
