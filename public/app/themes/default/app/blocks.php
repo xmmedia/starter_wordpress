@@ -2,6 +2,20 @@
 
 // @todo-wordpress either comment out, delete, or modify for the site's uses
 
+add_action('acf/init', function () {
+    if( function_exists('acf_register_block_type') ) {
+        // see https://www.advancedcustomfields.com/resources/blocks/
+        acf_register_block_type([
+            'name'            => 'testimonial',
+            'title'           => __('Testimonial'),
+            'description'     => __('Custom testimonial block.'),
+            'render_template' => 'template-parts/blocks/testimonial.php',
+            'category'        => 'formatting',
+            'icon'            => 'star-filled',
+        ]);
+    }
+});
+
 function theme_block_categories($categories, $post)
 {
     if (!in_array($post->post_type, ['post', 'page'])) {
