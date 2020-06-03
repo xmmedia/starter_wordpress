@@ -13,9 +13,9 @@ add_action('after_setup_theme', function () {
 // called via AJAX. returns the full URL of a media attachment (SVG)
 add_action('wp_ajax_svg_get_attachment_url', function () {
     $url = '';
-    $attachmentID = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
-    if($attachmentID){
-        $url = wp_get_attachment_url($attachmentID);
+    $attachmentId = isset($_REQUEST['attachmentID']) ? $_REQUEST['attachmentID'] : '';
+    if($attachmentId){
+        $url = wp_get_attachment_url($attachmentId);
     }
 
     echo $url;
