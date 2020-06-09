@@ -11,7 +11,7 @@ add_action('acf/init', function () {
             'description'     => __('Custom testimonial block.'),
             'render_template' => 'template-parts/blocks/testimonial.php',
             'category'        => 'formatting',
-            'icon'            => 'star-filled',
+            'icon'            => 'format-quote',
         ]);
     }
 });
