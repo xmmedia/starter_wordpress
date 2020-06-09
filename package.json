@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.0.0",
-    "@cypress/webpack-preprocessor": "^4.0.2",
+    "@cypress/webpack-preprocessor": "^5.4.1",
     "@fullhuman/postcss-purgecss": "^2.0.5",
     "@symfony/webpack-encore": "^0.28.0",
     "@vue/cli-plugin-babel": "^4.0.5",
@@ -50,7 +50,7 @@
     "@vue/cli-service": "^4.0.5",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.1.0",
+    "babel-jest": "^26.0.1",
     "css-loader": "^2.1.1",
     "dotenv-webpack": "^1.6.0",
     "eslint-plugin-cypress": "^2.0.1",
