@@ -3,7 +3,7 @@
 // @todo-wordpress either comment out, delete, or modify for the site's uses
 
 add_action('acf/init', function () {
-    if( function_exists('acf_register_block_type') ) {
+    if (function_exists('acf_register_block_type')) {
         // see https://www.advancedcustomfields.com/resources/blocks/
         acf_register_block_type([
             'name'            => 'testimonial',
