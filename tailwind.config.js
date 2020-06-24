@@ -1,4 +1,22 @@
 module.exports = {
+    purge: {
+        content: [
+            './public/app/themes/default/**/*.php',
+            './public/app/themes/default/js/src/**/*.vue',
+            './public/app/themes/default/js/src/**/*.js',
+            './node_modules/vue-js-modal/dist/index.js',
+            // 'node_modules/vue-multiselect/dist/vue-multiselect.min.js',
+            './node_modules/flatpickr/dist/flatpickr.js',
+        ],
+        options: {
+            whitelist: [
+                // vue transition classes: https://vuejs.org/v2/guide/transitions.html#Transition-Classes
+                /-enter/,
+                /-leave/,
+            ],
+        },
+    },
+
     theme: {
         extend: {
             colors: {
