@@ -46,14 +46,16 @@ module.exports = function (Encore) {
         .enableVueLoader((options) => {
             options.transpileOptions = {
                 transforms: {
-                    dangerousTaggedTemplateString: true
+                    // required to use gql within template tags
+                    // (such as with the ApolloQuery component)
+                    dangerousTaggedTemplateString: true,
                 },
             };
         })
 
         .enableSourceMaps(true)
 
-        .configureBabel(() => {}, {
+        .configureBabel(null, {
             includeNodeModules: [
                 'vue-apollo', // Object.entries()
             ],
