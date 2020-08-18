@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use function Env\env;
+
 /**
  * Load theme required files
  *
@@ -76,6 +78,8 @@ add_action('after_setup_theme', function () {
         wp_dequeue_style('wp-block-library');
     }
 
+    // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
+
     // Allow Support for WooCommerce
     add_theme_support('woocommerce');
 
@@ -87,6 +91,10 @@ add_action('after_setup_theme', function () {
             remove_meta_box('dashboard_primary', 'dashboard', 'side');
         }
     );
+// @todo
+    add_filter('allowed_block_types', function ($allowedBlockTypes) {
+        return $allowedBlockTypes;
+    });
 
     /**
      * From: https://wordpress.stackexchange.com/questions/25793/how-to-force-one-column-layout-on-custom-post-type-edit-page/25814#25814
