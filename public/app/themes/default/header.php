@@ -27,7 +27,7 @@
         <header class="w-content">
             <!-- @todo-wordpress -->
             Company Name
-            <img src="<?php echo ThemeHelpers::assetPath('/images/logo.svg'); ?>" width="250" alt="Logo">
+            <img src="<?php echo ThemeHelpers::assetPath('/images/logo.svg'); ?>" width="250" height="257" alt="Logo">
 
             <nav>
                 <ul class="">
