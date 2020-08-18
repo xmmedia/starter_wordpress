@@ -43,10 +43,10 @@ add_action('init', function ()
         ['wp-blocks', 'wp-element']
     );
 
-    register_block_type(
-        'default-theme/example',
-        [
-            'editor_script' => 'block-example',
-        ]
-    );
+    // register_block_type(
+    //     'default-theme/example',
+    //     [
+    //         'editor_script' => 'block-example',
+    //     ]
+    // );
 });
