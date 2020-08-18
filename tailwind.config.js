@@ -1,4 +1,7 @@
 module.exports = {
+    future: {
+        removeDeprecatedGapUtilities: true,
+    },
     purge: {
         content: [
             './public/app/themes/default/**/*.php',
