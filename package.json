@@ -28,6 +28,7 @@
     "lodash": "^4.17.11",
     "portal-vue": "^2.1.3",
     "register-service-worker": "^1.0.0",
+    "svgxuse": "^1.2.6",
     "unfetch": "^4.0.1",
     "vue": "^2.5.17",
     "vue-global-events": "^1.1.2",

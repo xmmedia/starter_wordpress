@@ -1,7 +1,5 @@
 import Vue from 'vue';
 
-import svg_icons from './component/svg_icons.vue';
-
 // SASS/CSS
 import '../../css/public.scss';
 
@@ -13,8 +11,4 @@ Vue.config.productionTip = false;
 
 new Vue({
     el: '#app',
-
-    components: {
-        'svg-icons': svg_icons,
-    },
 });
