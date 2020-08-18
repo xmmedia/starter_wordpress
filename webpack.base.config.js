@@ -37,7 +37,7 @@ module.exports = function (Encore) {
         .addEntry('admin', './public/app/themes/default/js/src/admin.js')
 
         // allow sass/scss files to be processed
-        .enableSassLoader(function(sassOptions) {}, {
+        .enableSassLoader(function() {}, {
             // see: http://symfony.com/doc/current/frontend/encore/bootstrap.html#importing-bootstrap-sass
             resolveUrlLoader: false,
         })
@@ -90,14 +90,13 @@ module.exports = function (Encore) {
         .autoProvidejQuery()
 
         .addPlugin(new Dotenv())
-
-        .addPlugin(new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            openAnalyzer: false,
-        }))
     ;
 
     if (Encore.isProduction()) {
         Encore
+            .addPlugin(new BundleAnalyzerPlugin({
+                analyzerMode: 'static',
+                openAnalyzer: false,
+            }))
     }
 };
