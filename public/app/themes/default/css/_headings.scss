@@ -2,32 +2,43 @@ h1, h2, h3, h4, h5, h6 {
     @apply font-headings leading-tight font-bold;
 }
 
-// reset margins and text size on headings as tailwind removes them
+// reset margins on headings as tailwind removes them
 h1 {
-    @apply text-3xl;
+    @apply text-4xl;
     margin: 0.67rem 0;
+    @screen lg {
+        @apply text-5xl;
+    }
 }
 h2 {
-    @apply text-2xl;
+    @apply text-3xl;
     margin: 0.83rem 0;
+    @screen lg {
+        @apply text-4xl;
+    }
 }
 h3 {
-    @apply text-xl mt-8 mb-2;
-    margin: 1rem 0 0.5rem;
+    @apply mt-4 mb-2 text-2xl;
+    @screen lg {
+        @apply text-3xl;
+    }
 }
 h4 {
-    @apply mt-8 mb-2;
+    @apply text-lg;
+    margin: 1.33rem 0 0.5rem;
+    @screen lg {
+        @apply text-xl;
+    }
 }
 h5 {
-    @apply text-sm;
+    // uses base font size
     margin: 1.67rem 0;
 }
 h6 {
-    @apply text-xs;
-    margin: 1.45rem 0;
+    @apply mt-6 mb-2 text-sm;
 }
 
-//reduce margin between headings and paragraphs
+// reduce margin between headings and paragraphs
 h3 + p, h4 + p {
     @apply mt-0;
 }

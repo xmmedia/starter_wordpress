@@ -1,24 +1,24 @@
 /* purgecss start ignore */
+
 @tailwind base;
 @tailwind components;
-/* purgecss end ignore */
 
 @import "common";
 
 // global styles on the most common elements
 html {
-    @apply font-sans leading-normal text-black;
+    @apply font-sans leading-normal text-gray-800;
 }
 
 // common styles
 @import "alerts",
     "content_alignment",
-    "forms",
-    "headings";
+    "headings",
+    "forms";
 
 // public only styles
-@import "content",
-    "buttons",
+@import "buttons",
+    "content",
     "header";
 
 // wp editor styles
@@ -26,5 +26,7 @@ html {
 
 // page specific
 //@import ;
+
+/* purgecss end ignore */
 
 @tailwind utilities;

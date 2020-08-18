@@ -14,9 +14,9 @@
 [type=url],
 [type=color],
 textarea {
-    @apply w-full px-2 py-1 text-black border border-gray-400 rounded-sm bg-gray-200 transition-colors duration-300 ease-in-out;
+    @apply w-full px-2 py-1 text-gray-800 border border-gray-400 rounded-sm bg-gray-200 transition-default outline-none;
     &:focus {
-        @apply border-gray-500 bg-gray-100;
+        @apply bg-gray-100;
     }
 }
 textarea {
@@ -24,18 +24,13 @@ textarea {
     @apply align-top text-black;
 }
 select {
-    @apply w-full p-1 text-black border border-gray-400 rounded-sm bg-gray-200 transition-colors duration-300 ease-in-out;
+    @apply w-full p-1 text-black border border-gray-400 rounded-sm bg-gray-200 transition-default outline-none;
     height: 2.14rem;
-    &:focus {
-        @apply border-gray-500 bg-gray-100;
-    }
 }
-[type=checkbox] {
-    @apply mr-2;
-}
+
 // fixes alignment of radio to label
 [type=radio] {
-    @apply relative mr-1;
+    @apply relative;
     top: -1px;
 }
 // make sure everything shows a pointer on hover
@@ -44,6 +39,33 @@ select {
 }
 [type=file] {
     @apply w-full;
+}
+
+[type=text],
+[type=checkbox],
+[type=radio],
+[type=password],
+[type=date],
+[type=datetime],
+[type=datetime-local],
+[type=month],
+[type=week],
+[type=email],
+[type=number],
+[type=search],
+[type=tel],
+[type=time],
+[type=url],
+[type=color],
+[type=file],
+[type=image],
+[type=submit],
+textarea,
+select {
+    @apply outline-none rounded-sm;
+    &:focus {
+        @apply outline-none shadow-outline;
+    }
 }
 
 .form-wrap {
@@ -57,27 +79,20 @@ select {
     }
 }
 // flex-wrap will ensure help is on a separate line
-.field-wrap-checkbox {
+.field-wrap-radio, .field-wrap-checkbox {
     @apply flex flex-wrap items-center mb-4;
     label {
-        @apply inline-block mr-4 mb-0;
+        @apply inline-block mb-0 pl-2 whitespace-no-wrap;
     }
-}
-
-.field-wrap-radio {
-    @apply mb-1;
 }
 
 .field-wrap-radios, .field-wrap-checkboxes {
     @apply mb-4;
-    label {
-        @apply inline-block mr-4 mb-0;
-    }
     legend {
         @apply mb-1;
     }
-    .field-wrap-checkbox {
-        @apply mb-1;
+    .field-wrap-radio, .field-wrap-checkbox {
+        @apply mb-1 mr-6;
     }
 }
 
@@ -119,4 +134,7 @@ select {
 }
 .form-action {
     @apply text-sm ml-4;
+    &:focus {
+        @apply -mx-1 ml-3 px-1;
+    }
 }
