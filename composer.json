@@ -4,6 +4,7 @@
     "type": "project",
     "description": "Starter for creating WordPress sites at XM Media",
     "config": {
+        "optimize-autoloader": true,
         "bin-dir": "bin",
         "preferred-install": {
             "*": "dist"
@@ -13,7 +14,8 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "https://wpackagist.org"
+            "url": "https://wpackagist.org",
+            "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
         },
         {
             "type": "composer",
