@@ -10,6 +10,7 @@
     ```sh
     composer create-project xm/starter_wordpress project-name --stability=dev --no-install --remove-vcs
     ```
+2. If using InterWorx, upload `dev_setup.sh` and run: `sh ./dev_setup.sh`
 2. Copy `.env.example` to `.env`.
 3. Add the ACF key to the `.env` or remove ACF from `composer.json` if you're not going to use ACF.
 4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
