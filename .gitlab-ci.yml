@@ -1,4 +1,9 @@
+default:
+  image: xmmedia/php:7.3-cli
+  timeout: 15m
+
 stages:
+  - static
   - deploy
 
 # Select image from https://hub.docker.com/_/php/
@@ -17,37 +22,44 @@ variables:
   SHARED: "$REMOTE_BASE/shared"
 
 before_script:
-  # setup SSH & private key
-  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -yqq )'
-  - eval $(ssh-agent -s)
-  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-  - mkdir -p ~/.ssh; chmod 700 ~/.ssh
-  - ssh-keyscan -p $REMOTE_PORT $REMOTE_SERVER >> ~/.ssh/known_hosts
-  # the following line is optional (likely remove previous line)
-  #- echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
-  # Taken from here: https://gist.github.com/kwk/55bb5b6a4b7457bef38d
-  # This forces dpkg not to call sync() after package extraction and speeds up install
-  - echo "force-unsafe-io" > /etc/dpkg/dpkg.cfg.d/02apt-speedup
-  # We don't need and apt cache in a container or recommendations
-  - echo "Acquire::http {No-Cache=True;};" > /etc/apt/apt.conf.d/no-cache
-  - echo 'APT::Install-Recommends "false";' > /etc/apt/apt.conf
-  # Install packages
-  - apt-get install gnupg2 build-essential libssl-dev -yqq
-  - curl -sL https://deb.nodesource.com/setup_10.x | bash -
-  # Install libs the php image doesn't have installed
-  - apt-get install git zip unzip gcc g++ make nodejs rsync -yqq
-  - alias nodejs=node
-  # add package key for yarn
-  - curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-  - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-  - apt-get update -yqq && apt-get install yarn -yqq
-  - curl -sS https://getcomposer.org/installer | php
+  # ensure everything up to date
+  - apt-get update -yqq
+  # install composer
+  - curl --silent --show-error https://getcomposer.org/installer | php
+
+static:
+  stage: static
+  allow_failure: false
+  interruptible: true
+  only:
+    - master
+  script:
+    - php -v
+    - php composer.phar --version
+    - node --version
+    - yarn --version
+    # create partial .env file
+    # @todo-wordpress remove if not using ACF
+    - printf "ACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
+    # install php dependencies
+    - php composer.phar install --classmap-authoritative --no-interaction --no-progress --no-scripts --no-plugins --ignore-platform-reqs --no-suggest
+    # check for security issues in PHP libs
+    - php bin/console security:check
+    - php bin/console cache:warmup --env=dev
+    - php bin/phpstan analyse --no-progress --memory-limit 1G src
+    # Install node/JS dependencies
+    - yarn install --non-interactive --frozen-lockfile
+    # check for JS security issues in libs
+    - yarn audit:moderate
+    - yarn lint:js
+    - yarn lint:css
 
 deploy:
   stage: deploy
   when: manual
   allow_failure: false
+  only:
+    - master
   script:
     - php -v
     - php composer.phar --version
@@ -57,22 +69,26 @@ deploy:
     - TIMESTAMP=$(date +%s); RELEASE="$RELEASES/$TIMESTAMP"
     - echo "Paths:"; echo $REMOTE_BASE; echo $RELEASE; echo $SHARED
     - echo "Remote:"; echo $REMOTE_USER@$REMOTE_SERVER:$REMOTE_PORT
-    # create partial .env file
-    # @todo-wordpress remove if not using ACF
-    - printf "ACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
-    # install php dependencies
-    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --no-scripts --ignore-platform-reqs
-    # Install node/JS dependencies
-    - yarn install --non-interactive --frozen-lockfile
-    - yarn build
+    # setup SSH & private key
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - ssh-keyscan -p $REMOTE_PORT $REMOTE_SERVER >> ~/.ssh/known_hosts
+    # the following line is optional (likely remove previous line)
+    #- echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
     # add .revision file
     - git rev-parse --verify --short HEAD > .revision
+    # install php dependencies without dev
+    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --no-scripts --ignore-platform-reqs
+    - yarn build
     # ensure based paths exist
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/public/app/uploads"
     # sync files to release directory
     - rsync --archive --stats --human-readable --no-perms --exclude ".git/" --exclude ".idea/" --exclude "node_modules/" --exclude "cypress/" -e "ssh -p $REMOTE_PORT" . $REMOTE_USER@$REMOTE_SERVER:$RELEASE
     # make bin files executable
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; chmod u+x bin/*"
+    # ensure platform has all requirements
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; php -v; php composer.phar check-platform-reqs"
     # link shared folders
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads"
     # link in ACF
@@ -80,10 +96,10 @@ deploy:
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
     # test configuration of wp cli
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp --info"
-    # switch to new version
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
     # copy env file into place
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env"
+    # switch to new version
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
     # update WP db
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db"
     # activate plugins
