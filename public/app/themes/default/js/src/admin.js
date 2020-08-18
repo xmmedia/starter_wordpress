@@ -1,3 +1,4 @@
+/*global ajaxurl*/
 // create a mutation observer to look for added 'attachments' in the media uploader
 // from https:// www.sitepoint.com/wordpress-svg/ plus modifications & fixes
 new MutationObserver(function (mutations) {
@@ -24,20 +25,21 @@ new MutationObserver(function (mutations) {
                         if (attachmentPreview.attr('class').indexOf('subtype-svg+xml') != -1) {
 
                             // bind an inner function to element so we have access to it.
+                            // eslint-disable-next-line no-unused-vars
                             let handler = function (element) {
                                 // do an AJAX call to get the URL
                                 $.ajax({
                                     url: ajaxurl,
                                     data: {
                                         'action'        : 'svg_get_attachment_url',
-                                        'attachmentID'  : element.attr('data-id')
+                                        'attachmentID'  : element.attr('data-id'),
                                     },
                                     success: function (data) {
                                         if (data) {
                                             // replace the default image with the SVG
                                             element.find('img').attr('src', data);
                                         }
-                                    }
+                                    },
                                 });
                             }(element);
                         }

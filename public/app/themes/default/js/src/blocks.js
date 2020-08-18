@@ -1,3 +1,4 @@
+/*global wp*/
 const { registerBlockType } = wp.blocks;
 
 registerBlockType('default-theme/example', {
