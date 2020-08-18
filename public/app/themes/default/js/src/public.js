@@ -11,4 +11,22 @@ Vue.config.productionTip = false;
 
 new Vue({
     el: '#app',
+
+    data () {
+        return {
+            showMobileMenu: false,
+        };
+    },
+
+    mounted () {
+        this.$nextTick(() => {
+            window.addEventListener('resize', () => { this.showMobileMenu = false });
+        });
+    },
+
+    methods: {
+        toggleMobileMenu () {
+            this.showMobileMenu = !this.showMobileMenu;
+        },
+    },
 });
