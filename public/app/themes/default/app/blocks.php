@@ -35,18 +35,18 @@ function theme_block_categories($categories, $post)
 }
 add_filter('block_categories', 'theme_block_categories', 10, 2);
 
-add_action('init', function ()
-{
-    wp_register_script(
-        'block-example',
-        ThemeHelpers::assetPath('blocks.js'),
-        ['wp-blocks', 'wp-element']
-    );
-
-    // register_block_type(
-    //     'default-theme/example',
-    //     [
-    //         'editor_script' => 'block-example',
-    //     ]
-    // );
-});
+// add_action('init', function ()
+// {
+//     wp_register_script(
+//         'block-example',
+//         ThemeHelpers::assetPath('blocks.js'),
+//         ['wp-blocks', 'wp-element']
+//     );
+//
+//     register_block_type(
+//         'default-theme/example',
+//         [
+//             'editor_script' => 'block-example',
+//         ]
+//     );
+// });
