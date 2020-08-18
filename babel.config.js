@@ -1,6 +1,6 @@
 module.exports = {
     presets: [
-        ['@vue/app', { jsx: false }],
+        ['@vue/cli-plugin-babel/preset', { jsx: false }],
         '@babel/preset-react',
     ],
 };
