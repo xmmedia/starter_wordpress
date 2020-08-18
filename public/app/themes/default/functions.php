@@ -72,11 +72,13 @@ add_action('after_setup_theme', function () {
         add_theme_support('soil-google-analytics', env('GA_ANALYTICS_ID'));
     }
 
-    add_action('wp_print_styles', 'wps_deregister_styles', 100);
-    function wps_deregister_styles()
-    {
-        wp_dequeue_style('wp-block-library');
-    }
+    add_action(
+        'wp_print_styles',
+        function () {
+            wp_dequeue_style('wp-block-library');
+        },
+        100
+    );
 
     // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
 
