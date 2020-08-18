@@ -87,5 +87,33 @@ add_action('after_setup_theme', function () {
             remove_meta_box('dashboard_primary', 'dashboard', 'side');
         }
     );
+
+    /**
+     * From: https://wordpress.stackexchange.com/questions/25793/how-to-force-one-column-layout-on-custom-post-type-edit-page/25814#25814
+     *
+     * @param array|mixed $order
+     *
+     * @return array|mixed
+     */
+    $moveWpSeoToBottom = function ($order) {
+        if (!is_array($order)) {
+            return $order;
+        }
+
+        $boxes = explode(',', $order['normal']);
+
+        $wpSeoKey = array_search('wpseo_meta', $boxes);
+        if (false !== $wpSeoKey) {
+            // remove & add a end
+            unset($boxes[$wpSeoKey]);
+            $boxes[] = 'wpseo_meta';
+        }
+
+        $order['normal'] = implode(',', $boxes);
+
+        return $order;
+    };
+    add_filter('get_user_option_meta-box-order_page', $moveWpSeoToBottom);
+    add_filter('get_user_option_meta-box-order_post', $moveWpSeoToBottom);
 });
 
