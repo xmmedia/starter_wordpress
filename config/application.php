@@ -109,6 +109,9 @@ Config::define('FORCE_SSL_ADMIN', true);
 Config::define('EMPTY_TRASH_DAYS', 365);
 // Allow any file type upload for admins
 Config::define('ALLOW_UNFILTERED_UPLOADS', true);
+// Extend the auto save time to 1 day
+// Basically disables the auto save (see functions.php)
+Config::define('AUTOSAVE_INTERVAL', 86400);
 
 /**
  * Debugging Settings

@@ -159,5 +159,14 @@ add_action('after_setup_theme', function () {
     };
     add_filter('get_user_option_meta-box-order_page', $moveWpSeoToBottom);
     add_filter('get_user_option_meta-box-order_post', $moveWpSeoToBottom);
+
+    // disable the auto save in the admin
+    // because it saves to the actual page, not just a draft or locally
+    add_action(
+        'admin_init',
+        function () {
+            wp_deregister_script('autosave');
+        }
+    );
 });
 
