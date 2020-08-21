@@ -10,9 +10,9 @@
  */
 
 // Load values and assign defaults.
-$text = get_field('testimonial') ?: null;
-$author = get_field('author') ?: null;
-$image = get_field('image') ?: null;
+$text = get_field('testimonial') ?? null;
+$author = get_field('author') ?? null;
+$image = get_field('image') ?? null;
 
 ?>
 <blockquote>
