@@ -95,44 +95,6 @@ add_action('after_setup_theme', function () {
     );
 
     /**
-     * Disable unwanted blocks.
-     * From https://rudrastyh.com/gutenberg/remove-default-blocks.html + comments
-     */
-    add_filter(
-        'allowed_block_types',
-        function ($allowedBlocks, $post = null) {
-            // get widget blocks and registered by plugins blocks
-            $registeredBlocks = WP_Block_Type_Registry::get_instance()
-                ->get_all_registered();
-
-            // remove unwanted ones
-            unset($registeredBlocks['core/latest-comments']);
-            unset($registeredBlocks['core/archives']);
-            unset($registeredBlocks['core/code']);
-            unset($registeredBlocks['core/preformatted']);
-            unset($registeredBlocks['core/calendar']);
-            unset($registeredBlocks['core/rss']);
-            unset($registeredBlocks['core/search']);
-            unset($registeredBlocks['core/tag-cloud']);
-            unset($registeredBlocks['core/social-icons']);
-
-            // now $registered_blocks contains only blocks registered by plugins, but we need keys only
-            $registeredBlocks = array_keys($registeredBlocks);
-
-            // merge the whitelist with plugins blocks
-            return array_merge(
-                [
-                    'core/image',
-                    'core/paragraph',
-                    'core/heading',
-                    'core/list',
-                ],
-                $registeredBlocks
-            );
-        }
-    );
-
-    /**
      * From: https://wordpress.stackexchange.com/questions/25793/how-to-force-one-column-layout-on-custom-post-type-edit-page/25814#25814
      *
      * @param array|mixed $order

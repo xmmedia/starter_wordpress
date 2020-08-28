@@ -50,3 +50,14 @@ add_filter('block_categories', 'theme_block_categories', 10, 2);
 //         ]
 //     );
 // });
+
+add_action(
+    'enqueue_block_editor_assets',
+    function () {
+        wp_enqueue_script(
+            'deny-list-blocks',
+            ThemeHelpers::assetPath('blocks.js'),
+            ['wp-blocks', 'wp-dom-ready', 'wp-edit-post']
+        );
+    }
+);
