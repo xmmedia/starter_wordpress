@@ -36,6 +36,12 @@ add_action('after_setup_theme', function () {
         ['comment-list', 'comment-form', 'search-form', 'gallery', 'caption']
     );
     add_theme_support('editor-styles');
+    // Adds featured image to posts
+    add_theme_support('post-thumbnails');
+    // Additional support/css for blocks when wider
+    add_theme_support('align-wide');
+    // Allow units other than px in editor
+    add_theme_support('custom-units');
 
     add_action(
         'wp_enqueue_scripts',
