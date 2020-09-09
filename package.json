@@ -41,6 +41,7 @@
     "@babel/preset-react": "^7.0.0",
     "@cypress/webpack-preprocessor": "^5.4.1",
     "@symfony/webpack-encore": "^0.29.1",
+    "@tailwindcss/typography": "^0.2.0",
     "@vue/cli-plugin-babel": "^4.0.5",
     "@vue/cli-plugin-e2e-cypress": "^4.0.5",
     "@vue/cli-plugin-eslint": "^4.0.5",
