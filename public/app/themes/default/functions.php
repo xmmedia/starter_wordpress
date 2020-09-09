@@ -42,6 +42,8 @@ add_action('after_setup_theme', function () {
     add_theme_support('align-wide');
     // Allow units other than px in editor
     add_theme_support('custom-units');
+    // Allow videos/etc to scale full width
+    add_theme_support('responsive-embeds');
 
     add_action(
         'wp_enqueue_scripts',
