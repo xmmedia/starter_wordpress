@@ -34,7 +34,7 @@
         - `/.git or /.idea`
         - `/node_modules`
     2. [Install Composer](https://getcomposer.org/download/) and then install PHP packages on server: `php composer.phar install`
-    3. [Install NVM](https://github.com/creationix/nvm#install-script)
+    3. [Install NVM](https://github.com/creationix/nvm#install-script). You may need `. ~/bashrc` or `. ~/.zshrc` for nvm to be enabled.
     4. Run `. ./node_setup.sh` (this will setup node & install the JS packages).
     5. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
     6. Link public to html: `rm -rf html && ln -s public html`
