@@ -10,7 +10,6 @@
     ```sh
     composer create-project xm/starter_wordpress project-name --stability=dev --no-install --remove-vcs
     ```
-2. If using InterWorx, upload `setup_dev.sh` and run: `sh ./setup_dev.sh`
 2. Copy `.env.example` to `.env`.
 3. Add the ACF key to the `.env` or remove ACF from `composer.json` if you're not going to use ACF.
 4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
@@ -26,6 +25,7 @@
   * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` from: https://roots.io/salts.html
 9. Find and make changes near `@todo-wordpress` comments throughout the site.
 10. Server setup:
+    2. If using InterWorx, upload `setup_dev.sh` and run: `sh ./setup_dev.sh`
     1. Upload files to the server. Don't upload (most are listed in `.gitignore`):
         - `/public/wp`
         - `/public/app/plugins/*`
