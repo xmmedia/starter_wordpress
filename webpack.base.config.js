@@ -9,6 +9,8 @@ function resolve (dir) {
 
 // Base configuration of Encore/Webpack
 module.exports = function (Encore) {
+    // Manually configure the runtime environment if not already configured yet by the "encore" command.
+    // It's useful when you use tools that rely on webpack.config.js file.
     if (!Encore.isRuntimeEnvironmentConfigured()) {
         Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
     }
@@ -53,7 +55,9 @@ module.exports = function (Encore) {
             };
         })
 
-        .enableSourceMaps(true)
+        // this makes compiling CSS very slow
+        // I believe it's mainly because of the size of tailwind
+        // .enableSourceMaps(!Encore.isProduction())
 
         .copyFiles({
             from: './node_modules/svgxuse',
@@ -98,5 +102,6 @@ module.exports = function (Encore) {
                 analyzerMode: 'static',
                 openAnalyzer: false,
             }))
+        ;
     }
 };

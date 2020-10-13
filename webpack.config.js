@@ -10,8 +10,4 @@ encoreConfigure(Encore);
 
 let config = merge(Encore.getWebpackConfig(), require('./webpack.customize'));
 
-if (Encore.isProduction()) {
-    config.devtool = 'source-map';
-}
-
 module.exports = config;

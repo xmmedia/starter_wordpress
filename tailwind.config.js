@@ -5,20 +5,26 @@ module.exports = {
     future: {
         removeDeprecatedGapUtilities: true,
         purgeLayersByDefault: true,
+        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#default-line-heights-per-font-size-by-default
+        defaultLineHeights: true,
+        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.8.4
+        standardFontWeights: true,
     },
     experimental: {
         // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#use-apply-with-variants-and-other-complex-classes
         applyComplexClasses: true,
         // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#new-color-palette
+        // Palette: https://f1igi.csb.app/
         uniformColorPalette: true,
         // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#extended-spacing-scale
         extendedSpacingScale: true,
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#default-line-heights-per-font-size-by-default
-        defaultLineHeights: true,
         // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#extended-font-size-scale
         extendedFontSizeScale: true,
+        // https://github.com/tailwindlabs/tailwindcss/pull/2468
+        additionalBreakpoint: true,
     },
     purge: {
+        preserveHtmlElements: true,
         content: [
             './public/app/themes/default/**/*.php',
             './public/app/themes/default/js/src/**/*.vue',
@@ -73,6 +79,7 @@ module.exports = {
         textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     },
     plugins: [
+        require('@tailwindcss/typography'),
         plugin(function({ addComponents, config }) {
             addComponents({
                 // same as: transition-all duration-300 ease-in-out
