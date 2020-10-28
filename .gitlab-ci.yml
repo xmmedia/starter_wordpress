@@ -42,7 +42,7 @@ static:
     # @todo-wordpress remove if not using ACF
     - printf "ACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
     # install php dependencies
-    - php composer.phar install --classmap-authoritative --no-interaction --no-progress --no-scripts --no-plugins --ignore-platform-reqs --no-suggest
+    - php composer.phar install --classmap-authoritative --no-interaction --no-progress --no-scripts --ignore-platform-reqs --no-suggest
     # check for security issues in PHP libs
     - php bin/console security:check
     - php bin/console cache:warmup --env=dev
