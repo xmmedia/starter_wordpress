@@ -125,5 +125,37 @@ add_action('after_setup_theme', function () {
     };
     add_filter('get_user_option_meta-box-order_page', $moveWpSeoToBottom);
     add_filter('get_user_option_meta-box-order_post', $moveWpSeoToBottom);
+
+    /**
+     * Ensure all URLs are absolute in sitemaps
+     *
+     * @link https://github.com/roots/soil/issues/156
+     */
+    add_action('init', function () {
+        if (!isset($_SERVER['REQUEST_URI'])) {
+            return;
+        }
+
+        $request_uri = $_SERVER['REQUEST_URI'];
+        $extension   = substr( $request_uri, -4 );
+
+        if (false !== stripos($request_uri, 'sitemap') && in_array($extension, ['.xml', '.xsl'])) {
+            $filter = \Roots\Soil\Utils\root_relative_url::class;
+
+            remove_filter('bloginfo_url', $filter, 10);
+            remove_filter('the_permalink', $filter, 10);
+            remove_filter('wp_list_pages', $filter, 10);
+            remove_filter('wp_list_categories', $filter, 10);
+            remove_filter('the_tags', $filter, 10);
+            remove_filter('get_pagenum_link', $filter, 10);
+            remove_filter('get_comment_link', $filter, 10);
+            remove_filter('month_link', $filter, 10);
+            remove_filter('day_link', $filter, 10);
+            remove_filter('year_link', $filter, 10);
+            remove_filter('term_link', $filter, 10);
+            remove_filter('the_author_posts_link', $filter, 10);
+            remove_filter('wp_get_attachment_url', $filter, 10);
+        }
+    });
 });
 
