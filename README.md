@@ -14,40 +14,40 @@
 3. Add the ACF key to the `.env` or remove ACF from `composer.json` if you're not going to use ACF.
 4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
 5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
-8. Update environment variables in the `.env` file:
+6. Update environment variables in the `.env` file:
   * Database: define `DATABASE_URL` for using a DSN (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `WP_HOME` - Full URL to WordPress home (https://dev.example.com)
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
   * `WPCOM_API_KEY` - Wordpress.com API key for Akismet and Jetpack (or other WordPress paid plugins)
   * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` from: https://roots.io/salts.html
-10. Server setup:
+7. Server setup:
     1. If using InterWorx or CentOS, upload `setup_dev.sh` and run: `sh ./setup_dev.sh`
-    1. Upload files to the server. Don't upload (most are listed in `.gitignore`):
+    2. Upload files to the server. Don't upload (most are listed in `.gitignore`):
         - `/public/wp`
         - `/public/app/plugins/*`
         - `/vendor`
         - `/bin`
         - `/.git or /.idea`
         - `/node_modules`
-    2. [Install Composer](https://getcomposer.org/download/) and then install PHP packages on server: `php composer.phar install`
-    3. [Install NVM](https://github.com/creationix/nvm#install-script). You may need `. ~/bashrc` or `. ~/.zshrc` for nvm to be enabled.
-    4. Run `. ./node_setup.sh` (this will setup node & install the JS packages – requires yarn to be installed).
-    5. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
-    6. Link public to html: `rm -rf html && ln -s public html`
-    7. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
-    8. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
-    9. Adjust permissions on the bin dir: `chmod u+x bin/*`
-6. Install PHP packages & update locally: `composer install && composer update`
-7. Run `yarn && yarn upgrade` locally.
-8. Upload `composer.lock` and `yarn.lock` and run `php composer.phar install` and `. ./node_setup.sh` again.
-9. Find and make changes near `@todo-wordpress` comments throughout the site. All changed files will need to uploaded to the server.
-11. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
-12. To activate all installed plugins: `bin/wp plugin activate --all`
-13. Delete or update `README.md` and `LICENSE`
-14. Add the Postmark API key
-15. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
-16. Consider the following WordPress settings:
+    3. [Install Composer](https://getcomposer.org/download/) and then install PHP packages on server: `php composer.phar install`
+    4. [Install NVM](https://github.com/creationix/nvm#install-script). You may need `. ~/bashrc` or `. ~/.zshrc` for nvm to be enabled.
+    5. Run `. ./node_setup.sh` (this will setup node & install the JS packages – requires yarn to be installed).
+    6. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
+    7. Link public to html: `rm -rf html && ln -s public html`
+    8. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
+    9. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
+    10. Adjust permissions on the bin dir: `chmod u+x bin/*`
+8. Install PHP packages & update locally: `composer install && composer update`
+9. Run `yarn && yarn upgrade` locally.
+10. Upload `composer.lock` and `yarn.lock` and run `php composer.phar install` and `. ./node_setup.sh` again.
+11. Find and make changes near `@todo-wordpress` comments throughout the site. All changed files will need to uploaded to the server.
+12. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
+13. To activate all installed plugins: `bin/wp plugin activate --all`
+14. Delete or update `README.md` and `LICENSE`
+15. Add the Postmark API key
+16. Create new favicons: [realfavicongenerator.net](https://realfavicongenerator.net)
+17. Consider the following WordPress settings:
     - Setting the homepage: create the page and then select the home page under Settings > Reading 
     - Dev: Settings > Reading "Discourage search engines from indexing this site" (for Dev)
 
