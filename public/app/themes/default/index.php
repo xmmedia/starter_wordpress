@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="w-content clearfix">
+<main class="clearfix">
     <p>Content</p>
 
     <?php
