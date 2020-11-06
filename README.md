@@ -40,7 +40,7 @@
     10. Adjust permissions on the bin dir: `chmod u+x bin/*`
 8. Install PHP packages & update locally: `composer install && composer update`
 9. Run `yarn && yarn upgrade` locally.
-10. Upload `composer.lock` and `yarn.lock` and run `php composer.phar install` and `. ./node_setup.sh` again.
+10. Upload `composer.lock` and `yarn.lock` and on the server, run `php composer.phar install` and `. ./node_setup.sh` again.
 11. Find and make changes near `@todo-wordpress` comments throughout the site. All changed files will need to uploaded to the server.
 12. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
 13. To activate all installed plugins: `bin/wp plugin activate --all`
