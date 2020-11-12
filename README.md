@@ -24,12 +24,13 @@
 7. Server setup:
     1. If using InterWorx or CentOS, upload `setup_dev.sh` and run: `sh ./setup_dev.sh`
     2. Upload files to the server. Don't upload (most are listed in `.gitignore`):
-        - `/public/wp`
-        - `/public/app/plugins/*`
-        - `/vendor`
-        - `/bin`
-        - `/.git or /.idea`
-        - `/node_modules`
+        - `/.git` and `/.idea`
+        - Plus the following only if you JS or PHP packages have been installed:
+          - `/public/wp`
+          - `/public/app/plugins/*`
+          - `/vendor`
+          - `/bin`
+          - `/node_modules`
     3. [Install Composer](https://getcomposer.org/download/) and then install PHP packages on server: `php composer.phar install`
     4. [Install NVM](https://github.com/creationix/nvm#install-script). You may need `. ~/bashrc` or `. ~/.zshrc` for nvm to be enabled.
     5. Run `. ./node_setup.sh` (this will setup node & install the JS packages – requires yarn to be installed).
