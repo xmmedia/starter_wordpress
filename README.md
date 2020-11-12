@@ -39,6 +39,7 @@
     8. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
     9. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
     10. Adjust permissions on the bin dir: `chmod u+x bin/*`
+    11. Install WP: `bin/wp core install --allow-root --url=https://<url> --title="<site-title>" --admin_user=<username> --admin_email=<email>`
 8. Install PHP packages & update locally: `composer install && composer update`
 9. Run `yarn && yarn upgrade` locally.
 10. Upload `composer.lock` and `yarn.lock` and on the server, run `php composer.phar install` and `. ./node_setup.sh` again.
