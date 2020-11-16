@@ -11,9 +11,6 @@
     composer create-project xm/starter_wordpress project-name --stability=dev --no-install --remove-vcs
     ```
 2. Copy `.env.example` to `.env`.
-3. Add the ACF key to the `.env` or remove ACF from `composer.json` if you're not going to use ACF.
-4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
-5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
 6. Update environment variables in the `.env` file:
   * Database: define `DATABASE_URL` for using a DSN (e.g. `mysql://user:password@127.0.0.1:3306/db_name`)
   * `WP_ENV` - Set to environment (`development`, `staging`, `production`)
@@ -21,6 +18,7 @@
   * `WP_SITEURL` - Full URL to WordPress including subdirectory (https://example.com/wp)
   * `WPCOM_API_KEY` - Wordpress.com API key for Akismet and Jetpack (or other WordPress paid plugins)
   * `AUTH_KEY`, `SECURE_AUTH_KEY`, `LOGGED_IN_KEY`, `NONCE_KEY`, `AUTH_SALT`, `SECURE_AUTH_SALT`, `LOGGED_IN_SALT`, `NONCE_SALT` from: https://roots.io/salts.html
+  * `ACF_PRO_KEY` - add ACF key
 7. Server setup:
     1. If using InterWorx or CentOS, upload `setup_dev.sh` and run: `sh ./setup_dev.sh`
     2. Upload files to the server. Don't upload (most are listed in `.gitignore`):
@@ -40,9 +38,11 @@
     9. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
     10. Adjust permissions on the bin dir: `chmod u+x bin/*`
     11. Install WP: `bin/wp core install --allow-root --url=https://<url> --title="<site-title>" --admin_user=<username> --admin_email=<email>`
+4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
+5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
 8. Install PHP packages & update locally: `composer install && composer update`
 9. Run `yarn && yarn upgrade` locally.
-10. Upload `composer.lock` and `yarn.lock` and on the server, run `php composer.phar install` and `. ./node_setup.sh` again.
+10. Upload `composer.lock` and `yarn.lock` and on the server, re-run `php composer.phar install` and `. ./node_setup.sh` again.
 11. Find and make changes near `@todo-wordpress` comments throughout the site. All changed files will need to uploaded to the server.
 12. Access WordPress admin at `https://dev.example.com/wp/wp-admin/`
 13. To activate all installed plugins: `bin/wp plugin activate --all`
