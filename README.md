@@ -29,7 +29,7 @@
           - `/vendor`
           - `/bin`
           - `/node_modules`
-    3. [Install Composer](https://getcomposer.org/download/) and then install PHP packages on server: `php composer.phar install`
+    3. Install Composer v1 and then install PHP packages on the server: `wget --no-verbose -O composer.phar https://getcomposer.org/composer-1.phar && php composer.phar install`
     4. [Install NVM](https://github.com/creationix/nvm#install-script). You may need `. ~/bashrc` or `. ~/.zshrc` for nvm to be enabled.
     5. Run `. ./node_setup.sh` (this will setup node & install the JS packages – requires yarn to be installed).
     6. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
