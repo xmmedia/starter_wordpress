@@ -13,6 +13,14 @@ add_action('acf/init', function () {
             'category'        => 'formatting',
             'icon'            => 'format-quote',
         ]);
+        acf_register_block_type([
+            'name'            => 'video_block',
+            'title'           => __('Video'),
+            'description'     => __('Video block.'),
+            'render_template' => 'template-partials/blocks/video.php',
+            'category'        => 'media',
+            'icon'            => 'playlist-video',
+        ]);
     }
 });
 
