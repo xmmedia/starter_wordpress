@@ -16,7 +16,7 @@ module.exports = function (Encore) {
     }
 
     Encore
-    // directory where all compiled assets will be stored
+        // directory where all compiled assets will be stored
         .setOutputPath('public/app/themes/default/build/')
 
         // what's the public path to this directory (relative to your project's document root dir)
@@ -39,7 +39,7 @@ module.exports = function (Encore) {
         .addEntry('admin', './public/app/themes/default/js/src/admin.js')
 
         // allow sass/scss files to be processed
-        .enableSassLoader(function() {}, {
+        .enableSassLoader(function () {}, {
             // see: http://symfony.com/doc/current/frontend/encore/bootstrap.html#importing-bootstrap-sass
             resolveUrlLoader: false,
         })
@@ -53,7 +53,7 @@ module.exports = function (Encore) {
                     dangerousTaggedTemplateString: true,
                 },
             };
-        })
+        }, { runtimeCompilerBuild: true })
 
         // generate source maps when "source-maps" argument exists
         .enableSourceMaps(
@@ -94,7 +94,18 @@ module.exports = function (Encore) {
         })
         .autoProvidejQuery()
 
-        .addPlugin(new Dotenv())
+        .addPlugin(new Dotenv({
+            path: './.env',
+        }))
+
+        // this is to resolve the issues with the manifest
+        // where the file path keys have the hashed version
+        .configureUrlLoader({
+            images: {
+                limit: 0, // Avoids files from being inlined
+                esModule: false,
+            },
+        })
     ;
 
     if (Encore.isProduction()) {
