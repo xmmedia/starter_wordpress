@@ -1,8 +1,8 @@
 #!/bin/sh
 
-echo "-- Setting up node"
+echo "-- Setting up node & updating nvm"
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 
 nvm install
 nvm use --delete-prefix --silent
