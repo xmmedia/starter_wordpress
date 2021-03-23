@@ -31,7 +31,7 @@
         "roave/security-advisories": "dev-master",
         "roots/bedrock-autoloader": "^1.0",
         "roots/soil": "^3.8",
-        "roots/wordpress": "5.6",
+        "roots/wordpress": "5.7",
         "roots/wp-config": "1.0",
         "roots/wp-password-bcrypt": "1.0",
         "vlucas/phpdotenv": "^4.1",
@@ -42,7 +42,7 @@
         "wpackagist-plugin/flamingo": "^2.0",
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
         "wpackagist-plugin/wordfence": "^7.3",
-        "wpackagist-plugin/wordpress-seo": "^15.0"
+        "wpackagist-plugin/wordpress-seo": "^16.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.0"
