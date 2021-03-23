@@ -1,8 +1,7 @@
 #!/bin/sh
 
 echo
-echo '-- Setting up dev site --'
-echo 'This script can be run multiple times without causing problems'
+echo '-- Setting up PRODUCTION site --'
 echo
 
 echo "Paths:"
@@ -16,6 +15,11 @@ RELEASES="$BASE/releases";
 RELEASE="$RELEASES/1";
 SHARED="$BASE/shared"
 printf "Current:  ${PWD}\nRoot:     ${BASE}\nReleases: ${RELEASES}\nRelease:  ${RELEASE}\nShared:   ${SHARED}\n\n"
+
+if [ -d "$RELEASES" ]; then
+    echo "The releases dir (${RELEASES}) already exists. Cannot continue."
+    exit 1
+fi
 
 PHP_VERSION=$(php -v|grep --only-matching --perl-regexp "(PHP )\d+\.\\d+\.\\d+"|cut -c 5-7)
 PHP_MINIMUM_VERSION=7.4
@@ -41,16 +45,15 @@ cd $BASE || exit
 echo "Working in: $PWD"
 printf "\n\n"
 
-echo "Install oh-my-zsh"
+echo "Creating ssh key dir/files"
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+echo "Install oh-my-zsh & add nvm vars"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 printf "\nDISABLE_AUTO_TITLE=\"true\"" >> ~/.zshrc
-printf "\n\nexport NVM_DIR=\"\$HOME/.nvm\"" >> ~/.zshrc
-printf "\n[ -s \"\$NVM_DIR/nvm.sh\" ] && \. \"\$NVM_DIR/nvm.sh\"  # This loads nvm" >> ~/.zshrc
-printf "\n[ -s \"\$NVM_DIR/bash_completion\" ] && \. \"\$NVM_DIR/bash_completion\"  # This loads nvm bash_completion" >> ~/.zshrc
-printf "\n\n"
-
-echo "Install nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
 printf "\n\n"
 
 if [ $(echo "$PHP_VERSION >= $PHP_MINIMUM_VERSION" | bc) -eq 0 ]; then
@@ -73,14 +76,7 @@ printf "\n\n"
 
 cd $RELEASE || exit
 
-echo "Install Composer"
-wget --no-verbose -O composer.phar https://getcomposer.org/composer-1.phar
-php composer.phar selfupdate
-printf "\n\n"
-
-echo "Ready! You can start uploading files to: ${$BASE}/current"
+echo "Ready! You can attempt a deploy."
 echo
 
-echo 'To change the shell, run:'
-echo 'chsh -s /bin/zsh && /bin/zsh'
-echo
+echo "To switch to oh-my-zsh, run: /bin/zsh"
