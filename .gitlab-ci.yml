@@ -52,9 +52,6 @@ static:
     # Install node/JS dependencies
     - yarn install --non-interactive --frozen-lockfile
     - *security-checks
-    # cache warmup for phpstan
-    - php bin/console cache:warmup --env=dev
-    - php bin/phpstan analyse --no-progress --memory-limit 1G src
     # lint JS
     - yarn lint:js
     - yarn lint:css
