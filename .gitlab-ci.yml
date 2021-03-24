@@ -87,7 +87,8 @@ deploy:
     # remove temp .env file just incase
     - rm .env
     # ensure based paths exist
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/public/app/uploads"
+    # @todo-wordpress remove $SHARED/public/app/wflogs if not using wordfence
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/public/app/uploads $SHARED/public/app/wflogs"
     # sync files to release directory
     - rsync --archive --stats --human-readable --no-perms --exclude ".git/" --exclude ".idea/" --exclude "node_modules/" --exclude "cypress/" -e "ssh -p $REMOTE_PORT" . $REMOTE_USER@$REMOTE_SERVER:$RELEASE
     # make bin files executable
@@ -95,7 +96,7 @@ deploy:
     # ensure platform has all requirements
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; $SERVER_PHP_PATH -v; echo "\n\n"; $SERVER_PHP_PATH composer.phar check-platform-reqs"
     # link shared folders
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads || true; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads || true; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads; rm -rf $RELEASE/public/app/wflogs || true; ln -s $SHARED/public/app/wflogs $RELEASE/public/app/wflogs"
     # link in ACF
     # @todo-wordpress remove if not using ACF
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
