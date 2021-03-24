@@ -106,11 +106,11 @@ deploy:
     # switch to new version
     - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
     # update WP db
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $REMOTE_BASE/current; bin/wp core update-db"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db"
     # activate plugins
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $REMOTE_BASE/current; bin/wp plugin activate --all"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp plugin activate --all"
     # display WordPress version
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $REMOTE_BASE/current; echo 'WordPress Version:'; bin/wp core version"
+    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; bin/wp core version"
     # @todo-wordpress enable/remove if using/not using WooCommerce
     # update Woocommerce db
     #- ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp wc update"
