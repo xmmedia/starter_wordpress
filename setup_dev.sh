@@ -64,11 +64,17 @@ fi
 echo "Creating dirs in ${BASE}"
 cd $BASE || exit
 mkdir -p $RELEASE/public/app/uploads
+mkdir -p $RELEASE/public/app/wflogs
+mkdir -p $RELEASE/log
 mkdir -p $SHARED/public/app/uploads
+mkdir -p $SHARED/public/app/wflogs
+mkdir -p $SHARED/log
 ln -s $RELEASE current
 rm -rf html
 ln -s current/public html
 ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads
+ln -s $SHARED/public/app/wflogs $RELEASE/public/app/wflogs
+ln -s $SHARED/log $RELEASE/log
 printf "\n\n"
 
 cd $RELEASE || exit
