@@ -52,7 +52,7 @@ static:
     # Install node/JS dependencies
     - yarn install --non-interactive --frozen-lockfile
     - *security-checks
-    # lint JS
+    # lint CSS & JS
     - yarn lint:js
     - yarn lint:css
 
