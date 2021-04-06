@@ -82,9 +82,6 @@ add_action('after_setup_theme', function () {
 
     // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
 
-    // Allow Support for WooCommerce
-    add_theme_support('woocommerce');
-
     // remove sections from the dashboard
     add_action(
         'admin_init',
@@ -97,6 +94,9 @@ add_action('after_setup_theme', function () {
             wp_deregister_script('autosave');
         }
     );
+
+    // Allow Support for WooCommerce
+    add_theme_support('woocommerce');
 
     /**
      * From: https://wordpress.stackexchange.com/questions/25793/how-to-force-one-column-layout-on-custom-post-type-edit-page/25814#25814
