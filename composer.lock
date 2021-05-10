@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cf0f48b53a8560872ae13ca4603e2435",
+    "content-hash": "c7bc1ba0b8b0468c5fb4e8484cec8a3c",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -1730,16 +1730,16 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "5.7",
+            "version": "5.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "5.7"
+                "reference": "5.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/5.7",
-                "reference": "5.7"
+                "url": "https://api.github.com/repos/WordPress/WordPress/zipball/refs/tags/5.7.1",
+                "reference": "5.7.1"
             },
             "require": {
                 "php": ">=5.3.2",
@@ -1773,7 +1773,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-03-09T20:23:15+00:00"
+            "time": "2021-04-15T02:11:19+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
