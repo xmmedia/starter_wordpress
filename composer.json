@@ -41,6 +41,7 @@
         "wpackagist-plugin/contact-form-7": "^5.1",
         "wpackagist-plugin/flamingo": "^2.0",
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
+        "wpackagist-plugin/svg-support": "^2.3",
         "wpackagist-plugin/wordfence": "^7.3",
         "wpackagist-plugin/wordpress-seo": "^16.0"
     },
