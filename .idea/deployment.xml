@@ -11,7 +11,6 @@
             <excludedPath path="/vendor" />
             <excludedPath path="/bin" />
             <excludedPath path="/node_modules" />
-            <excludedPath path="/public/wp" />
             <excludedPath path="/public/app/plugins" />
           </excludedPaths>
         </serverdata>

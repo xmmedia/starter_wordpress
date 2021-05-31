@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="iw9.xmmedia.com" id="c9970039-8075-4a6a-9769-96938595f434" port="10022" customName="Dev" nameFormat="CUSTOM" username="wpdev">
+        <option name="customName" value="Dev" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="iw3.xmmedia.com" id="ff302f20-d508-4ac0-8992-ef29c3574c2e" port="10022" customName="Dev" nameFormat="CUSTOM" username="wpdev">
+        <option name="customName" value="Dev" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

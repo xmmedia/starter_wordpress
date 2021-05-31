@@ -3,7 +3,6 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/cweagans/composer-patches" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gettext/gettext" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gettext/languages" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/justinrainbow/json-schema" />
@@ -66,6 +65,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/wp-cli/wp-cli" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/wp-cli/wp-cli-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/wp-cli/wp-config-transformer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/react/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/deprecation-contracts" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
