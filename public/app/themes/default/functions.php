@@ -110,6 +110,24 @@ add_action('after_setup_theme', function () {
     add_theme_support('woocommerce');
 
     /**
+     * Add additional image sizes
+     * To view the existing ones: dump(wp_get_registered_image_subsizes());
+     * Reserved names: thumb, thumbnail, medium, large, post-thumbnail
+     * If you want the image sizes to be available for existing images, run: bin/wp media regenerate
+     * @see https://developer.wordpress.org/reference/functions/add_image_size/
+     */
+    // add_image_size('hero', 2500, 1000);
+    // add as a selection in the UI
+    // add_filter(
+    //     'image_size_names_choose',
+    //     function ($sizes) {
+    //         return array_merge($sizes, [
+    //             'hero' => __('Hero'),
+    //         ]);
+    //     }
+    // );
+
+    /**
      * From: https://wordpress.stackexchange.com/questions/25793/how-to-force-one-column-layout-on-custom-post-type-edit-page/25814#25814
      *
      * @param array|mixed $order
