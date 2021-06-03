@@ -386,7 +386,8 @@ Options -MultiViews
 
 <IfModule mod_headers.c>
 
-    Header set X-Frame-Options "DENY"
+    # WordPress uses iframes in the admin
+    Header set X-Frame-Options "SAMEORIGIN"
 
     # `mod_headers` cannot match based on the content-type, however,
     # the `X-Frame-Options` response header should be send only for
