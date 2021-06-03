@@ -80,6 +80,17 @@ add_action('after_setup_theme', function () {
         add_theme_support('soil-google-analytics', env('GA_ANALYTICS_ID'));
     }
 
+    // Remove the ability to change the site icon in the theme customizer
+    // & remove from head
+    add_filter('site_icon_meta_tags', function () {
+        global $wp_customize;
+
+        $wp_customize->remove_control('site_icon');
+
+        return [];
+    }, 20, 1);
+    remove_action('wp_head', 'wp_site_icon', 99);
+
     // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
 
     // remove sections from the dashboard
