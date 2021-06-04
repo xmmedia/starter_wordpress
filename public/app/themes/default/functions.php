@@ -103,6 +103,10 @@ add_action('after_setup_theme', function () {
             // disable the auto save in the admin
             // because it saves to the actual page, not just a draft or locally
             wp_deregister_script('autosave');
+
+            // remove the media settings page
+            // we depend on the these configurations to optimize the size
+            remove_submenu_page('options-general.php', 'options-media.php');
         }
     );
 
