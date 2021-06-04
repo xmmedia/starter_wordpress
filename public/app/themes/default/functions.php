@@ -15,7 +15,7 @@ array_map(function ($file) {
     if (!locate_template($file, true)) {
         throw new \InvalidArgumentException(sprintf('Unable to load file %s', $file));
     }
-}, ['helpers', 'blocks']);
+}, ['helpers', 'blocks', 'retina']);
 
 add_action('after_setup_theme', function () {
     // Set the from name on emails (non-Postmark)
