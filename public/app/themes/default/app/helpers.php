@@ -28,6 +28,12 @@ class ThemeHelpers
             }
         }
 
+        // "build/" is only used for the dev server,
+        // so short circuit as the manifest contains the full path to the file
+        if (isset(self::$manifestData['build/'.$asset])) {
+            return self::$manifestData['build/'.$asset];
+        }
+
         $path = isset(self::$manifestData[$asset]) ? self::$manifestData[$asset] : $asset;
 
         return get_template_directory_uri().'/'.ltrim($path, '/');
