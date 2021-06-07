@@ -18,6 +18,7 @@ array_map(function ($file) {
 }, ['helpers', 'blocks']);
 
 add_action('after_setup_theme', function () {
+    // @todo check if both are still required...maybe just so we don't have "worry"
     // Set the from name on emails (non-Postmark)
     add_filter('wp_mail_from_name', function ($original_email_from) {
         return '@todo-wordpress';
@@ -142,26 +143,30 @@ add_action('after_setup_theme', function () {
      *
      * @return array|mixed
      */
-    $moveWpSeoToBottom = function ($order) {
-        if (!is_array($order)) {
+    \Roots\Soil\Utils\add_filters(
+        [
+            'get_user_option_meta-box-order_page',
+            'get_user_option_meta-box-order_post',
+        ],
+        function ($order) {
+            if (!is_array($order)) {
+                return $order;
+            }
+
+            $boxes = explode(',', $order['normal']);
+
+            $wpSeoKey = array_search('wpseo_meta', $boxes);
+            if (false !== $wpSeoKey) {
+                // remove & add a end
+                unset($boxes[$wpSeoKey]);
+                $boxes[] = 'wpseo_meta';
+            }
+
+            $order['normal'] = implode(',', $boxes);
+
             return $order;
         }
-
-        $boxes = explode(',', $order['normal']);
-
-        $wpSeoKey = array_search('wpseo_meta', $boxes);
-        if (false !== $wpSeoKey) {
-            // remove & add a end
-            unset($boxes[$wpSeoKey]);
-            $boxes[] = 'wpseo_meta';
-        }
-
-        $order['normal'] = implode(',', $boxes);
-
-        return $order;
-    };
-    add_filter('get_user_option_meta-box-order_page', $moveWpSeoToBottom);
-    add_filter('get_user_option_meta-box-order_post', $moveWpSeoToBottom);
+    );
 
     /**
      * Ensure all URLs are absolute in sitemaps
