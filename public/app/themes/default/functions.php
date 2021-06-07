@@ -91,6 +91,10 @@ add_action('after_setup_theme', function () {
     }, 20, 1);
     remove_action('wp_head', 'wp_site_icon', 99);
 
+    register_nav_menus([
+        'main' => 'Main',
+    ]);
+
     // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
 
     // remove sections from the dashboard
