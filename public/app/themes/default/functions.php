@@ -176,6 +176,17 @@ add_action('after_setup_theme', function () {
     );
 
     add_action('init', function () {
+        /** @var $wp_rewrite WP_Rewrite */
+        global $wp_rewrite;
+
+        // force the perma link structure
+        $wp_rewrite->set_permalink_structure('/%year%/%monthnum%/%postname%');
+
+        /**
+         * Ensure all URLs are absolute in sitemaps
+         *
+         * @link https://github.com/roots/soil/issues/156
+         */
         if (!isset($_SERVER['REQUEST_URI'])) {
             return;
         }
