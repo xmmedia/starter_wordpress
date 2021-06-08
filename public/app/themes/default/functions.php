@@ -175,11 +175,6 @@ add_action('after_setup_theme', function () {
         }
     );
 
-    /**
-     * Ensure all URLs are absolute in sitemaps
-     *
-     * @link https://github.com/roots/soil/issues/156
-     */
     add_action('init', function () {
         if (!isset($_SERVER['REQUEST_URI'])) {
             return;
@@ -189,7 +184,7 @@ add_action('after_setup_theme', function () {
         $extension = substr($request_uri, -4);
 
         if (false !== stripos($request_uri, 'sitemap') && in_array($extension, ['.xml', '.xsl'])) {
-            $filter = \Roots\Soil\Utils\root_relative_url::class;
+            $filter = '\Roots\Soil\Utils\root_relative_url';
 
             remove_filter('bloginfo_url', $filter, 10);
             remove_filter('the_permalink', $filter, 10);
