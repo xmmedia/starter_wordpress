@@ -20,7 +20,7 @@ array_map(function ($file) {
 add_action('after_setup_theme', function () {
     // @todo check if both are still required...maybe just so we don't have "worry"
     // Set the from name on emails (non-Postmark)
-    add_filter('wp_mail_from_name', function ($original_email_from) {
+    add_filter('wp_mail_from_name', function () {
         return '@todo-wordpress';
     });
     // Set the from name on emails (Postmark)
