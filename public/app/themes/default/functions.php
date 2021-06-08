@@ -96,6 +96,13 @@ add_action('after_setup_theme', function () {
         'main' => 'Main',
     ]);
 
+    // disables both the Post Via Email functionality and the associated UI options
+    add_filter(
+        'enable_post_by_email_configuration',
+        '__return_false',
+        PHP_INT_MAX,
+    );
+
     // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
 
     // remove sections from the dashboard
