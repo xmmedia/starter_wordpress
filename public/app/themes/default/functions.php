@@ -119,6 +119,8 @@ add_action('after_setup_theme', function () {
             // remove the media settings page
             // we depend on the these configurations to optimize the size
             remove_submenu_page('options-general.php', 'options-media.php');
+            // remove the permalink settings
+            remove_submenu_page('options-general.php', 'options-permalink.php');
         }
     );
 
