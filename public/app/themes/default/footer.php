@@ -1,4 +1,3 @@
-        </main>
 
         <footer class="w-content">
             <!-- @todo-wordpress -->
