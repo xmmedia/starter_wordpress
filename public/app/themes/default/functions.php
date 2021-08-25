@@ -166,7 +166,7 @@ add_action('after_setup_theme', function () {
 
             $wpSeoKey = array_search('wpseo_meta', $boxes);
             if (false !== $wpSeoKey) {
-                // remove & add a end
+                // remove & add at end
                 unset($boxes[$wpSeoKey]);
                 $boxes[] = 'wpseo_meta';
             }
@@ -181,7 +181,7 @@ add_action('after_setup_theme', function () {
         /** @var $wp_rewrite WP_Rewrite */
         global $wp_rewrite;
 
-        // force the perma link structure
+        // force the permalink structure
         $wp_rewrite->set_permalink_structure('/%year%/%monthnum%/%postname%');
 
         /**
