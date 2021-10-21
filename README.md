@@ -23,7 +23,7 @@
     1. If using InterWorx or CentOS, upload `setup_dev.sh` and run: `sh ./setup_dev.sh`
     2. Upload files to the server. Don't upload (most are listed in `.gitignore`):
         - `/.git` and `/.idea`
-        - Plus the following only if you JS or PHP packages have been installed:
+        - Plus the following (these will only exist if you've installed the JS or PHP packages):
           - `/public/wp`
           - `/public/app/plugins/*`
           - `/vendor`
