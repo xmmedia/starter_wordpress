@@ -1,47 +1,25 @@
 const plugin = require('tailwindcss/plugin');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     // https://tailwindcss.com/docs/upcoming-changes
-    future: {
-        removeDeprecatedGapUtilities: true,
-        purgeLayersByDefault: true,
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#default-line-heights-per-font-size-by-default
-        defaultLineHeights: true,
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.8.4
-        standardFontWeights: true,
-    },
-    experimental: {
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#use-apply-with-variants-and-other-complex-classes
-        applyComplexClasses: true,
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#new-color-palette
-        // Palette: https://f1igi.csb.app/
-        uniformColorPalette: true,
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#extended-spacing-scale
-        extendedSpacingScale: true,
-        // https://github.com/tailwindlabs/tailwindcss/releases/tag/v1.7.0#extended-font-size-scale
-        extendedFontSizeScale: true,
-        // https://github.com/tailwindlabs/tailwindcss/pull/2468
-        additionalBreakpoint: true,
-    },
-    purge: {
-        preserveHtmlElements: true,
-        content: [
-            './public/app/themes/default/**/*.php',
-            './public/app/themes/default/js/src/**/*.vue',
-            './public/app/themes/default/js/src/**/*.js',
+
+    content: [
+        './public/app/themes/default/**/*.php',
+        './public/app/themes/default/js/src/**/*.js',
+    ],
+    options: {
+        safelist: [
+            // vue transition classes: https://vuejs.org/v2/guide/transitions.html#Transition-Classes
+            /-enter/,
+            /-leave/,
         ],
-        options: {
-            whitelist: [
-                // vue transition classes: https://vuejs.org/v2/guide/transitions.html#Transition-Classes
-                /-enter/,
-                /-leave/,
-            ],
-        },
     },
     theme: {
         extend: {
             colors: {
                 'inherit': 'inherit',
+                orange: colors.orange,
             },
             borderWidth: {
                 '10': '10px',
@@ -53,7 +31,6 @@ module.exports = {
             },
             screens: {
                 'xs': '400px',
-                '2xl': '1536px',
                 'print': { 'raw': 'print' },
                 'retina': { 'raw': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)' },
             },
@@ -80,14 +57,13 @@ module.exports = {
     },
     plugins: [
         require('@tailwindcss/typography'),
-        plugin(function({ addComponents, config }) {
-            addComponents({
+        plugin(({ addBase, theme }) => {
+            addBase({
                 // same as: transition-all duration-300 ease-in-out
                 '.transition-default': {
-                    transitionProperty: config('theme.transitionProperty.all'),
-                    transitionDuration: config('theme.transitionDuration.300'),
-                    transitionTimingFunction: config('theme.transitionTimingFunction.in-out'),
-                },
+                    transitionProperty: theme('transitionProperty.all'),
+                    transitionDuration: theme('transitionDuration.300'),
+                    transitionTimingFunction: theme('transitionTimingFunction.in-out'),},
             });
         }),
     ],

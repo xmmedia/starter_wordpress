@@ -3,7 +3,7 @@
 
 get_header(); ?>
 
-<main class="w-content clearfix">
+<main class="w-content flow-root">
     <p>Content</p>
 
     <?php
