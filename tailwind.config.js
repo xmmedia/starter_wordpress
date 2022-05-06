@@ -1,5 +1,4 @@
 const plugin = require('tailwindcss/plugin');
-const colors = require('tailwindcss/colors');
 
 module.exports = {
     // https://tailwindcss.com/docs/upcoming-changes
@@ -18,8 +17,9 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                transparent: 'transparent',
+                current: 'currentColor',
                 'inherit': 'inherit',
-                orange: colors.orange,
             },
             borderWidth: {
                 '10': '10px',
@@ -46,14 +46,6 @@ module.exports = {
                 ],
             },
         },
-    },
-    variants: {
-        borderColor: ['responsive', 'hover', 'focus', 'group-hover'],
-        cursor: ['responsive', 'disabled'],
-        margin: ['responsive', 'focus'],
-        opacity: ['responsive', 'hover', 'focus', 'group-hover'],
-        padding: ['responsive', 'focus'],
-        textColor: ['responsive', 'hover', 'focus', 'group-hover'],
     },
     plugins: [
         require('@tailwindcss/typography'),
