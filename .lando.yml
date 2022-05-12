@@ -5,7 +5,7 @@
 name: wordpressstarter
 recipe: symfony
 config:
-  php: '7.4'
+  php: '8.0'
   webroot: public
   xdebug: true
 services:

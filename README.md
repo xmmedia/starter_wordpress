@@ -55,7 +55,7 @@
 
 ## System Requirements
 
-  - PHP 7.4+
+  - PHP 8.0+
   - MySQL 5.7+
   - [Composer](https://getcomposer.org/download/)
   - [Yarn](https://yarnpkg.com/en/docs/install)
