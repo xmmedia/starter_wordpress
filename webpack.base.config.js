@@ -42,8 +42,10 @@ module.exports = function (Encore) {
         .enableSassLoader(function (options) {
             options.additionalData = "$env: " + process.env.NODE_ENV + ";";
         }, {
-            // see: http://symfony.com/doc/current/frontend/encore/bootstrap.html#importing-bootstrap-sass
-            resolveUrlLoader: false,
+            // tell sass where to find url() paths/files
+            resolveUrlLoaderOptions: {
+                root: resolve('public/app/themes/default'),
+            },
         })
         .enablePostCssLoader()
         // allow .vue files to be processed
