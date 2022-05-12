@@ -1,0 +1,24 @@
+# @todo-wordpress update
+# URLs: https://wordpressstarter.lndo.site/ or __________
+# DB URL: mysql://wordpress:wordpress@database:3306/wordpress
+# @todo-wordpress update
+name: wordpressstarter
+recipe: symfony
+config:
+  php: '7.4'
+  webroot: public
+  xdebug: true
+services:
+  database:
+    creds:
+      user: wordpress
+      password: wordpress
+      database: wordpress
+  phpmyadmin:
+    type: phpmyadmin
+    hosts:
+      - database
+proxy:
+  appserver:
+    # @todo-wordpress update
+    - wordpressstarter.lndo.site
