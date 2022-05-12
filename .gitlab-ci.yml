@@ -1,5 +1,5 @@
 default:
-  image: xmmedia/php:8.1-cli
+  image: xmmedia/php:8.0-cli
   timeout: 15m
 
 stages:
@@ -17,7 +17,7 @@ cache:
     - public/wp/
 
 variables:
-  SERVER_PHP_PATH: php81
+  SERVER_PHP_PATH: php80
   WP_ENV: production
   RELEASES: "$REMOTE_BASE/releases"
   SHARED: "$REMOTE_BASE/shared"
@@ -91,7 +91,7 @@ before_script:
   # update Woocommerce db
   #- ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp wc update"
   # reload php-fpm (to reset cache)
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php81-php-fpm"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php80-php-fpm"
   # remove >2 releases
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +3 | xargs /bin/rm -rf"
   # test if website is up
