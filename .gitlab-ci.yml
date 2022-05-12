@@ -18,6 +18,7 @@ cache:
 
 variables:
   SERVER_PHP_PATH: php74
+  WP_ENV: production
   RELEASES: "$REMOTE_BASE/releases"
   SHARED: "$REMOTE_BASE/shared"
 
@@ -39,14 +40,77 @@ before_script:
   # check for JS security issues in libs
   - yarn audit:high
 
+.deploy-setup-script: &deploy-setup-script
+  - *versions-script
+  # setup vars for paths
+  - TIMESTAMP=$(date +%s); RELEASE="$RELEASES/$TIMESTAMP"
+  - echo "Paths:"; echo $REMOTE_BASE; echo $RELEASE; echo $SHARED
+  - echo "Remote:"; echo $REMOTE_USER@$REMOTE_SERVER:$REMOTE_PORT
+  # setup SSH & private key
+  - eval $(ssh-agent -s)
+  - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  - ssh-keyscan -p $REMOTE_PORT $REMOTE_SERVER >> ~/.ssh/known_hosts
+  # the following line is optional (likely remove previous line)
+  #- echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts
+  - chmod 644 ~/.ssh/known_hosts
+  # add .revision file
+  - git rev-parse --verify --short HEAD > .revision
+  # create partial .env file
+  # @todo-wordpress remove ACF_PRO_KEY... if not using ACF
+  - printf "WP_ENV=$WP_ENV\nACF_PRO_KEY=$ACF_PRO_KEY\n" > .env && cat .env
+
+.deploy-script: &deploy-script
+  # remove temp .env file just in case
+  - rm .env
+  # ensure based paths exist
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/public/app/uploads $SHARED/public/app/wflogs $SHARED/log"
+  # sync files to release directory
+  - rsync --archive --stats --human-readable --no-perms --exclude ".git/" --exclude ".idea/" --exclude "node_modules/" --exclude "cypress/" -e "ssh -p $REMOTE_PORT" . $REMOTE_USER@$REMOTE_SERVER:$RELEASE
+  # make bin files executable
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; chmod u+x bin/*"
+  # ensure platform has all requirements
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; $SERVER_PHP_PATH -v; echo "\n\n"; $SERVER_PHP_PATH composer.phar check-platform-reqs"
+  # link shared folders
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads || true; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads; rm -rf $RELEASE/public/app/wflogs || true; ln -s $SHARED/public/app/wflogs $RELEASE/public/app/wflogs; rm -rf $RELEASE/log || true; ln -s $SHARED/log $RELEASE/log"
+  # link in ACF
+  # @todo-wordpress remove if not using ACF
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
+  # test configuration of wp cli
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp --info"
+  # copy env file into place
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env"
+  # switch to new version
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
+  # update WP db
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db"
+  # activate plugins
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp plugin activate --all"
+  # display WordPress version
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; bin/wp core version"
+  # @todo-wordpress enable/remove if using/not using WooCommerce
+  # update Woocommerce db
+  #- ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp wc update"
+  # reload php-fpm (to reset cache)
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php74-php-fpm"
+  # remove >2 releases
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +3 | xargs /bin/rm -rf"
+  # test if website is up
+  - if wget --spider --server-response "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST" 2>&1 | grep '200\ OK'; then echo "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST is up"; else echo "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST is down"; exit 1; fi
+  # ensure all images have all the sizes
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp media regenerate --only-missing --skip-delete --yes"
+  # success message
+  - echo "Deployment completed successfully. Release at $RELEASE"
+
 static:
   stage: static
   allow_failure: false
   interruptible: true
+  variables:
+    WP_ENV: test
   script:
     - *versions-script
-    # @todo-wordpress remove if not using ACF
-    - printf "ACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
+    # @todo-wordpress remove ACF_PRO_KEY... if not using ACF
+    - printf "WP_ENV=$WP_ENV\nACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
     # install php dependencies
     - php composer.phar install --no-interaction --no-progress --ignore-platform-reqs
     # Install node/JS dependencies
@@ -56,73 +120,42 @@ static:
     - yarn lint:js
     - yarn lint:css
 
-deploy:
+deploy to staging:
   stage: deploy
-  when: manual
+  allow_failure: false
+  environment:
+    name: staging
+    url: $STAGING_URL
+  variables:
+    APP_ENV: dev
+  rules:
+    - if:   '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: on_success
+    - if:   '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: manual
+  script:
+    - *deploy-setup-script
+    # install dependencies
+    - php composer.phar install --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
+    - yarn install --non-interactive --frozen-lockfile
+    - *security-checks
+    - yarn dev
+    - *deploy-script
+
+deploy to prod:
+  stage: deploy
   allow_failure: false
   only:
-    # @todo-wordpress update to match main branch name
     - master
+  environment:
+    name: production
+    url: $PROD_URL
+  when: manual
   script:
-    - *versions-script
-    # setup vars for paths
-    - TIMESTAMP=$(date +%s); RELEASE="$RELEASES/$TIMESTAMP"
-    - echo "Paths:"; echo $REMOTE_BASE; echo $RELEASE; echo $SHARED
-    - echo "Remote:"; echo $REMOTE_USER@$REMOTE_SERVER:$REMOTE_PORT
-    # setup SSH & private key
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
-    - ssh-keyscan -p $REMOTE_PORT $REMOTE_SERVER >> ~/.ssh/known_hosts
-    # the following line is optional (likely remove previous line)
-    #- echo "$SSH_SERVER_HOSTKEYS" > ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
-    # add .revision file
-    - git rev-parse --verify --short HEAD > .revision
-    # @todo-wordpress remove if not using ACF
-    - printf "ACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
-    # install php dependencies without dev
-    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --no-scripts --ignore-platform-reqs --no-suggest
+    - *deploy-setup-script
+    # install dependencies (not php dev dependencies)
+    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
     - yarn install --non-interactive --frozen-lockfile
     - *security-checks
     - yarn build
-    # remove temp .env file just incase
-    - rm .env
-    # ensure based paths exist
-    # @todo-wordpress remove $SHARED/public/app/wflogs if not using wordfence
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "mkdir -p $RELEASES $SHARED $SHARED/public/app/uploads $SHARED/public/app/wflogs $SHARED/log"
-    # sync files to release directory
-    - rsync --archive --stats --human-readable --no-perms --exclude ".git/" --exclude ".idea/" --exclude "node_modules/" --exclude "cypress/" -e "ssh -p $REMOTE_PORT" . $REMOTE_USER@$REMOTE_SERVER:$RELEASE
-    # make bin files executable
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; chmod u+x bin/*"
-    # ensure platform has all requirements
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; $SERVER_PHP_PATH -v; echo "\n\n"; $SERVER_PHP_PATH composer.phar check-platform-reqs"
-    # link shared folders
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads || true; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads; rm -rf $RELEASE/public/app/wflogs || true; ln -s $SHARED/public/app/wflogs $RELEASE/public/app/wflogs; rm -rf $RELEASE/log || true; ln -s $SHARED/log $RELEASE/log"
-    # link in ACF
-    # @todo-wordpress remove if not using ACF
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
-    # test configuration of wp cli
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp --info"
-    # copy env file into place
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env"
-    # switch to new version
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
-    # update WP db
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db"
-    # activate plugins
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp plugin activate --all"
-    # display WordPress version
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; bin/wp core version"
-    # @todo-wordpress enable/remove if using/not using WooCommerce
-    # update Woocommerce db
-    #- ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp wc update"
-    # reload php-fpm (to reset cache)
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php74-php-fpm"
-    # remove >2 releases
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +3 | xargs /bin/rm -rf"
-    # test if website is up
-    - if wget --spider --server-response "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST" 2>&1 | grep '200\ OK'; then echo "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST is up"; else echo "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST is down"; exit 1; fi
-    # ensure all images have all the sizes
-    - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp media regenerate --only-missing --skip-delete --yes"
-    # success message
-    - echo "Deployment completed successfully. Release at $RELEASE"
+    - *deploy-script
