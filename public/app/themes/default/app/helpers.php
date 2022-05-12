@@ -34,7 +34,7 @@ class ThemeHelpers
             return self::$manifestData['build/'.$asset];
         }
 
-        $path = isset(self::$manifestData[$asset]) ? self::$manifestData[$asset] : $asset;
+        $path = self::$manifestData[$asset] ?? $asset;
 
         return get_template_directory_uri().'/'.ltrim($path, '/');
     }
