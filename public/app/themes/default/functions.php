@@ -68,17 +68,19 @@ add_action('after_setup_theme', function () {
 
     /**
      * Enable features from Soil when plugin is activated
-     * https://roots.io/plugins/soil/
+     * @link https://roots.io/plugins/soil/
      */
-    add_theme_support('soil-clean-up');
-    add_theme_support('soil-disable-asset-versioning');
-    add_theme_support('soil-disable-trackbacks');
-    add_theme_support('soil-js-to-footer');
-    add_theme_support('soil-nav-walker');
-    add_theme_support('soil-nice-search');
-    add_theme_support('soil-relative-urls');
+    add_theme_support('soil', [
+        'clean-up',
+        'disable-asset-versioning',
+        'disable-trackbacks',
+        'js-to-footer',
+        'nav-walker',
+        'nice-search',
+        'relative-urls'
+    ]);
     if (env('GA_ANALYTICS_ID')) {
-        add_theme_support('soil-google-analytics', env('GA_ANALYTICS_ID'));
+        add_theme_support('soil', ['google-analytics' => 'UA-XXXXX-Y']);
     }
 
     // Remove the ability to change the site icon in the theme customizer
@@ -152,30 +154,26 @@ add_action('after_setup_theme', function () {
      *
      * @return array|mixed
      */
-    \Roots\Soil\Utils\add_filters(
-        [
-            'get_user_option_meta-box-order_page',
-            'get_user_option_meta-box-order_post',
-        ],
-        function ($order) {
-            if (!is_array($order)) {
-                return $order;
-            }
-
-            $boxes = explode(',', $order['normal']);
-
-            $wpSeoKey = array_search('wpseo_meta', $boxes);
-            if (false !== $wpSeoKey) {
-                // remove & add a end
-                unset($boxes[$wpSeoKey]);
-                $boxes[] = 'wpseo_meta';
-            }
-
-            $order['normal'] = implode(',', $boxes);
-
+    $forceOneColEditLayout = function ($order) {
+        if (!is_array($order)) {
             return $order;
         }
-    );
+
+        $boxes = explode(',', $order['normal']);
+
+        $wpSeoKey = array_search('wpseo_meta', $boxes);
+        if (false !== $wpSeoKey) {
+            // remove & add a end
+            unset($boxes[$wpSeoKey]);
+            $boxes[] = 'wpseo_meta';
+        }
+
+        $order['normal'] = implode(',', $boxes);
+
+        return $order;
+    };
+    add_filter('get_user_option_meta-box-order_page', $forceOneColEditLayout);
+    add_filter('get_user_option_meta-box-order_post', $forceOneColEditLayout);
 
     add_action('init', function () {
         /** @var $wp_rewrite WP_Rewrite */
