@@ -41,7 +41,13 @@ cd $BASE || exit
 echo "Working in: $PWD"
 printf "\n\n"
 
-echo "Install oh-my-zsh"
+echo "Creating ssh key dir/files"
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+echo "Install oh-my-zsh & add nvm vars"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 printf "\nDISABLE_AUTO_TITLE=\"true\"" >> ~/.zshrc
 printf "\n\nexport NVM_DIR=\"\$HOME/.nvm\"" >> ~/.zshrc
@@ -50,7 +56,7 @@ printf "\n[ -s \"\$NVM_DIR/bash_completion\" ] && \. \"\$NVM_DIR/bash_completion
 printf "\n\n"
 
 echo "Install nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 printf "\n\n"
 
 if [ $(echo "$PHP_VERSION >= $PHP_MINIMUM_VERSION" | bc) -eq 0 ]; then

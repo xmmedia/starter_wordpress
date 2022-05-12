@@ -51,7 +51,7 @@ touch ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 
-echo "Install oh-my-zsh & add nvm vars"
+echo "Install oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 printf "\nDISABLE_AUTO_TITLE=\"true\"" >> ~/.zshrc
 printf "\n\n"
@@ -86,3 +86,4 @@ echo "Ready! You can attempt a deploy."
 echo
 
 echo "To switch to oh-my-zsh, run: /bin/zsh"
+echo
