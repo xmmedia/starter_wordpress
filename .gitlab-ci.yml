@@ -35,9 +35,9 @@ before_script:
 
 .security-checks: &security-checks
   # check for security issues in PHP libs
-  - /root/.symfony/bin/symfony security:check
+  - symfony security:check
   # check for JS security issues in libs
-  - yarn audit:moderate
+  - yarn audit:high
 
 static:
   stage: static
@@ -52,7 +52,7 @@ static:
     # Install node/JS dependencies
     - yarn install --non-interactive --frozen-lockfile
     - *security-checks
-    # lint CSS & JS
+    # lint JS & CSS
     - yarn lint:js
     - yarn lint:css
 
@@ -61,6 +61,7 @@ deploy:
   when: manual
   allow_failure: false
   only:
+    # @todo-wordpress update to match main branch name
     - master
   script:
     - *versions-script
