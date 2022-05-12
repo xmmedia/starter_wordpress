@@ -43,7 +43,7 @@ npm-debug.log
 yarn-error.log
 
 # assets build dir
-public/app/themes/default/build/
+public/build/
 
 ###> friendsofphp/php-cs-fixer ###
 /.php_cs

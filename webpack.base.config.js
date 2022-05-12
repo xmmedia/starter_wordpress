@@ -16,12 +16,10 @@ module.exports = function (Encore) {
 
     Encore
         // directory where all compiled assets will be stored
-        .setOutputPath('public/app/themes/default/build/')
+        .setOutputPath('public/build/')
 
         // what's the public path to this directory (relative to your project's document root dir)
         .setPublicPath('/build')
-
-        .setManifestKeyPrefix('')
 
         // always create hashed filenames (e.g. public.a1b2c3.css)
         .enableVersioning(!Encore.isDevServer())

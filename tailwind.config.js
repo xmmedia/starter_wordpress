@@ -3,8 +3,9 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     content: [
-        './public/app/themes/default/**/*.php',
-        './public/app/themes/default/js/src/**/*.js',
+        './public/app/themes/default/*.php',
+        './public/app/themes/default/{app,template-parts}/**/*.php',
+        './public/app/themes/default/js/src/**/*.{vue,js}',
     ],
     safelist: [
         // vue transition classes: https://vuejs.org/v2/guide/transitions.html#Transition-Classes
