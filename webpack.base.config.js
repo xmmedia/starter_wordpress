@@ -1,6 +1,5 @@
 'use strict';
 const path = require('path');
-const Dotenv = require('dotenv-webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function resolve (dir) {
@@ -17,15 +16,13 @@ module.exports = function (Encore) {
 
     Encore
         // directory where all compiled assets will be stored
-        .setOutputPath('public/app/themes/default/build/')
+        .setOutputPath('public/build/')
 
         // what's the public path to this directory (relative to your project's document root dir)
         .setPublicPath('/build')
 
-        .setManifestKeyPrefix('')
-
         // always create hashed filenames (e.g. public.a1b2c3.css)
-        .enableVersioning(true)
+        .enableVersioning(!Encore.isDevServer())
 
         // empty the outputPath dir before each build
         .cleanupOutputBeforeBuild()
@@ -37,10 +34,18 @@ module.exports = function (Encore) {
         .addEntry('public', './public/app/themes/default/js/src/public.js')
         .addEntry('blocks', './public/app/themes/default/js/src/blocks.js')
 
+        // adds integrity="..." attributes on your script & link tags
+        // requires WebpackEncoreBundle 1.4 or higher
+        .enableIntegrityHashes(Encore.isProduction())
+
         // allow sass/scss files to be processed
-        .enableSassLoader(function () {}, {
-            // see: http://symfony.com/doc/current/frontend/encore/bootstrap.html#importing-bootstrap-sass
-            resolveUrlLoader: false,
+        .enableSassLoader(function (options) {
+            options.additionalData = "$env: " + process.env.NODE_ENV + ";";
+        }, {
+            // tell sass where to find url() paths/files
+            resolveUrlLoaderOptions: {
+                root: resolve('public/app/themes/default'),
+            },
         })
         .enablePostCssLoader()
         // allow .vue files to be processed
@@ -54,16 +59,7 @@ module.exports = function (Encore) {
             };
         }, { runtimeCompilerBuild: true })
 
-        // generate source maps when "source-maps" argument exists
-        .enableSourceMaps(
-            process.argv.splice(2).includes('--source-maps')
-        )
-
-        .copyFiles({
-            from: './node_modules/svgxuse',
-            to: '[name].[hash:8].[ext]',
-            pattern: /\.js$/,
-        })
+        .enableSourceMaps(Encore.isDev() || Encore.isDevServer())
 
         .configureBabel(null, {
             includeNodeModules: [
@@ -81,23 +77,20 @@ module.exports = function (Encore) {
         })
 
         .addAliases({
-            '@': resolve('js/src'),
+            '@': resolve('public/app/themes/default/js/src'),
             'vue$': 'vue/dist/vue.esm.js',
         })
+
         .autoProvidejQuery()
 
-        .addPlugin(new Dotenv({
-            path: './.env',
-        }))
+        /* eslint-disable no-unused-vars */
+        .configureDefinePlugin((options) => {
+            const env = require('dotenv').config({ path: '.env' });
 
-        // this is to resolve the issues with the manifest
-        // where the file path keys have the hashed version
-        .configureUrlLoader({
-            images: {
-                limit: 0, // Avoids files from being inlined
-                esModule: false,
-            },
+            // options['process.env.VERSION'] = JSON.stringify('1.2.3');
+            // options['process.env.WP_ENV'] = JSON.stringify(env.parsed.WP_ENV);
         })
+        /* eslint-enable no-unused-vars */
     ;
 
     if (Encore.isProduction()) {
@@ -106,6 +99,16 @@ module.exports = function (Encore) {
                 analyzerMode: 'static',
                 openAnalyzer: false,
             }))
+        ;
+    }
+
+    if (Encore.isDev()) {
+        Encore
+            .copyFiles({
+                from: './node_modules/svgxuse',
+                to: '[name].[hash:8].[ext]',
+                pattern: /\.js$/,
+            })
         ;
     }
 };

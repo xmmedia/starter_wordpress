@@ -47,7 +47,7 @@ add_filter('block_categories', 'theme_block_categories', 10, 2);
 // {
 //     wp_register_script(
 //         'block-example',
-//         ThemeHelpers::assetPath('blocks.js'),
+//         ThemeHelpers::assetPath('build/blocks.js'),
 //         ['wp-blocks', 'wp-element']
 //     );
 //
@@ -64,7 +64,7 @@ add_action(
     function () {
         wp_enqueue_script(
             'deny-list-blocks',
-            ThemeHelpers::assetPath('blocks.js'),
+            ThemeHelpers::assetPath('build/blocks.js'),
             ['wp-blocks', 'wp-dom-ready', 'wp-edit-post']
         );
     }

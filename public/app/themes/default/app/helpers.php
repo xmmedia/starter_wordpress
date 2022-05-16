@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Roots\WPConfig\Config;
+
 class ThemeHelpers
 {
     /** @var array */
@@ -10,7 +12,7 @@ class ThemeHelpers
     public static function assetPath(string $asset): string
     {
         if (null === self::$manifestData) {
-            $manifestFile = get_template_directory().'/build/manifest.json';
+            $manifestFile = dirname(ABSPATH).'/build/manifest.json';
 
             self::$manifestData = \json_decode(
                 \file_get_contents($manifestFile),
@@ -28,14 +30,10 @@ class ThemeHelpers
             }
         }
 
-        // "build/" is only used for the dev server,
-        // so short circuit as the manifest contains the full path to the file
-        if (isset(self::$manifestData['build/'.$asset])) {
-            return self::$manifestData['build/'.$asset];
+        if (array_key_exists($asset, self::$manifestData)) {
+            return Config::get('WP_HOME').self::$manifestData[$asset];
         }
 
-        $path = isset(self::$manifestData[$asset]) ? self::$manifestData[$asset] : $asset;
-
-        return get_template_directory_uri().'/'.ltrim($path, '/');
+        return get_template_directory_uri().$asset;
     }
 }

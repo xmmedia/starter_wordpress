@@ -18,7 +18,7 @@ SHARED="$BASE/shared"
 printf "Current:  ${PWD}\nRoot:     ${BASE}\nReleases: ${RELEASES}\nRelease:  ${RELEASE}\nShared:   ${SHARED}\n\n"
 
 PHP_VERSION=$(php -v|grep --only-matching --perl-regexp "(PHP )\d+\.\\d+\.\\d+"|cut -c 5-7)
-PHP_MINIMUM_VERSION=7.4
+PHP_MINIMUM_VERSION=8.0
 printf "Current PHP version: ${PHP_VERSION}\nMinimum PHP version: ${PHP_MINIMUM_VERSION}\n"
 if [ $(echo "$PHP_VERSION >= $PHP_MINIMUM_VERSION" | bc) -eq 0 ]; then
     echo "************"
@@ -41,7 +41,13 @@ cd $BASE || exit
 echo "Working in: $PWD"
 printf "\n\n"
 
-echo "Install oh-my-zsh"
+echo "Creating ssh key dir/files"
+mkdir ~/.ssh
+touch ~/.ssh/authorized_keys
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+
+echo "Install oh-my-zsh & add nvm vars"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 printf "\nDISABLE_AUTO_TITLE=\"true\"" >> ~/.zshrc
 printf "\n\nexport NVM_DIR=\"\$HOME/.nvm\"" >> ~/.zshrc
@@ -50,14 +56,14 @@ printf "\n[ -s \"\$NVM_DIR/bash_completion\" ] && \. \"\$NVM_DIR/bash_completion
 printf "\n\n"
 
 echo "Install nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 printf "\n\n"
 
 if [ $(echo "$PHP_VERSION >= $PHP_MINIMUM_VERSION" | bc) -eq 0 ]; then
     echo "Switching PHP version to ${PHP_MINIMUM_VERSION}"
-    printf "\nsource /opt/remi/php74/enable" >> ~/.zshrc
-    printf "\nsource /opt/remi/php74/enable" >> ~/.bashrc
-    source /opt/remi/php74/enable
+    printf "\nsource /opt/remi/php80/enable" >> ~/.zshrc
+    printf "\nsource /opt/remi/php80/enable" >> ~/.bashrc
+    source /opt/remi/php80/enable
     php -v
 fi
 
@@ -80,7 +86,7 @@ printf "\n\n"
 cd $RELEASE || exit
 
 echo "Install Composer"
-wget --no-verbose -O composer.phar https://getcomposer.org/composer-1.phar
+wget --no-verbose -O composer.phar https://getcomposer.org/composer-2.phar
 php composer.phar selfupdate
 printf "\n\n"
 

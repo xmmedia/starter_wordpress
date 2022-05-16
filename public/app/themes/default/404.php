@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="w-content-copy clearfix">
+<main class="w-content-copy flow-root">
     <h1>Oops! An Error Occurred</h1>
 
     <h2>The server returned a "404 Not Found".</h2>

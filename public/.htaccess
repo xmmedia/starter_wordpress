@@ -71,15 +71,6 @@
 # ######################################################################
 
 # ----------------------------------------------------------------------
-# | Custom error messages/pages                                        |
-# ----------------------------------------------------------------------
-
-# Customize what Apache returns to the client in case of an error.
-# https://httpd.apache.org/docs/current/mod/core.html#errordocument
-
-ErrorDocument 404 /404.php
-
-# ----------------------------------------------------------------------
 # | Error prevention                                                   |
 # ----------------------------------------------------------------------
 
@@ -314,6 +305,7 @@ Options -MultiViews
     RewriteCond %{HTTP_HOST} !^www\. [NC]
     # @todo-wordpress will probably want to change this with the prefix of the dev site
     RewriteCond %{HTTP_HOST} !^dev\. [NC]
+    RewriteCond %{HTTP_HOST} !\.lndo\.site$ [NC]
     RewriteCond %{SERVER_ADDR} !=127.0.0.1
     RewriteCond %{SERVER_ADDR} !=::1
     RewriteRule ^ %{ENV:PROTO}://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
@@ -325,13 +317,13 @@ Options -MultiViews
 
 # Redirect from the `http://` to the `https://` version of the URL.
 # https://wiki.apache.org/httpd/RewriteHTTPToHTTPS
-# @todo-wordpress enable once SSL is setup
 
-# <IfModule mod_rewrite.c>
-#    RewriteEngine On
-#    RewriteCond %{HTTPS} !=on
-#    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-# </IfModule>
+ <IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{ENV:HTTPS} !^.*on
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+ </IfModule>
 
 # ######################################################################
 # # WORDPRESS                                                          #

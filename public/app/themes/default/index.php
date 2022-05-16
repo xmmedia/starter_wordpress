@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="clearfix">
+<main class="flow-root">
     <p>Content</p>
 
     <?php

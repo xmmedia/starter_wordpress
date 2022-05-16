@@ -9,7 +9,7 @@
 
     <?php // @todo-wordpress remove is no IE support is needed ?>
     <?php // make svg's with use referencing an external image work in IE ?>
-    <script defer src="<?php echo ThemeHelpers::assetPath('svgxuse.min.js'); ?>"></script>
+    <script defer src="<?php echo ThemeHelpers::assetPath('build/svgxuse.min.js'); ?>"></script>
 
 </body>
 </html>

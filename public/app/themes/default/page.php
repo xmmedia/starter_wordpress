@@ -3,7 +3,7 @@
 
 get_header(); ?>
 
-<main class="w-content clearfix">
+<main class="w-content flow-root">
     <p>Content</p>
 
     <?php
@@ -16,7 +16,7 @@ get_header(); ?>
     ?>
 
     <svg class="w-5 h-5 mr-3 mb-0" width="20" height="20">
-        <use xlink:href="<?php echo ThemeHelpers::assetPath('images/icons.svg'); ?>#icon"></use>
+        <use xlink:href="<?php echo ThemeHelpers::assetPath('build/images/icons.svg'); ?>#icon"></use>
     </svg>
 </main>
 
