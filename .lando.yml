@@ -1,6 +1,6 @@
 # @todo-wordpress update
 # URLs: https://wordpressstarter.lndo.site/ or __________
-# DB URL: mysql://wordpress:wordpress@database:3306/wordpress
+# DATABASE_URL=mysql://wordpress:wordpress@database:3306/wordpress
 # @todo-wordpress update
 name: wordpressstarter
 recipe: symfony
