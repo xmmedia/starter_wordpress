@@ -29,15 +29,16 @@
           - `/vendor`
           - `/bin`
           - `/node_modules`
-    3. Install Composer v1 and then install PHP packages on the server: `wget --no-verbose -O composer.phar https://getcomposer.org/composer-1.phar && php composer.phar install`
-    4. [Install NVM](https://github.com/creationix/nvm#install-script). You may need `. ~/bashrc` or `. ~/.zshrc` for nvm to be enabled.
-    5. Run `. ./node_setup.sh` (this will setup node & install the JS packages – requires yarn to be installed).
-    6. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
-    7. Link public to html: `rm -rf html && ln -s public html`
-    8. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
-    9. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
-    10. Adjust permissions on the bin dir: `chmod u+x bin/*`
-    11. Install WP: `bin/wp core install --allow-root --url=https://<url> --title="<site-title>" --admin_user=<username> --admin_email=<email>`
+    3. [Install Composer](https://getcomposer.org/download/) (if not already installed)
+    4. Add `.env` (copy `.env.example` and update).
+    5. Install PHP packages/vendors: `php composer.phar install`
+    6. Run `. ./node_setup.sh` (this will setup node & install the JS packages – requires yarn to be installed).
+    7. Run `yarn dev` or `yarn build` (for production) to compile JS & CSS files.
+    8. Link public to html: `rm -rf html && ln -s public html`
+    9. Create a symlink between vendor and plugin directory for ACF: `ln -s /home/<user>/dev.example.com/vendor/advanced-custom-fields/advanced-custom-fields-pro public/app/plugins/acf`
+    10. Add cron: `*/15 * * * * curl https://dev.example.com/wp/wp-cron.php` (this is every 15 minutes). The automatic cron is disabled.
+    11. Adjust permissions on the bin dir: `chmod u+x bin/*`
+    12. Install WP: `bin/wp core install --allow-root --url=https://<url> --title="<site-title>" --admin_user=<username> --admin_email=<email>`
 4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
 5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
 8. Install PHP packages & update locally: `composer install && composer update`
