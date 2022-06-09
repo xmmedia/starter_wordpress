@@ -17,7 +17,7 @@ add_action('acf/init', function () {
             'name'            => 'video_block',
             'title'           => __('Video'),
             'description'     => __('Video block.'),
-            'render_template' => 'template-partials/blocks/video.php',
+            'render_template' => 'template-parts/blocks/video.php',
             'category'        => 'media',
             'icon'            => 'playlist-video',
         ]);
