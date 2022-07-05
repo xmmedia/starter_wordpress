@@ -31,7 +31,7 @@ class ThemeHelpers
         }
 
         if (array_key_exists($asset, self::$manifestData)) {
-            return Config::get('WP_HOME').self::$manifestData[$asset];
+            return rtrim(Config::get('WP_HOME'), '/').self::$manifestData[$asset];
         }
 
         return get_template_directory_uri().$asset;
