@@ -9,6 +9,11 @@
  * forms to the page.
  */
 add_action('wp_loaded', function () {
+    // seems that sometimes this method doesn't exist
+    if (!function_exists('is_plugin_active')) {
+        return;
+    }
+
     // we only know that this works with Contact Form 7 with Akismet
     if (!is_plugin_active('akismet/akismet.php') || !is_plugin_active('contact-form-7/wp-contact-form-7.php')) {
         return;
