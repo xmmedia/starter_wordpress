@@ -40,7 +40,7 @@
         "roots/wordpress": "6.0.1",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.0",
-        "vlucas/phpdotenv": "^4.1",
+        "vlucas/phpdotenv": "^5.4",
         "wp-cli/wp-cli-bundle": "^2.3",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
         "wpackagist-plugin/akismet": "^5.0",
