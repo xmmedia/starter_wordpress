@@ -7,9 +7,10 @@
 
     <?php wp_footer(); ?>
 
-    <?php // @todo-wordpress remove is no IE support is needed ?>
-    <?php // make svg's with use referencing an external image work in IE ?>
-    <script defer src="<?php echo ThemeHelpers::assetPath('build/svgxuse.min.js'); ?>"></script>
+    <?php if (WP_DEBUG) : ?>
+        <?php // makes svgs work with the dev server ?>
+        <script defer src="<?php echo ThemeHelpers::assetPath('build/svgxuse.min.js'); ?>"></script>
+    <?php endif; ?>
 
 </body>
 </html>
