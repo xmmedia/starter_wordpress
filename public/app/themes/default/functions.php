@@ -105,6 +105,12 @@ add_action('after_setup_theme', function () {
         PHP_INT_MAX,
     );
 
+    /**
+     * Remove All Yoast HTML Comments
+     * From: https://gist.github.com/paulcollett/4c81c4f6eb85334ba076
+     */
+    add_filter('wpseo_debug_markers', '__return_false');
+
     // @todo consider: https://developer.wordpress.org/block-editor/developers/themes/theme-support/#responsive-embedded-content
 
     // remove sections from the dashboard
