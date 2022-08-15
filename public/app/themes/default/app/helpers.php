@@ -7,26 +7,26 @@ use Roots\WPConfig\Config;
 class ThemeHelpers
 {
     /** @var array */
-    public static $manifestData;
+    public static array $manifestData;
 
     public static function assetPath(string $asset): string
     {
-        if (null === self::$manifestData) {
+        if (!isset(self::$manifestData)) {
             $manifestFile = dirname(ABSPATH).'/build/manifest.json';
 
-            self::$manifestData = \json_decode(
-                \file_get_contents($manifestFile),
-                true
-            );
-
-            if (0 < \json_last_error()) {
-                throw new \RuntimeException(
-                    sprintf(
-                        'Error parsing JSON from asset manifest file "%s" - %s',
-                        $manifestFile,
-                        json_last_error_msg()
-                    )
+            try {
+                self::$manifestData = \json_decode(
+                    \file_get_contents( $manifestFile ),
+                    true,
+                    512,
+                    JSON_THROW_ON_ERROR,
                 );
+            } catch (\JsonException $e) {
+                throw new \JsonException(sprintf(
+                    'Error parsing JSON from asset manifest file "%s" - %s',
+                    $manifestFile,
+                    $e->getMessage(),
+                ), 0, $e);
             }
         }
 
