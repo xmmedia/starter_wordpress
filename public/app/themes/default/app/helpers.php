@@ -31,6 +31,12 @@ class ThemeHelpers
         }
 
         if (array_key_exists($asset, self::$manifestData)) {
+            // support absolute URLs in the manifest
+            // helpful when running the webpack dev server
+            if (str_starts_with(self::$manifestData[$asset], 'http')) {
+                return self::$manifestData[$asset];
+            }
+
             return rtrim(Config::get('WP_HOME'), '/').self::$manifestData[$asset];
         }
 
