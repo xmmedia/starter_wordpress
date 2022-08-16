@@ -6,7 +6,6 @@ use Roots\WPConfig\Config;
 
 class ThemeHelpers
 {
-    /** @var array */
     public static array $manifestData;
 
     public static function assetPath(string $asset): string
