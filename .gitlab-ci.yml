@@ -78,20 +78,19 @@ before_script:
   # @todo-wordpress remove if not using ACF
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
   # test configuration of wp cli
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp --info"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp --info"
   # copy env file into place
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cp -a $SHARED/.env $RELEASE/.env"
   # switch to new version
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -sfn $RELEASE $REMOTE_BASE/current"
   # update WP db
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp core update-db"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp core update-db"
   # activate plugins
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp plugin activate --all"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp plugin activate --all"
   # display WordPress version
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; bin/wp core version"
-  # @todo-wordpress enable/remove if using/not using WooCommerce
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp core version"
   # update Woocommerce db
-  #- ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp wc update"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp wc update"
   # reload php-fpm (to reset cache)
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php80-php-fpm"
   # remove >2 releases
@@ -99,7 +98,7 @@ before_script:
   # test if website is up
   - if wget --spider --server-response "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST" 2>&1 | grep '200\ OK'; then echo "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST is up"; else echo "$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST is down"; exit 1; fi
   # ensure all images have all the sizes
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; bin/wp media regenerate --only-missing --skip-delete --yes"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp media regenerate --only-missing --skip-delete --yes"
   # success message
   - echo "Deployment completed successfully. Release at $RELEASE"
 
