@@ -10,7 +10,7 @@ $width = $matches[1];
 preg_match('/height="(.+?)"/', $iframe, $matches);
 $height = $matches[1];
 
-$ratio = round($width/$height, 3);
+$ratio = round($width / $height, 3);
 
 $availableRatios = [
     'embed-container-21-9' => 2.333,
