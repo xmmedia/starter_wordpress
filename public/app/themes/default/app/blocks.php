@@ -24,9 +24,9 @@ add_action('acf/init', function () {
     }
 });
 
-function theme_block_categories($categories, $post)
+function theme_block_categories($categories, $block_editor_context)
 {
-    if (!in_array($post->post_type, ['post', 'page'])) {
+    if (!in_array($block_editor_context->post->post_type, ['post', 'page'])) {
         return $categories;
     }
 
@@ -41,7 +41,7 @@ function theme_block_categories($categories, $post)
         ]
     );
 }
-add_filter('block_categories', 'theme_block_categories', 10, 2);
+add_filter('block_categories_all', 'theme_block_categories', 10, 2);
 
 // add_action('init', function ()
 // {
