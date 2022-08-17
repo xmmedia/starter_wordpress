@@ -157,13 +157,13 @@ add_action('after_setup_theme', function () {
     // );
 
     /**
-     * From: https://wordpress.stackexchange.com/questions/25793/how-to-force-one-column-layout-on-custom-post-type-edit-page/25814#25814
+     * Move the Yoast SEO plugin meta box to the end.
      *
      * @param array|mixed $order
      *
      * @return array|mixed
      */
-    $forceOneColEditLayout = function ($order) {
+    $moveYoastToBottom = function ($order) {
         if (!is_array($order)) {
             return $order;
         }
@@ -181,8 +181,8 @@ add_action('after_setup_theme', function () {
 
         return $order;
     };
-    add_filter('get_user_option_meta-box-order_page', $forceOneColEditLayout);
-    add_filter('get_user_option_meta-box-order_post', $forceOneColEditLayout);
+    add_filter('get_user_option_meta-box-order_page', $moveYoastToBottom);
+    add_filter('get_user_option_meta-box-order_post', $moveYoastToBottom);
 
     add_action('init', function () {
         /** @var $wp_rewrite WP_Rewrite */
