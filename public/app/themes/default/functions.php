@@ -156,33 +156,17 @@ add_action('after_setup_theme', function () {
     //     }
     // );
 
-    /**
-     * Move the Yoast SEO plugin meta box to the end.
-     *
-     * @param array|mixed $order
-     *
-     * @return array|mixed
-     */
-    $moveYoastToBottom = function ($order) {
-        if (!is_array($order)) {
-            return $order;
-        }
-
-        $boxes = explode(',', $order['normal']);
-
-        $wpSeoKey = array_search('wpseo_meta', $boxes);
-        if (false !== $wpSeoKey) {
-            // remove & add a end
-            unset($boxes[$wpSeoKey]);
-            $boxes[] = 'wpseo_meta';
-        }
-
-        $order['normal'] = implode(',', $boxes);
-
-        return $order;
+    $seoPlugMetaBoxPriority = function () {
+        return 'default';
     };
-    add_filter('get_user_option_meta-box-order_page', $moveYoastToBottom);
-    add_filter('get_user_option_meta-box-order_post', $moveYoastToBottom);
+    /**
+     * Make Yoast SEO metabox show with default priority
+     */
+    add_filter('wpseo_metabox_prio', $seoPlugMetaBoxPriority);
+    /**
+     * Make All In One SEO (AIOSEO) metabox show with default priority.
+     */
+    add_filter('aioseo_post_metabox_priority', $seoPlugMetaBoxPriority);
 
     add_action('init', function () {
         /** @var $wp_rewrite WP_Rewrite */
