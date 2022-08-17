@@ -19,7 +19,7 @@ add_action('acf/init', function () {
             'description'     => __('Video block.'),
             'render_template' => 'template-parts/blocks/video.php',
             'category'        => 'media',
-            'icon'            => 'playlist-video',
+            'icon'            => 'video-alt3',
         ]);
     }
 });
