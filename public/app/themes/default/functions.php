@@ -205,6 +205,19 @@ add_action('after_setup_theme', function () {
             remove_filter('the_author_posts_link', $filter, 10);
             remove_filter('wp_get_attachment_url', $filter, 10);
         }
+
+        /**
+         * Change the link on the logo on the WP login page.
+         */
+        add_filter('login_headerurl', function () {
+            return home_url();
+        });
+        /**
+         * Change the text that's shown until the logo is loaded on the WP login page.
+         */
+        add_filter('login_headertext', function () {
+            return get_bloginfo('name');
+        });
     });
 });
 
