@@ -1,0 +1,110 @@
+/* aioseop -stop nagging me-Custom Admin CSS */
+#aioseop-about,
+#aioseop-list,
+#aioseop-flyout,
+.aioseo-settings-row.local-seo,
+.upgrade_menu_link,
+#aioseop-video-sitemap-upsell,
+#toplevel_page_aioseo > ul > li:nth-child(13),
+#aioseop-notice-bar,
+.postbox-container div#aiosp_upgrade_wrapper,
+#aiosp_sitemap_priority_wrapper,
+div#aiosp_license_key_wrapper,
+#aiosp_sitemap_status_metabox .aioseop-news-sitemap-upsell,
+.aioseop-news-sitemap-upsell,
+#aiosp_sitemap_frequency_wrapper,
+#wpbody-content > div.wrap.acfe-ui > div.aioseop-preview-wrapper,
+.aioseop-preview-wrapper,
+#wp-admin-bar-aioseop-pro-upgrade,
+li#wp-admin-bar-aioseop-pro-upgrade a.ab-item,
+.aioseop-upsell-blurred,
+#wpbody-content > div.wrap.acfe-ui > div.aioseop-preview-wrapper,
+#toplevel_page_aioseo .aioseo-submenu-highlight,
+.aioseo-submenu-highlight,
+#toplevel_page_aioseo > ul > li:nth-child(7),
+#wp-admin-bar-aioseo-pro-upgrade,
+#wp-admin-bar-aioseo-local-seo,
+#wpfooter > a:nth-child(8),
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-tabs > div.tabs-scroller > div > div.md-tabs-navigation.md-elevation-0 > a:nth-child(3),
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-search-appearance-content-types > div:nth-child(2),
+#toplevel_page_aioseo > ul > li:nth-child(10),
+.aioseo-taxonomy-upsell,
+.aioseo-upgrade-bar,
+.aioseo-logo-gear,
+.upgrade-text,
+#wpbody-content > div.aioseo-app > div > div > div.aioseo-main > div.aioseo-container > div > div.aioseo-row > div:nth-child(2) > div.aioseo-cta.dashboard-cta,
+#wpbody-content > div.aioseo-app > div > div > div.aioseo-main > div.aioseo-container > div > div.aioseo-row > div:nth-child(1) > div.aioseo-row > div:nth-child(4) > div,
+.aioseo-setup-wizard-container,
+#wpbody-content > div.aioseo-app > div > div > div.aioseo-main > div.aioseo-container > div > div.aioseo-row > div:nth-child(2) > div.aioseo-card.dashboard-support > div:nth-child(2) > div > div:nth-child(2),
+#wp-admin-bar-aioseo-feature-manager,
+#wp-admin-bar-aioseo-about,
+#wp-admin-bar-aioseo-feature-manager,
+    /* activate to disable the front-end dropdown #wp-admin-bar-aioseo-main */
+#wp-admin-bar-aioseo-pro-upgrade,
+#wp-admin-bar-aioseo-link-assistant,
+#wp-admin-bar-aioseo-seo-analysis,
+#wp-admin-bar-aioseo-redirects,
+#wp-admin-bar-aioseo-about,
+#wp-admin-bar-aioseo-feature-manager,
+#wp-admin-bar-aioseo-local-seo,
+#wp-admin-bar-aioseo-tools,
+#toplevel_page_aioseo > ul > li:nth-child(9),
+.aioseo-settings-row.facebook-default-image-source.aioseo-row,
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-facebook > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(7),
+#toplevel_page_aioseo > ul > li:nth-child(11),
+#toplevel_page_aioseo > ul > li:nth-child(12),
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-tabs > div.tabs-scroller > div > div.md-tabs-navigation.md-elevation-0 > a:nth-child(5),
+.aioseo-general-settings .license-cta-box,
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-advanced > div > div:nth-child(2) > div > div:nth-child(4),
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-advanced > div > div:nth-child(2) > div > div:nth-child(5),
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-advanced > div > div:nth-child(2) > div > div:nth-child(6),
+#toplevel_page_aioseo > ul > li:nth-child(8),
+.aioseo-flyout-menu-button,
+#aioseop-about,
+#aioseop-list,
+#aioseop-flyout,
+.upgrade_menu_link,
+#aioseop-video-sitemap-upsell,
+#aioseop-notice-bar,
+.postbox-container div#aiosp_upgrade_wrapper,
+#aiosp_sitemap_priority_wrapper,
+#aiosp_sitemap_frequency_wrapper,
+#wpbody-content > div.wrap.acfe-ui > div.aioseop-preview-wrapper,
+.aioseop-preview-wrapper,
+#wp-admin-bar-aioseop-pro-upgrade,
+li#wp-admin-bar-aioseop-pro-upgrade a.ab-item,
+.aioseop-upsell-blurred,
+#wpbody-content > div.wrap.acfe-ui > div.aioseop-preview-wrapper,
+.proupgrade,
+span.proupgrade,
+.aioseo-plugin-row .proupgrade a,
+#the-list > tr.active.is-uninstallable.aioseo-plugin-row > td.plugin-title.column-primary > div > span.proupgrade,
+.aioseo-settings-row.snippet-additional-keyphrases-row.aioseo-row,
+#aioseo-settings > div.inside > div:nth-child(2) > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(3),
+#aioseo-settings > div.inside > div:nth-child(2) > div > div.aioseo-tab-content.aioseo-post-advanced > div:nth-child(3),
+.aioseo-card.aioseo-sidebar-card.card-additional-keyphrase,
+#aioseo-post-settings-sidebar > div > div > div.aioseo-tab-content.aioseo-post-advanced > div:nth-child(3),
+#aioseo-post-settings-sidebar > div > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(3), #aioseo-post-settings-sidebar > div > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(3) {
+    display: none !important;
+}
+
+#aioseo-post-settings-sidebar > div > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(4) {
+    display: none !important;
+}
+
+#aioseo-post-settings-sidebar > div > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(5), #aioseo-settings > div.inside > div:nth-child(2) > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(4), #aioseo-settings > div.inside > div:nth-child(2) > div > div.aioseo-tabs.internal > div > div > div.md-tabs-navigation.md-elevation-0 > button:nth-child(5), #wpbody-content > div.aioseo-app > div > div > div.aioseo-main > div.aioseo-container > div > div.aioseo-row > div:nth-child(1) > div.aioseo-row > div:nth-child(8), #wpbody-content > div.aioseo-app > div > div > div.aioseo-main > div.aioseo-container > div > div.aioseo-row > div:nth-child(1) > div.aioseo-row > div:nth-child(9), #wpbody-content > div.aioseo-app > div > div > div.aioseo-main > div.aioseo-container > div > div.aioseo-row > div:nth-child(1) > div.aioseo-row > div:nth-child(4) {
+    width: 0;
+    margin-bottom: 0;
+    display: none !important;
+    visibility: hidden !important;
+    z-index: -1000 !important;
+}
+
+#wpbody-content > div.aioseo-app > div > div.aioseo-main > div.aioseo-container > div.aioseo-webmaster-tools > div > div:nth-child(2) > div > div.webmaster-tools-toggles.aioseo-row > div:nth-child(6) {
+    width: 0;
+    margin-bottom: 0;
+    display: none !important;
+    visibility: hidden !important;
+    z-index: -1000 !important;
+    order: 100 !important;
+}
