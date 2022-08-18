@@ -1,0 +1,10 @@
+// styles that can be applied within the wordpress editor
+.has-text-align-center {
+    @apply text-center;
+}
+.has-text-align-left {
+    @apply text-left;
+}
+.has-text-align-right {
+    @apply text-right;
+}

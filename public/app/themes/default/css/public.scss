@@ -9,7 +9,8 @@ html {
 }
 
 // common styles
-@import "alerts",
+@import "wp",
+    "alerts",
     "content_alignment",
     "headings",
     "forms",
