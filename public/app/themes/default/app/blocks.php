@@ -5,22 +5,22 @@
 add_action('acf/init', function () {
     if (function_exists('acf_register_block_type')) {
         // see https://www.advancedcustomfields.com/resources/blocks/
-        acf_register_block_type([
-            'name'            => 'testimonial',
-            'title'           => __('Testimonial'),
-            'description'     => __('Custom testimonial block.'),
-            'render_template' => 'template-parts/blocks/testimonial.php',
-            'category'        => 'formatting',
-            'icon'            => 'format-quote',
-        ]);
-        acf_register_block_type([
-            'name'            => 'video_block',
-            'title'           => __('Video'),
-            'description'     => __('Video block.'),
-            'render_template' => 'template-parts/blocks/video.php',
-            'category'        => 'media',
-            'icon'            => 'video-alt3',
-        ]);
+        // acf_register_block_type([
+        //     'name'            => 'testimonial',
+        //     'title'           => __('Testimonial'),
+        //     'description'     => __('Custom testimonial block.'),
+        //     'render_template' => 'template-parts/blocks/testimonial.php',
+        //     'category'        => 'formatting',
+        //     'icon'            => 'format-quote',
+        // ]);
+        // acf_register_block_type([
+        //     'name'            => 'video_block',
+        //     'title'           => __('Video'),
+        //     'description'     => __('Video block.'),
+        //     'render_template' => 'template-parts/blocks/video.php',
+        //     'category'        => 'media',
+        //     'icon'            => 'video-alt3',
+        // ]);
     }
 });
 
