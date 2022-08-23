@@ -89,6 +89,8 @@ before_script:
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp plugin activate --all --exclude=query-monitor"
   # update Woocommerce db
   #- ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp wc update"
+  # flush rewrite rules
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp rewrite flush"
   # display WordPress version
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp core version"
   # reload php-fpm (to reset cache)
