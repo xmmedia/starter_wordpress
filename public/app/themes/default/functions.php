@@ -26,7 +26,9 @@ add_action('after_setup_theme', function () {
     });
     // Set the from name on emails (Postmark)
     add_filter('wp_mail', function ($args) {
-        $headers = explode("\n", str_replace("\r\n", "\n", $args['headers']));
+        if (is_string($args['headers'])) {
+            $headers = explode("\n", str_replace("\r\n", "\n", $args['headers']));
+        }
         $headers['From'] = 'todo-wordpress <site@example.com>';
 
         return ['headers' => $headers] + $args;
