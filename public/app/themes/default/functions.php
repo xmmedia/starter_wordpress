@@ -109,6 +109,19 @@ add_action('after_setup_theme', function () {
     );
 
     /**
+     * Override the default Yoast robots meta tag.
+     * By default, it's "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+     * We change it to only "index, follow" in production and "noindex, nofollow" in all other environments.
+     */
+    add_filter('wpseo_robots', function () {
+        if (defined('WP_ENV') && WP_ENV !== 'production') {
+            return 'noindex, nofollow';
+        }
+
+        return 'index, follow';
+    });
+
+    /**
      * Remove All Yoast HTML Comments
      * From: https://gist.github.com/paulcollett/4c81c4f6eb85334ba076
      */
