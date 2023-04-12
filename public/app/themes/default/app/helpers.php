@@ -39,6 +39,7 @@ class ThemeHelpers
             return rtrim(Config::get('WP_HOME'), '/').self::$manifestData[$asset];
         }
 
-        return get_template_directory_uri().$asset;
+        // deal with trailing and leading slashes does it doesn't matter what's passed
+        return sprintf('%s/%s', rtrim(get_template_directory_uri(), '/'), ltrim($asset, '/'));
     }
 }
