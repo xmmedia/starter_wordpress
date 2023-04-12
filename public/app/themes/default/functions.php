@@ -54,15 +54,15 @@ add_action('after_setup_theme', function () {
         function () {
             wp_enqueue_style(
                 'default/public.css',
-                ThemeHelpers::assetPath('build/public.css')
+                ThemeHelpers::assetPath('build/public.css'),
             );
             // wp_enqueue_style(
             //     'google_fonts',
-            //     'https://...'
+            //     'https://...',
             // );
             wp_enqueue_script(
                 'default/public.js',
-                ThemeHelpers::assetPath('build/public.js')
+                ThemeHelpers::assetPath('build/public.js'),
             );
         }
     );
@@ -80,7 +80,7 @@ add_action('after_setup_theme', function () {
         'js-to-footer',
         'nav-walker',
         'nice-search',
-        'relative-urls'
+        'relative-urls',
     ]);
     if (env('GA_ANALYTICS_ID')) {
         add_theme_support('soil', ['google-analytics' => 'UA-XXXXX-Y']);
