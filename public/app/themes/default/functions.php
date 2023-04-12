@@ -82,9 +82,6 @@ add_action('after_setup_theme', function () {
         'nice-search',
         'relative-urls',
     ]);
-    if (env('GA_ANALYTICS_ID')) {
-        add_theme_support('soil', ['google-analytics' => 'UA-XXXXX-Y']);
-    }
 
     // Remove the ability to change the site icon in the theme customizer
     // & remove from head
