@@ -715,7 +715,8 @@ FileETag None
 
   # HTML
 
-    ExpiresByType text/html                             "access plus 0 seconds"
+    # set to 10s so that WordPress doesn't complain about no cache headers
+    ExpiresByType text/html                             "access plus 10 seconds"
 
   # PDF
 
