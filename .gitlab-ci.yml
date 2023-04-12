@@ -17,7 +17,7 @@ cache:
     - public/wp/
 
 variables:
-  SERVER_PHP_PATH: php80
+  SERVER_PHP_PATH: php81
   WP_ENV: production
   RELEASES: "$REMOTE_BASE/releases"
   SHARED: "$REMOTE_BASE/shared"
@@ -94,7 +94,7 @@ before_script:
   # display WordPress version
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp core version"
   # reload php-fpm (to reset cache)
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php80-php-fpm"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php81-php-fpm"
   # remove >2 releases
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +3 | xargs /bin/rm -rf"
   # test if website is up
