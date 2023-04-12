@@ -10,6 +10,8 @@ sftp-config.json
 /composer.phar
 webpack-stats.json
 public/service-worker.js
+# auth file for ACF Pro
+auth.json
 
 # ignore everything in bin
 /bin/*
