@@ -47,13 +47,13 @@
         "wpackagist-plugin/contact-form-7": "^5.1",
         "wpackagist-plugin/flamingo": "^2.0",
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
-        "wpackagist-plugin/query-monitor": "^3.7",
         "wpackagist-plugin/svg-support": "^2.3",
         "wpackagist-plugin/wordfence": "^7.3",
         "wpackagist-plugin/wordpress-seo": "^20.2"
     },
     "require-dev": {
-        "symfony/var-dumper": "^6.0"
+        "symfony/var-dumper": "^6.0",
+        "wpackagist-plugin/query-monitor": "^3.7"
     },
     "extra": {
         "installer-paths": {
