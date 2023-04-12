@@ -1,5 +1,5 @@
 default:
-  image: xmmedia/php:8.0-cli
+  image: xmmedia/php:8.1-cli
   timeout: 15m
 
 stages:
