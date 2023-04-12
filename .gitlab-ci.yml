@@ -57,6 +57,8 @@ before_script:
   - git rev-parse --verify --short HEAD > .revision
   # create partial .env file
   - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
+  # create ACF Pro auth.json file
+  # @todo-wordpress remove if not using ACF Pro
   - printf '{"http-basic":{"connect.advancedcustomfields.com":{"username":"$ACF_PRO_KEY","password":"$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST"}}}' > auth.json && cat auth.json
 
 .deploy-script: &deploy-script
@@ -112,8 +114,11 @@ static:
     WP_ENV: test
   script:
     - *versions-script
-    # @todo-wordpress remove ACF_PRO_KEY... if not using ACF
-    - printf "WP_ENV=$WP_ENV\nACF_PRO_KEY=$ACF_PRO_KEY\n" > .env
+    # create partial .env file
+    - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
+    # create ACF Pro auth.json file
+    # @todo-wordpress remove if not using ACF Pro
+    - printf '{"http-basic":{"connect.advancedcustomfields.com":{"username":"$ACF_PRO_KEY","password":"$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST"}}}' > auth.json && cat auth.json
     # install php dependencies
     - php composer.phar install --no-interaction --no-progress --ignore-platform-reqs
     # Install node/JS dependencies
