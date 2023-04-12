@@ -76,9 +76,6 @@ before_script:
   # link shared folders
   # @todo-wordpress remove $SHARED/public/app/wflogs if not using wordfence
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "rm -rf $RELEASE/public/app/uploads || true; ln -s $SHARED/public/app/uploads $RELEASE/public/app/uploads; rm -rf $RELEASE/public/app/wflogs || true; ln -s $SHARED/public/app/wflogs $RELEASE/public/app/wflogs; rm -rf $RELEASE/log || true; ln -s $SHARED/log $RELEASE/log"
-  # link in ACF
-  # @todo-wordpress remove if not using ACF
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ln -s $RELEASE/vendor/advanced-custom-fields/advanced-custom-fields-pro $RELEASE/public/app/plugins/acf"
   # test configuration of wp cli
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp --info"
   # copy env file into place
