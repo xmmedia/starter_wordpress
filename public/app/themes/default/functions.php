@@ -146,6 +146,9 @@ add_action('after_setup_theme', function () {
             remove_submenu_page('options-general.php', 'options-media.php');
             // remove the permalink settings
             remove_submenu_page('options-general.php', 'options-permalink.php');
+
+            // disable the warning about persistent object cache in Site Health
+            add_filter('site_status_should_suggest_persistent_object_cache', '__return_false');
         }
     );
 
