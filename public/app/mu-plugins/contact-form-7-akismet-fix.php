@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Remove the custom Akismet filter that adds the hidden fields with JS to each form.
  * The code adds a script tag which ends up inside the Vue #app element (scripts are not allowed).
