@@ -59,7 +59,7 @@ before_script:
   - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
   # create ACF Pro auth.json file
   # @todo-wordpress remove if not using ACF Pro
-  - printf "{\"http-basic\":{\"connect.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME://%s\"}}}\n" $REQUEST_CONTEXT_HOST > auth.json && cat auth.json
+  - printf "{\"http-basic\":{\"connect.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME:\/\/$REQUEST_CONTEXT_HOST\"}}}\n" > auth.json && cat auth.json
 
 .deploy-script: &deploy-script
   # remove temp .env file just in case
@@ -115,7 +115,7 @@ static:
     - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
     # create ACF Pro auth.json file
     # @todo-wordpress remove if not using ACF Pro
-    - printf "{\"http-basic\":{\"connect.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME://%s\"}}}\n" $REQUEST_CONTEXT_HOST > auth.json && cat auth.json
+    - printf "{\"http-basic\":{\"connect.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME:\/\/$REQUEST_CONTEXT_HOST\"}}}\n" > auth.json && cat auth.json
     # install php dependencies
     - php composer.phar install --no-interaction --no-progress --ignore-platform-reqs
     # Install node/JS dependencies
