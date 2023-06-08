@@ -22,7 +22,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpoption/phpoption" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/rmccue/requests" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/roots/bedrock-autoloader" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/roots/wordpress-core-installer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/roots/wp-config" />
