@@ -13,7 +13,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "cweagans/composer-patches": true,
-            "roots/wordpress-core-installer": true
+            "roots/wordpress-core-installer": true,
+            "pivvenit/acf-pro-installer": true
         }
     },
     "repositories": [
@@ -24,18 +25,20 @@
         },
         {
             "type": "composer",
-            "url": "https://connect.advancedcustomfields.com"
+            "url": "https://pivvenit.github.io/acf-composer-bridge/composer/v3/wordpress-plugin/"
         }
+
     ],
     "require": {
         "php": "8.1.*",
         "ext-json": "*",
+        "advanced-custom-fields/advanced-custom-fields-pro": "^6.0",
         "composer/installers": "^2.1",
         "oscarotero/env": "^2.1",
         "roave/security-advisories": "dev-master",
         "roots/bedrock-autoloader": "^1.0",
         "roots/soil": "^4.0",
-        "roots/wordpress": "6.2.0",
+        "roots/wordpress": "6.2.2",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.0",
         "vlucas/phpdotenv": "^5.4",
@@ -47,8 +50,7 @@
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
         "wpackagist-plugin/svg-support": "^2.3",
         "wpackagist-plugin/wordfence": "^7.3",
-        "wpackagist-plugin/wordpress-seo": "^20.2",
-        "wpengine/advanced-custom-fields-pro": "^6.0"
+        "wpackagist-plugin/wordpress-seo": "^20.2"
     },
     "require-dev": {
         "symfony/var-dumper": "^6.0",
