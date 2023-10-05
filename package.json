@@ -67,7 +67,7 @@
     "eslint-plugin-vue": "^7.0.1",
     "file-loader": "^6.0.0",
     "glob-all": "^3.1.0",
-    "postcss": "^8.2.1",
+    "postcss": "^8.4.31",
     "postcss-loader": "^7.0.0",
     "sass-embedded": "^1.0.0",
     "sass-loader": "^13.0.0",
