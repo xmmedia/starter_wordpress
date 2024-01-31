@@ -1,5 +1,3 @@
-// @todo-wordpress - ACF now needs an auth.json file to work with composer. Get the details from https://www.advancedcustomfields.com/my-account/view-licenses/ - HS
-
 {
     "name": "xm/starter_wordpress",
     "license": "MIT",

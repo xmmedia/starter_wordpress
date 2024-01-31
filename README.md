@@ -40,6 +40,7 @@
     11. Adjust permissions on the bin dir: `chmod u+x bin/*`
     12. Install WP: `bin/wp core install --allow-root --url=https://<url> --title="<site-title>" --admin_user=<username> --admin_email=<email>`
 4. Update `composer.json`: `name`, `license` (likely `private` & uncomment `private`) and `description`
+@todo-wordpress - ACF now needs an auth.json file to work with composer. Get the details from https://www.advancedcustomfields.com/my-account/view-licenses/ - HS
 5. Update `package.json`: `name`, `version`, `git.url`, `license`, `private`, `script.dev-server`
 8. Install PHP packages & update locally: `composer install && composer update`
 9. Run `yarn && yarn upgrade` locally.
