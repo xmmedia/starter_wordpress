@@ -4,42 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "781ae33553eb830233dab48efa227196",
+    "content-hash": "22ea2e98acbb1df6e9e5458ba05cd465",
     "packages": [
-        {
-            "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "6.2.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/v2/plugins/download?p=pro&t=6.2.1"
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0",
-                "pivvenit/acf-pro-installer": "^2.4.0 || ^3.0"
-            },
-            "type": "wordpress-plugin",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "Elliot Condon",
-                    "homepage": "http://www.elliotcondon.com",
-                    "role": "Maintainer"
-                },
-                {
-                    "name": "PivvenIT",
-                    "homepage": "https://pivvenit.nl",
-                    "role": "Composer Repository maintainer"
-                }
-            ],
-            "description": "Advanced Custom Fields PRO",
-            "homepage": "https://www.advancedcustomfields.com/",
-            "support": {
-                "docs": "https://www.advancedcustomfields.com/resources/",
-                "forum": "https://support.advancedcustomfields.com/topics/"
-            }
-        },
         {
             "name": "composer/ca-bundle",
             "version": "1.4.0",
@@ -1347,74 +1313,6 @@
             "time": "2023-11-12T21:59:55+00:00"
         },
         {
-            "name": "pivvenit/acf-pro-installer",
-            "version": "3.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pivvenit/acf-pro-installer.git",
-                "reference": "e14e56c23f5596573c01dd87edd4ca890ef2a56a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/pivvenit/acf-pro-installer/zipball/e14e56c23f5596573c01dd87edd4ca890ef2a56a",
-                "reference": "e14e56c23f5596573c01dd87edd4ca890ef2a56a",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1||^2.0",
-                "ext-json": "*",
-                "php": "^7.3||^8.0",
-                "vlucas/phpdotenv": "^2.0 || ^3.0 || ^4.0 || ^5.0"
-            },
-            "replace": {
-                "philippbaschke/acf-pro-installer": "1.0.2"
-            },
-            "require-dev": {
-                "composer/composer": "^1.0|| ^2.0",
-                "php-parallel-lint/php-parallel-lint": "^1.2.0",
-                "phpstan/phpstan": "^1.1.2",
-                "phpunit/phpunit": "^9.0",
-                "rregeer/phpunit-coverage-check": "^0.3.1",
-                "squizlabs/php_codesniffer": "^3.4",
-                "symfony/process": "^5.1"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "PivvenIT\\Composer\\Installers\\ACFPro\\ACFProInstallerPlugin",
-                "plugin-modifies-downloads": true
-            },
-            "autoload": {
-                "psr-4": {
-                    "PivvenIT\\Composer\\Installers\\ACFPro\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PivvenIT",
-                    "homepage": "https://pivvenit.nl"
-                }
-            ],
-            "description": "A modern maintained install helper for Advanced Custom Fields PRO",
-            "keywords": [
-                "acf",
-                "composer",
-                "env",
-                "plugin",
-                "pro",
-                "wordpress",
-                "wp"
-            ],
-            "support": {
-                "issues": "https://github.com/pivvenit/acf-pro-installer/issues",
-                "source": "https://github.com/pivvenit/acf-pro-installer/tree/3.2.0"
-            },
-            "time": "2022-08-26T07:12:57+00:00"
-        },
-        {
             "name": "psr/container",
             "version": "2.0.2",
             "source": {
@@ -1595,12 +1493,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "b1ef8f464be59fa15bf9b4956be3e17a75c4dd03"
+                "reference": "e3b3cce1f2454ee4575500e084211b11efdaf64b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/b1ef8f464be59fa15bf9b4956be3e17a75c4dd03",
-                "reference": "b1ef8f464be59fa15bf9b4956be3e17a75c4dd03",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/e3b3cce1f2454ee4575500e084211b11efdaf64b",
+                "reference": "e3b3cce1f2454ee4575500e084211b11efdaf64b",
                 "shasum": ""
             },
             "conflict": {
@@ -1802,7 +1700,7 @@
                 "gos/web-socket-bundle": "<1.10.4|>=2,<2.6.1|>=3,<3.3",
                 "gree/jose": "<2.2.1",
                 "gregwar/rst": "<1.0.3",
-                "grumpydictator/firefly-iii": "<6.1.1",
+                "grumpydictator/firefly-iii": "<6.1.7",
                 "gugoan/economizzer": "<=0.9.0.0-beta1",
                 "guzzlehttp/guzzle": "<6.5.8|>=7,<7.4.5",
                 "guzzlehttp/psr7": "<1.9.1|>=2,<2.4.5",
@@ -2318,7 +2216,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-31T12:06:01+00:00"
+            "time": "2024-01-31T19:04:19+00:00"
         },
         {
             "name": "roots/bedrock-autoloader",
@@ -6247,6 +6145,21 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/wordpress-seo/"
+        },
+        {
+            "name": "wpengine/advanced-custom-fields-pro",
+            "version": "6.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?p=pro&t=6.2.5"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "replace": {
+                "wpackagist-plugin/advanced-custom-fields": "self.version"
+            },
+            "type": "wordpress-plugin"
         }
     ],
     "packages-dev": [
