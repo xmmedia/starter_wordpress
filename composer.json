@@ -41,7 +41,7 @@
         "roave/security-advisories": "dev-master",
         "roots/bedrock-autoloader": "^1.0",
         "roots/soil": "^4.0",
-        "roots/wordpress": "6.4.3",
+        "roots/wordpress": "6.5",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.0",
         "vlucas/phpdotenv": "^5.4",
@@ -53,7 +53,7 @@
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
         "wpackagist-plugin/svg-support": "^2.3",
         "wpackagist-plugin/wordfence": "^7.10.3",
-        "wpackagist-plugin/wordpress-seo": "^21.3",
+        "wpackagist-plugin/wordpress-seo": "^22.4",
         "wpengine/advanced-custom-fields-pro": "^6.2.5"
     },
     "require-dev": {
