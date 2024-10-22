@@ -6,15 +6,15 @@ use Roots\WPConfig\Config;
 
 class ThemeHelpers
 {
-    public static array $manifestData;
+    public static array $entryPoints;
 
-    public static function assetPath(string $asset): string
+    public static function assetPath(string $asset, string $type): ?string
     {
-        if (!isset(self::$manifestData)) {
-            $manifestFile = dirname(ABSPATH).'/build/manifest.json';
+        if (!isset(self::$entryPoints)) {
+            $manifestFile = dirname(ABSPATH).'/build/.vite/entrypoints.json';
 
             try {
-                self::$manifestData = \json_decode(
+                self::$entryPoints = \json_decode(
                     \file_get_contents( $manifestFile ),
                     true,
                     512,
@@ -29,16 +29,28 @@ class ThemeHelpers
             }
         }
 
-        if (array_key_exists($asset, self::$manifestData)) {
-            // support absolute URLs in the manifest
-            // helpful when running the webpack dev server
-            if (str_starts_with(self::$manifestData[$asset], 'http')) {
-                return self::$manifestData[$asset];
+        if (array_key_exists($asset, self::$entryPoints['entryPoints'])) {
+            if (!array_key_exists($type, self::$entryPoints['entryPoints'][$asset])) {
+                return null;
             }
 
-            return rtrim(Config::get('WP_HOME'), '/').self::$manifestData[$asset];
+            $assetPath = self::$entryPoints['entryPoints'][$asset][$type][0];
+
+            // support absolute URLs in the manifest
+            // helpful when running the webpack dev server
+            if (str_starts_with($assetPath, 'http')) {
+                return $assetPath;
+            }
+
+            return rtrim(Config::get('WP_HOME'), '/').$assetPath;
         }
 
+
+        return self::asset($asset);
+    }
+
+    public static function asset(string $asset): string
+    {
         // deal with trailing and leading slashes does it doesn't matter what's passed
         return sprintf('%s/%s', rtrim(get_template_directory_uri(), '/'), ltrim($asset, '/'));
     }

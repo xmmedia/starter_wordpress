@@ -64,7 +64,7 @@ add_action(
     function () {
         wp_enqueue_script(
             'deny-list-blocks',
-            ThemeHelpers::assetPath('build/blocks.js'),
+            ThemeHelpers::assetPath('blocks', 'js'),
             ['wp-blocks', 'wp-dom-ready', 'wp-edit-post']
         );
     }

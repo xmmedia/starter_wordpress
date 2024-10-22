@@ -54,20 +54,20 @@ add_action('after_setup_theme', function () {
         function () {
             wp_enqueue_style(
                 'default/public.css',
-                ThemeHelpers::assetPath('build/public.css'),
+                ThemeHelpers::assetPath('public', 'css'),
             );
             // wp_enqueue_style(
             //     'google_fonts',
             //     'https://...',
             // );
-            wp_enqueue_script(
+            wp_enqueue_script_module(
                 'default/public.js',
-                ThemeHelpers::assetPath('build/public.js'),
+                ThemeHelpers::assetPath('public', 'js'),
             );
         }
     );
 
-    add_editor_style(ThemeHelpers::assetPath('build/public.css'));
+    add_editor_style(ThemeHelpers::assetPath('public', 'css'));
 
     /**
      * Enable features from Soil when plugin is activated
