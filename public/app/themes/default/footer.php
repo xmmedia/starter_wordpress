@@ -7,10 +7,10 @@
 
     <?php wp_footer(); ?>
 
-    <?php if (WP_DEBUG) : ?>
+    <?php /*if (WP_DEBUG) : ?>
         <?php // makes svgs work with the dev server ?>
         <script defer src="<?php echo ThemeHelpers::assetPath('build/svgxuse.min.js'); ?>"></script>
-    <?php endif; ?>
+    <?php endif;*/ ?>
 
 </body>
 </html>
