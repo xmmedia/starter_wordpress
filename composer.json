@@ -34,7 +34,7 @@
 
     ],
     "require": {
-        "php": "8.1.*",
+        "php": "8.2.*",
         "ext-json": "*",
         "composer/installers": "^2.1",
         "oscarotero/env": "^2.1",
