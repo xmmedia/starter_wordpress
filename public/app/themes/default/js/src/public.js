@@ -7,4 +7,4 @@ import '../../css/public.scss';
 // images
 import '../../images/icons.svg';
 
-const appMenu = createApp(Menu).mount('#menu');
+createApp(Menu).mount('#menu');
