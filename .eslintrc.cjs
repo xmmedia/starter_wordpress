@@ -1,3 +1,4 @@
+/* eslint-env node */
 module.exports = {
     root: true,
     env: {
@@ -5,7 +6,7 @@ module.exports = {
         browser: true,
         jquery: true,
     },
-    extends: ['plugin:vue/recommended', 'eslint:recommended'],
+    extends: ['plugin:vue/vue3-recommended', 'eslint:recommended'],
     rules: {
         "no-console": "error",
         "no-debugger": "error",
@@ -22,15 +23,18 @@ module.exports = {
             "exports": "never",
             "functions": "only-multiline",
         }],
+        "vue/multi-word-component-names": "off",
         "space-before-function-paren": ["error", "always"],
         "vue/max-attributes-per-line": ["error", {
             "singleline": 5,
-            "multiline": {
-                "max": 1,
-                "allowFirstLine": true,
-            },
+            "multiline": 1,
+        }],
+        "vue/first-attribute-linebreak": ["error", {
+            "singleline": "beside",
+            "multiline": "beside",
         }],
         "vue/html-indent": ["error", 4],
+        "vue/script-indent": ["error", 4, { "switchCase": 1 }],
         "vue/html-self-closing": [
             "error", {
                 "html": {
@@ -48,10 +52,9 @@ module.exports = {
         }],
         "vue/multiline-html-element-content-newline": "off",
         "vue/singleline-html-element-content-newline": "off",
-        "vue/component-definition-name-casing": ["error", "kebab-case"],
     },
     reportUnusedDisableDirectives: true,
     parserOptions: {
-        parser: "babel-eslint",
+        ecmaVersion: 'latest',
     },
 };
