@@ -42,7 +42,6 @@ wp-cli.local.yml
 # yarn/npm
 /node_modules/
 npm-debug.log
-yarn-error.log
 
 # assets build dir
 public/build/
@@ -87,3 +86,14 @@ cypress/integration/examples
 !.vscode/launch.json
 !.vscode/extensions.json
 ###< vscode ###
+
+###< yarn ###
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+yarn-error.log
+###< yarn ###
