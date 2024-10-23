@@ -119,7 +119,6 @@ To change the theme name from the default `default` to, for example, `company`:
   - Dev JS/CSS watch: `yarn watch` (files will not be versioned)
   - Dev JS/CSS HMR server: `yarn dev-server` (if configured)
   - JS Tests ([Jest](https://jestjs.io/)): `yarn test:unit` (if configured)
-  - E2E Tests ([Cypress](https://www.cypress.io/)): `yarn test:e2e` (if configured)
   - Linting:
     - JS ([ESLint](https://eslint.org/)): `yarn lint:js` or `yarn lint:js:fix`
     - CSS: `yarn lint:css` or `yarn lint:css:fix`

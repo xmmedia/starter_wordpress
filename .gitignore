@@ -51,12 +51,6 @@ public/build/
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
 
-###> cypress ###
-cypress/videos
-cypress/screenshots
-cypress/integration/examples
-###< cypress ###
-
 ###> phpstorm ###
 # PhpStorm
 # User-specific stuff:
