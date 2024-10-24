@@ -13,15 +13,32 @@ services:
     build_as_root:
       - a2enmod headers
   database:
+    type: mysql:5.7.43
     creds:
       user: wordpress
       password: wordpress
       database: wordpress
   phpmyadmin:
     type: phpmyadmin
+    ssl: true
+    sslExpose: false
     hosts:
       - database
 proxy:
   appserver:
     # @todo-wordpress update
-    - wordpressstarter.lndo.site
+    - cdev.lndo.site
+  phpmyadmin:
+    # @todo-wordpress update
+    - pma.cdev.lndo.site
+tooling:
+  xdebug-on:
+    service: appserver
+    description: Enable xdebug for apache.
+    cmd: "docker-php-ext-enable xdebug && /etc/init.d/apache2 reload"
+    user: root
+  xdebug-off:
+    service: appserver
+    description: Disable xdebug for apache.
+    cmd: "rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && /etc/init.d/apache2 reload"
+    user: root
