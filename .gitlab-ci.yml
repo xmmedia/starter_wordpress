@@ -142,7 +142,7 @@ deploy to staging:
     - *deploy-setup-script
     # install dependencies
     - php composer.phar install --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
-    - yarn install --non-interactive --frozen-lockfile
+    - yarn install --immutable
     - *security-checks
     - yarn dev
     - *deploy-script
@@ -160,7 +160,7 @@ deploy to prod:
     - *deploy-setup-script
     # install dependencies (not php dev dependencies)
     - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
-    - yarn install --non-interactive --frozen-lockfile
+    - yarn install --immutable
     - *security-checks
     - yarn build
     - *deploy-script
