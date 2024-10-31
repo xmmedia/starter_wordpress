@@ -91,7 +91,7 @@ before_script:
   # display WordPress version
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "cd $RELEASE; echo 'WordPress Version:'; WP_CLI_PHP=$SERVER_PHP_PATH bin/wp core version"
   # reload php-fpm (to reset cache)
-  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php81-php-fpm"
+  - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "sudo /bin/systemctl reload php82-php-fpm"
   # remove >2 releases
   - ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_SERVER "ls -1d $RELEASES/* | sort -rg | tail -n +3 | xargs /bin/rm -rf"
   # test if website is up
