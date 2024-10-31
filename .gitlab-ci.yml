@@ -17,7 +17,7 @@ cache:
     - public/wp/
 
 variables:
-  SERVER_PHP_PATH: php81
+  SERVER_PHP_PATH: php82
   WP_ENV: production
   RELEASES: "$REMOTE_BASE/releases"
   SHARED: "$REMOTE_BASE/shared"
