@@ -23,10 +23,11 @@ variables:
   SHARED: "$REMOTE_BASE/shared"
 
 before_script:
-  # ensure everything up to date
-  - apt-get update -yqq
   # install composer
   - wget --no-verbose -O composer.phar https://getcomposer.org/composer-2.phar
+  # install node with nvm
+  - export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh" --no-use
+  - nvm install
 
 .versions-script: &versions-script
   - php -v
@@ -38,7 +39,7 @@ before_script:
   # check for security issues in PHP libs
   - symfony security:check
   # check for JS security issues in libs
-  - yarn audit:high
+  - npm run audit:high
 
 .deploy-setup-script: &deploy-setup-script
   - *versions-script
@@ -57,9 +58,6 @@ before_script:
   - git rev-parse --verify --short HEAD > .revision
   # create partial .env file
   - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
-  # create ACF Pro auth.json file
-  # @todo-wordpress remove if not using ACF Pro
-  - printf "{\"http-basic\":{\"composer.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST\"}}}\n" > auth.json && cat auth.json
 
 .deploy-script: &deploy-script
   # remove temp .env file just in case
@@ -121,7 +119,7 @@ static:
     # install php dependencies
     - php composer.phar install --no-interaction --no-progress --ignore-platform-reqs
     # Install node/JS dependencies
-    - yarn install --non-interactive --frozen-lockfile
+    - yarn install --immutable
     - *security-checks
     # lint JS & CSS
     - yarn lint:js
