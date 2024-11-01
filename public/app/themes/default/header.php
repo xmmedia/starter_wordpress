@@ -24,10 +24,8 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-    <div id="app">
         <header>
-            <div class="flex flex-wrap justify-between items-center w-content"
-                 :class="{ 'header-mobile-open': showMobileMenu }">
+            <div class="flex flex-wrap justify-between items-center w-content">
                 <a href="/">
                     <!-- @todo-wordpress -->
                     <img src="<?php echo ThemeHelpers::asset('/images/logo.svg'); ?>" width="250" height="257" alt="Logo">
