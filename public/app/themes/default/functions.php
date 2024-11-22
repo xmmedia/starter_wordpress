@@ -78,7 +78,8 @@ add_action('after_setup_theme', function () {
         'disable-asset-versioning',
         'disable-trackbacks',
         'js-to-footer',
-        'nav-walker',
+        // disabled because the NavWalker class has deprecated callable method on line 114
+        // 'nav-walker',
         'nice-search',
         'relative-urls',
     ]);
