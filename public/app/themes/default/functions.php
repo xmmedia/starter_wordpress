@@ -89,7 +89,7 @@ add_action('after_setup_theme', function () {
     add_filter('site_icon_meta_tags', function () {
         global $wp_customize;
 
-        $wp_customize->remove_control('site_icon');
+        $wp_customize?->remove_control('site_icon');
 
         return [];
     }, 20, 1);
