@@ -12,15 +12,29 @@ module.exports = {
         '.md-leave-active',
         '.md-enter',
         '.md-leave-active',
-        // {
-        //     pattern: /^(m|p)(t|b|r|l|x|y)?-(0|1|2|3|4|6|8|10|12|16|24)$/,
-        //     variants: ['md', 'lg'],
-        // },
+        {
+            pattern: /^(m|p)(t|b|r|l|x|y)?-(auto|0|1|2|3|4|6|8|10|12|16|24|28|36|44|48)$/,
+            variants: ['md', 'lg', 'xl', '2xl'],
+        },
+        {
+            pattern: /^max-w-[a-z0-9-]+$/,
+            variants: ['md', 'lg'],
+        },
+        {
+            pattern: /^grid-cols-(3|4|5)$/,
+            variants: ['md', 'lg'],
+        },
     ],
     theme: {
         screens: {
             'xs': '400px',
+            // sm: '640px',
+            // md: '768px',
+            // lg: '1024px',
+            // xl: '1280px',
+            // '2xl': '1536px',
             ...defaultTheme.screens,
+            '3xl': '1900px',
             'print': { 'raw': 'print' },
             'retina': { 'raw': '(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)' },
         },
@@ -40,9 +54,11 @@ module.exports = {
             },
             height: {
                 '120': '30rem',
+                '128': '32rem',
             },
             fontFamily: {
                 'headings': [
+                    '"Open Sans"',
                     '"Helvetica Neue"',
                     'Arial',
                     // see https://tailwindcss.com/docs/font-family for list
