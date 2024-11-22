@@ -19,7 +19,7 @@ export default defineConfig({
         }),
     ],
     build: {
-        outDir: 'public/build',
+        outDir: 'public/app/themes/default/build',
         rollupOptions: {
             input: {
                 public: './public/app/themes/default/js/src/public.js',

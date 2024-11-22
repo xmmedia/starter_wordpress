@@ -44,7 +44,7 @@ wp-cli.local.yml
 npm-debug.log
 
 # assets build dir
-public/build/
+public/app/themes/default/build/
 
 ###> friendsofphp/php-cs-fixer ###
 /.php_cs

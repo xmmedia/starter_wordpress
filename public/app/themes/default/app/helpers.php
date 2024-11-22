@@ -9,6 +9,24 @@ class ThemeHelpers
     public static array $entryPoints;
     public static array $manifest;
 
+    public static function getLanguage(): string
+    {
+        global $wp;
+
+        $language = substr(home_url($wp->request), strlen(home_url('/')), 2);
+
+        if (in_array($language, ['en', 'fr'])) {
+            return $language;
+        }
+
+        return 'en';
+    }
+
+    public static function pageUrl(string $path = ''): string
+    {
+        return home_url(self::getLanguage().$path);
+    }
+
     public static function assetPath(string $asset, ?string $type = null): ?string
     {
         self::load();
@@ -26,7 +44,7 @@ class ThemeHelpers
                 return $assetPath;
             }
 
-            return rtrim(Config::get('WP_HOME'), '/').$assetPath;
+            return get_template_directory_uri().$assetPath;
         }
 
         if (isset(self::$manifest) && array_key_exists($asset, self::$manifest)) {
@@ -38,7 +56,7 @@ class ThemeHelpers
                 return $assetPath;
             }
 
-            return '/build/'.$assetPath;
+            return get_template_directory_uri().$assetPath;
         }
 
         return self::asset($asset);
@@ -64,8 +82,8 @@ class ThemeHelpers
     private static function load(): void
     {
         if (!isset(self::$entryPoints)) {
-            $entryPointsFile = dirname(ABSPATH).'/build/.vite/entrypoints.json';
-            $manifestFile = dirname(ABSPATH).'/build/.vite/manifest.json';
+            $entryPointsFile = rtrim(get_template_directory(), '/').'/build/.vite/entrypoints.json';
+            $manifestFile = rtrim(get_template_directory(), '/').'/build/.vite/manifest.json';
 
             try {
                 self::$entryPoints = \json_decode(
