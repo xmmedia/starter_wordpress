@@ -14,8 +14,7 @@
     label {
         @apply block py-1 px-5 text-blue-800 rounded-full border-2 border-transparent cursor-pointer;
         &:after {
-            @apply absolute inset-0 border-2 border-gray-400 rounded-full cursor-pointer;
-            content: "";
+            @apply absolute inset-0 border-2 border-gray-400 rounded-full cursor-pointer content-[''];
             transition:
                 bottom 200ms ease-in-out,
                 border-color 200ms ease-in-out,
