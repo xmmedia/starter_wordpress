@@ -86,15 +86,11 @@ add_action('after_setup_theme', function () {
 
     // Remove the ability to change the site icon in the theme customizer
     // & remove from head
-    add_filter('site_icon_meta_tags', function () {
-        global $wp_customize;
-
-        $wp_customize?->remove_control('site_icon');
-
-        return [];
+    add_filter('customize_register', function (WP_Customize_Manager $wp_customize) {
+        $wp_customize->remove_control('site_icon');
     }, 20, 1);
     remove_action('wp_head', 'wp_site_icon', 99);
-
+    
     register_nav_menus([
         'main' => 'Main',
     ]);
