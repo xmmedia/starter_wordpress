@@ -27,10 +27,10 @@ services:
 proxy:
   appserver:
     # @todo-wordpress update
-    - cdev.lndo.site
+    - wordpressstarter.lndo.site
   phpmyadmin:
     # @todo-wordpress update
-    - pma.cdev.lndo.site
+    - pma.wordpressstarter.lndo.site
 tooling:
   xdebug-on:
     service: appserver
