@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f050017d412af384319bd73905dfc4e",
+    "content-hash": "50ad5f1cdc4565c521719a478bf2956f",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -84,16 +84,16 @@
         },
         {
             "name": "composer/class-map-generator",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/class-map-generator.git",
-                "reference": "98bbf6780e56e0fd2404fe4b82eb665a0f93b783"
+                "reference": "4b0a223cf5be7c9ee7e0ef1bc7db42b4a97c9915"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/class-map-generator/zipball/98bbf6780e56e0fd2404fe4b82eb665a0f93b783",
-                "reference": "98bbf6780e56e0fd2404fe4b82eb665a0f93b783",
+                "url": "https://api.github.com/repos/composer/class-map-generator/zipball/4b0a223cf5be7c9ee7e0ef1bc7db42b4a97c9915",
+                "reference": "4b0a223cf5be7c9ee7e0ef1bc7db42b4a97c9915",
                 "shasum": ""
             },
             "require": {
@@ -102,10 +102,10 @@
                 "symfony/finder": "^4.4 || ^5.3 || ^6 || ^7"
             },
             "require-dev": {
-                "phpstan/phpstan": "^1.6",
-                "phpstan/phpstan-deprecation-rules": "^1",
-                "phpstan/phpstan-phpunit": "^1",
-                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpstan/phpstan": "^1.12 || ^2",
+                "phpstan/phpstan-deprecation-rules": "^1 || ^2",
+                "phpstan/phpstan-phpunit": "^1 || ^2",
+                "phpstan/phpstan-strict-rules": "^1.1 || ^2",
                 "phpunit/phpunit": "^8",
                 "symfony/filesystem": "^5.4 || ^6"
             },
@@ -137,7 +137,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/class-map-generator/issues",
-                "source": "https://github.com/composer/class-map-generator/tree/1.4.0"
+                "source": "https://github.com/composer/class-map-generator/tree/1.5.0"
             },
             "funding": [
                 {
@@ -153,7 +153,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-03T18:14:00+00:00"
+            "time": "2024-11-25T16:11:06+00:00"
         },
         {
             "name": "composer/composer",
@@ -2576,16 +2576,16 @@
         },
         {
             "name": "roots/wordpress",
-            "version": "6.7",
+            "version": "6.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/roots/wordpress.git",
-                "reference": "1bdabdb9171ac5323edbf4792ce353d475467d27"
+                "reference": "9451af491af7124c12186398c56ab87a6e145123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/roots/wordpress/zipball/1bdabdb9171ac5323edbf4792ce353d475467d27",
-                "reference": "1bdabdb9171ac5323edbf4792ce353d475467d27",
+                "url": "https://api.github.com/repos/roots/wordpress/zipball/9451af491af7124c12186398c56ab87a6e145123",
+                "reference": "9451af491af7124c12186398c56ab87a6e145123",
                 "shasum": ""
             },
             "require": {
@@ -2607,7 +2607,7 @@
             ],
             "support": {
                 "issues": "https://github.com/roots/wordpress/issues",
-                "source": "https://github.com/roots/wordpress/tree/6.7"
+                "source": "https://github.com/roots/wordpress/tree/6.7.1"
             },
             "funding": [
                 {
@@ -2615,7 +2615,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-16T12:03:00+00:00"
+            "time": "2024-11-13T09:56:09+00:00"
         },
         {
             "name": "roots/wordpress-core-installer",
@@ -2690,22 +2690,22 @@
         },
         {
             "name": "roots/wordpress-no-content",
-            "version": "6.7",
+            "version": "6.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress.git",
-                "reference": "6.7"
+                "reference": "6.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/release/wordpress-6.7-no-content.zip",
-                "shasum": "d30558244ed409b6421a5454f9c837d0884317f2"
+                "url": "https://downloads.wordpress.org/release/wordpress-6.7.1-no-content.zip",
+                "shasum": "321a5b819369e772ce606fbc12b1e264fb73da5b"
             },
             "require": {
                 "php": ">= 7.2.24"
             },
             "provide": {
-                "wordpress/core-implementation": "6.7"
+                "wordpress/core-implementation": "6.7.1"
             },
             "suggest": {
                 "ext-curl": "Performs remote request operations.",
@@ -2756,7 +2756,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2024-11-12T20:51:37+00:00"
+            "time": "2024-11-21T14:15:19+00:00"
         },
         {
             "name": "roots/wp-config",

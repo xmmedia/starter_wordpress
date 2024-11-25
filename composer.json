@@ -41,7 +41,7 @@
         "roave/security-advisories": "dev-master",
         "roots/bedrock-autoloader": "^1.0",
         "roots/soil": "^4.0",
-        "roots/wordpress": "6.7",
+        "roots/wordpress": "6.7.1",
         "roots/wp-config": "^1.0",
         "roots/wp-password-bcrypt": "^1.0",
         "vlucas/phpdotenv": "^5.4",
