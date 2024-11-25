@@ -14,16 +14,16 @@ module.exports = {
         '.md-leave-active',
         {
             pattern: /^(m|p)(t|b|r|l|x|y)?-(auto|0|1|2|3|4|6|8|10|12|16|24|28|36|44|48)$/,
-            variants: ['md', 'lg', 'xl', '2xl'],
+            variants: ['md', 'lg', 'xl'],
         },
         {
             pattern: /^max-w-[a-z0-9-]+$/,
             variants: ['md', 'lg'],
         },
-        {
-            pattern: /^grid-cols-(3|4|5)$/,
-            variants: ['md', 'lg'],
-        },
+        // {
+        //     pattern: /^grid-cols-(3|4|5)$/,
+        //     variants: ['md', 'lg'],
+        // },
     ],
     theme: {
         screens: {
@@ -58,7 +58,6 @@ module.exports = {
             },
             fontFamily: {
                 'headings': [
-                    '"Open Sans"',
                     '"Helvetica Neue"',
                     'Arial',
                     // see https://tailwindcss.com/docs/font-family for list
