@@ -90,7 +90,8 @@ add_action('after_setup_theme', function () {
         $wp_customize->remove_control('site_icon');
     }, 20, 1);
     remove_action('wp_head', 'wp_site_icon', 99);
-    
+
+    // use these by passing 'theme_location' => 'main' to wp_nav_menu
     register_nav_menus([
         'main' => 'Main',
     ]);
@@ -231,6 +232,23 @@ add_action('after_setup_theme', function () {
         add_filter('login_headertext', function () {
             return get_bloginfo('name');
         });
+// @todo check size of logo/test
+        /**
+         * Change the logo on the WP login form.
+         * From: https://codex.wordpress.org/Customizing_the_Login_Form#Change_the_Login_Logo
+         */
+        // 150x90
+        add_action('login_enqueue_scripts', function () { ?>
+            <style>
+                #login h1 a, .login h1 a {
+                    background-image: url("<?php echo get_stylesheet_directory_uri(); ?>/images/logo.svg");
+                    height: 90px;
+                    width: 160px;
+                    background-size: 160px 90px;
+                    background-repeat: no-repeat;
+                }
+            </style>
+        <?php });
     });
 });
 
