@@ -140,8 +140,7 @@ deploy to staging:
       when: manual
   script:
     - *deploy-setup-script
-    # install dependencies
-    - php composer.phar install --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
+    - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
     - yarn install --immutable
     - *security-checks
     - yarn build
