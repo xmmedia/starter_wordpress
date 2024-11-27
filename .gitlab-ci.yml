@@ -157,7 +157,6 @@ deploy to prod:
   when: manual
   script:
     - *deploy-setup-script
-    # install dependencies (not php dev dependencies)
     - php composer.phar install --no-dev --classmap-authoritative --no-interaction --no-progress --ignore-platform-reqs
     - yarn install --immutable
     - *security-checks
