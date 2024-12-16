@@ -53,7 +53,7 @@
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
         "wpackagist-plugin/svg-support": "^2.3",
         "wpackagist-plugin/wordfence": "^8.0.1",
-        "wpackagist-plugin/wordpress-seo": "^23.4",
+        "wpackagist-plugin/wordpress-seo": "^24.0",
         "wpengine/advanced-custom-fields-pro": "^6.2.5"
     },
     "require-dev": {
