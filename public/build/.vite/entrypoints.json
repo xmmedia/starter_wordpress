@@ -1,0 +1,24 @@
+{
+  "base": "/build/",
+  "entryPoints": {
+    "public": {
+      "js": [
+        "https://localhost:9034/build/public/app/themes/default/js/src/public.js"
+      ]
+    },
+    "blocks": {
+      "js": [
+        "https://localhost:9034/build/public/app/themes/default/js/src/blocks.js"
+      ]
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "6.2.0",
+    6,
+    2,
+    0
+  ],
+  "viteServer": "https://localhost:9034"
+}
