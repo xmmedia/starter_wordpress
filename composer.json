@@ -48,12 +48,12 @@
         "wp-cli/wp-cli-bundle": "^2.3",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
         "wpackagist-plugin/akismet": "^5.0",
-        "wpackagist-plugin/contact-form-7": "^6.0",
+        "wpackagist-plugin/contact-form-7": "^6.0.2",
         "wpackagist-plugin/flamingo": "^2.0",
         "wpackagist-plugin/postmark-approved-wordpress-plugin": "^1.11",
         "wpackagist-plugin/svg-support": "^2.3",
-        "wpackagist-plugin/wordfence": "^8.0.1",
-        "wpackagist-plugin/wordpress-seo": "^24.0",
+        "wpackagist-plugin/wordfence": "^8.0.2",
+        "wpackagist-plugin/wordpress-seo": "^24.2",
         "wpengine/advanced-custom-fields-pro": "^6.2.5"
     },
     "require-dev": {
