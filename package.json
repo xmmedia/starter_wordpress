@@ -16,8 +16,8 @@
     "lint:js:fix": "eslint --ext .js,.vue public/app/themes/default/js *.js --fix",
     "lint:css": "stylelint public/app/themes/default/css/**/*.scss",
     "lint:css:fix": "stylelint public/app/themes/default/css/**/*.scss --fix",
-    "audit:moderate": "npx audit-ci@^7 --moderate --config .audit-ci.jsonc --report-type summary",
-    "audit:high": "yarn npm audit --severity moderate --all --recursive --no-deprecations"
+    "audit:moderate": "yarn npm audit --severity moderate --all --recursive --no-deprecations",
+    "audit:high": "yarn npm audit --severity high --all --recursive --no-deprecations"
   },
   "dependencies": {
     "core-js": "^3.4.3",
