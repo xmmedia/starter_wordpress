@@ -17,7 +17,7 @@
     "lint:css": "stylelint public/app/themes/default/css/**/*.scss",
     "lint:css:fix": "stylelint public/app/themes/default/css/**/*.scss --fix",
     "audit:moderate": "npx audit-ci@^7 --moderate --config .audit-ci.jsonc --report-type summary",
-    "audit:high": "yarn npm audit --severity moderate --all --resursive --no-deprecations"
+    "audit:high": "yarn npm audit --severity moderate --all --recursive --no-deprecations"
   },
   "dependencies": {
     "core-js": "^3.4.3",
