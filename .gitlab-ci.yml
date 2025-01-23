@@ -41,6 +41,12 @@ before_script:
   # check for JS security issues in libs
   - npm run audit:high
 
+.env-create: &env-create
+  # create partial .env file
+  - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
+  # create ACF Pro auth.json file
+  - printf "{\"http-basic\":{\"composer.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST\"}}}\n" > auth.json && cat auth.json
+
 .deploy-setup-script: &deploy-setup-script
   - *versions-script
   # setup vars for paths
@@ -56,10 +62,7 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
   # add .revision file
   - git rev-parse --verify --short HEAD > .revision
-  # create partial .env file
-  - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
-  # create ACF Pro auth.json file
-  - printf "{\"http-basic\":{\"composer.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST\"}}}\n" > auth.json && cat auth.json
+  - *env-create
 
 .deploy-script: &deploy-script
   # remove temp .env file just in case
@@ -113,8 +116,7 @@ static:
     name: static
   script:
     - *versions-script
-    # create partial .env file
-    - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
+    - *env-create
     # install php dependencies
     - php composer.phar install --no-interaction --no-progress --ignore-platform-reqs
     # Install node/JS dependencies
