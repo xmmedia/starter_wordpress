@@ -44,6 +44,7 @@ before_script:
 .env-create: &env-create
   # create partial .env file
   - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
+  - echo "COMPOSER_AUTH:"; echo $COMPOSER_AUTH
 
 .deploy-setup-script: &deploy-setup-script
   - *versions-script
