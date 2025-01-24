@@ -31,7 +31,6 @@
             "type":"composer",
             "url":"https://composer.advancedcustomfields.com"
         }
-
     ],
     "require": {
         "php": "8.4.*",
