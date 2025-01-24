@@ -45,6 +45,8 @@ before_script:
   # create partial .env file
   - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
   - echo "COMPOSER_AUTH:"; echo $COMPOSER_AUTH
+  # create ACF Pro auth.json file
+  - printf "$COMPOSER_AUTH\n" > auth.json && cat auth.json
 
 .deploy-setup-script: &deploy-setup-script
   - *versions-script
