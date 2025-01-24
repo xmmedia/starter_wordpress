@@ -44,8 +44,6 @@ before_script:
 .env-create: &env-create
   # create partial .env file
   - printf "WP_ENV=$WP_ENV\n" > .env && cat .env
-  # create ACF Pro auth.json file
-  - printf "{\"http-basic\":{\"composer.advancedcustomfields.com\":{\"username\":\"$ACF_PRO_KEY\",\"password\":\"$REQUEST_CONTEXT_SCHEME://$REQUEST_CONTEXT_HOST\"}}}\n" > auth.json && cat auth.json
 
 .deploy-setup-script: &deploy-setup-script
   - *versions-script
