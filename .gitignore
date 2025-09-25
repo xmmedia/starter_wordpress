@@ -71,6 +71,7 @@ public/app/themes/default/build/
 .idea/**/dbnavigator.xml
 # @todo-wordpress remove when setting up project
 .idea/webServers.xml
+.idea/copilot*
 ###< phpstorm ###
 
 ###> vscode ###
